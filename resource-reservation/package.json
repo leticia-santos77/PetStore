@@ -1,5 +1,5 @@
 {
-  "name": "reserva-de-recursos",
+  "name": "resource-reservation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,10 +1,10 @@
-package br.com.dbccompany.reservaderecursos;
+package br.com.dbccompany.resourcereservation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReservaderecursosApplicationTests {
+class ResourcereservationApplicationTests {
 
 	@Test
 	void contextLoads() {
