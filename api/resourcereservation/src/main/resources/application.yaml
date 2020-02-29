@@ -4,6 +4,6 @@ spring:
   data:
     mongodb:
       url: mongodb://mongoadmin:secret@localhost:27017
-      database: test
+      database: teste
       hibernate:
         ddl-auto: create-drop

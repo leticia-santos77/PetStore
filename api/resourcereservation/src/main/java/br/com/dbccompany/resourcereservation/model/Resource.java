@@ -1,26 +1,36 @@
 package br.com.dbccompany.resourcereservation.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Document(collection = "Resource")
 public class Resource {
     @Id
     private String id;
-    @NotEmpty
+    @NotNull
     private String name;
-    @NotEmpty
+    @NotNull
     private Integer quantityOfPlaces;
-    @NotEmpty
+    @NotNull
     private boolean hasTelevision;
-    @NotEmpty
+    @NotNull
     private boolean activeRoom;
-    @NotEmpty
+    @NotNull
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" )
     private Date creationDate;
+
+    public Resource() {
+    }
+
+    public Resource(@NotNull String name, @NotNull Integer quantityOfPlaces, @NotNull boolean hasTelevision, @NotNull boolean activeRoom) {
+        this.name = name;
+        this.quantityOfPlaces = quantityOfPlaces;
+        this.hasTelevision = hasTelevision;
+        this.activeRoom = activeRoom;
+    }
 
     public String getId() {
         return id;
