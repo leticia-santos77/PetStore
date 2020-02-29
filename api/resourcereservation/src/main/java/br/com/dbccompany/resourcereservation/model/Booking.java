@@ -1,7 +1,5 @@
 package br.com.dbccompany.resourcereservation.model;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,8 +13,8 @@ public class Booking {
     @Id
     private String id;
 
-//    @DBRef
-//    private Resources resource_id;
+    @DBRef
+    private Test test_id;
 
     @NotEmpty
     private Integer quantityOfPeople;
@@ -33,6 +31,15 @@ public class Booking {
     @NotEmpty
     private Boolean use_tv;
 
+    public Booking( Integer quantityOfPeople, Date date, Boolean canceled, Boolean use_tv ){
+        this.quantityOfPeople = quantityOfPeople;
+        this.date = date;
+        this.canceled = canceled;
+        this.use_tv = use_tv;
+    }
+
+    public Booking(){}
+
     public String getId() {
         return id;
     }
@@ -41,13 +48,13 @@ public class Booking {
         this.id = id;
     }
 
-//    public Resources getResource_id() {
-//        return resource_id;
-//    }
-//
-//    public void setResource_id(Resources resource_id) {
-//        this.resource_id = resource_id;
-//    }
+    public Test getTest_id() {
+        return test_id;
+    }
+
+    public void setTest_id(Test test_id) {
+        this.test_id = test_id;
+    }
 
     public Integer getQuantityOfPeople() {
         return quantityOfPeople;
