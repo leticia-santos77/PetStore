@@ -3,5 +3,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://mongoadmin:secret@localhost:27017
+      url: mongodb://mongoadmin:secret@localhost:27017
       database: test
+      hibernate:
+        ddl-auto: create-drop
