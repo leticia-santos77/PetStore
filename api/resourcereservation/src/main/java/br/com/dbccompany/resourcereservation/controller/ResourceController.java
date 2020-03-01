@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/resources")
@@ -20,8 +20,11 @@ public class ResourceController {
     @PostMapping(value = "/add")
     @ResponseBody
     public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO resourceDTO){
-        Resource resource = service.save(resourceDTO.toObject());
-        return new ResponseEntity<>(resource, HttpStatus.CREATED);
+        if (resourceDTO.getName()!=null){
+            Resource resource = service.save(resourceDTO.toObject());
+            return new ResponseEntity<>(resource, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     @GetMapping(value = "/listAll")
     @ResponseBody
@@ -36,4 +39,10 @@ public class ResourceController {
         Resource resource = service.edit(resourceDTO.toObject(),id,date);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
+    @GetMapping(value = "/findByName/{name}")
+    @ResponseBody
+    public Resource findByName(@PathVariable String name){
+        return service.findByName(name);
+    }
+
 }

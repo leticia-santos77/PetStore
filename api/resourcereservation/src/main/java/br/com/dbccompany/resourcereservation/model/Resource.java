@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Document(collection = "Resource")
 public class Resource {
+    @NotNull
     @Id
     private String id;
     @NotNull

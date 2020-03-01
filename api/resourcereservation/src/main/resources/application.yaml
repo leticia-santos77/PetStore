@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   data:
     mongodb:
-      url: mongodb://mongoadmin:secret@localhost:27017
-      database: teste
+      uri: mongodb://localhost:27017
+      database: test
       hibernate:
         ddl-auto: create-drop
