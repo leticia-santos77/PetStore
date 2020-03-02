@@ -5,3 +5,5 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017
       database: test
+      hibernate:
+        ddl-auto: create-drop
