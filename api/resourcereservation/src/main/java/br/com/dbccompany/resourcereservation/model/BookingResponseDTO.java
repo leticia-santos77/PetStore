@@ -1,44 +1,18 @@
 package br.com.dbccompany.resourcereservation.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
-@Document(collection = "Booking")
-public class Booking {
+public class BookingResponseDTO {
 
-    @Id
     private String id;
-
-    @DBRef
     private Test test_id;
-
-    @NotEmpty
     private Integer quantityOfPeople;
-
-    @NotEmpty
     private Date date;
-
-    @NotEmpty
     private Date creationDate;
-
-    @NotEmpty
     private Boolean canceled;
-
-    @NotEmpty
     private Boolean use_tv;
 
-    public Booking(Integer quantityOfPeople, Date date, Boolean canceled, Boolean use_tv) {
-        this.quantityOfPeople = quantityOfPeople;
-        this.date = date;
-        this.canceled = canceled;
-        this.use_tv = use_tv;
-    }
-
-    public Booking() {
+    public BookingResponseDTO(String id, Test test_id, Integer quantityOfPeople, Date date, Date creationDate, Boolean canceled, Boolean use_tv) {
     }
 
     public String getId() {
@@ -97,7 +71,8 @@ public class Booking {
         this.use_tv = use_tv;
     }
 
-    public static BookingResponseDTO turnsToDTO(Booking booking) {
+    public static BookingResponseDTO toDTO(Booking booking) {
         return new BookingResponseDTO(booking.getId(), booking.getTest_id(), booking.getQuantityOfPeople(), booking.getDate(), booking.getCreationDate(), booking.getCanceled(), booking.getUse_tv());
     }
+
 }

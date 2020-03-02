@@ -23,13 +23,17 @@ public class BookingService {
     }
 
     @Transactional( rollbackFor = Exception.class )
-    public Booking edit( Booking booking, String id ){
+    public Booking edit( Booking booking, String id, Date date ){
         booking.setId( id );
         return repository.save( booking );
     }
 
     public List<Booking> listAllBookings() {
         return (List<Booking>) repository.findAll();
+    }
+
+    public Booking findById(String id){
+        return repository.findById(id).get();
     }
 
 }
