@@ -11,12 +11,12 @@ export default class login extends Component{
     }
     render(){
         return (
-            <React.Fragment>
+            <div>
                 <h2>Reserva de Recurso</h2>
                 <input name="userName" placeholder="usuário"></input>
                 <input name="password" type="password" placeholder="senha"></input>
                 <button>ENTRAR</button>
-            </React.Fragment>
+            </div>
         )
     }
 }
