@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import BookingList from '../../components/BookingList';
 
 export default class Home extends Component{
 
     render(){
         return(
             <React.Fragment>
-                <h1>Seja Bem Vindo!</h1>
+                <BookingList/>
             </React.Fragment>
         );
     }
