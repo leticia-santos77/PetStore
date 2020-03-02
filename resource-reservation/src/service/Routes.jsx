@@ -10,7 +10,8 @@ import Home from '../pages/home/Home';
  const Routes = () =>(
     <BrowserRouter>
         <Switch>
-            <PrivateRoute exact path="/" component = { IsAutheticated ?  Home : Login }/>            >
+            <Route exact path="/" component = { Login }/>
+            <PrivateRoute exact path="/login" component = { IsAutheticated ?  Home : Login }/>            >
             <PrivateRoute exact path="/home" component = { Home }/>
         </Switch>
     </BrowserRouter>
