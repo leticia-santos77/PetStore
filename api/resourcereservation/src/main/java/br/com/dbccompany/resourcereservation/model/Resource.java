@@ -3,6 +3,8 @@ package br.com.dbccompany.resourcereservation.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -11,24 +13,24 @@ public class Resource {
     @NotNull
     @Id
     private String id;
-    @NotNull
+    @NotEmpty
     private String name;
-    @NotNull
-    private Integer quantityOfPlaces;
-    @NotNull
+    @NotEmpty
+    private Integer numberOfSeats;
+    @NotEmpty
     private boolean hasTelevision;
-    @NotNull
+    @NotEmpty
     private boolean activeRoom;
-    @NotNull
+    @NotEmpty
     @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" )
     private Date creationDate;
 
     public Resource() {
     }
 
-    public Resource(@NotNull String name, @NotNull Integer quantityOfPlaces, @NotNull boolean hasTelevision, @NotNull boolean activeRoom) {
+    public Resource(@NotEmpty String name, @NotEmpty Integer numberOfSeats, @NotEmpty boolean hasTelevision, @NotEmpty boolean activeRoom) {
         this.name = name;
-        this.quantityOfPlaces = quantityOfPlaces;
+        this.numberOfSeats = numberOfSeats;
         this.hasTelevision = hasTelevision;
         this.activeRoom = activeRoom;
     }
@@ -41,12 +43,12 @@ public class Resource {
         this.id = id;
     }
 
-    public Integer getQuantityOfPlaces() {
-        return quantityOfPlaces;
+    public Integer getnumberOfSeats() {
+        return numberOfSeats;
     }
 
-    public void setQuantityOfPlaces(Integer quantityOfPlaces) {
-        this.quantityOfPlaces = quantityOfPlaces;
+    public void setnumberOfSeats(Integer numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 
     public boolean isHasTelevision() {

@@ -1,23 +1,24 @@
 package br.com.dbccompany.resourcereservation.model;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class ResourceDTO {
 
-    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotNull
-    private Integer quantityOfPlaces;
+    @NotEmpty
+    private Integer numberOfSeats;
 
-    @NotNull
+    @NotEmpty
     private boolean hasTelevision;
 
-    @NotNull
+    @NotEmpty
     private boolean activeRoom;
 
     public Resource toObject(){
-        return new Resource(this.name,this.quantityOfPlaces,this.hasTelevision,this.activeRoom);
+        return new Resource(this.name,this.numberOfSeats,this.hasTelevision,this.activeRoom);
     }
 
     public String getName() {
@@ -28,12 +29,12 @@ public class ResourceDTO {
         this.name = name;
     }
 
-    public Integer getQuantityOfPlaces() {
-        return quantityOfPlaces;
+    public Integer getnumberOfSeats() {
+        return numberOfSeats;
     }
 
-    public void setQuantityOfPlaces(Integer quantityOfPlaces) {
-        this.quantityOfPlaces = quantityOfPlaces;
+    public void setnumberOfSeats(Integer numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 
     public boolean isHasTelevision() {
