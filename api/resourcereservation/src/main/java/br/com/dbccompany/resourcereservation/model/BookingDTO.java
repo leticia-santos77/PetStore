@@ -1,16 +1,16 @@
 package br.com.dbccompany.resourcereservation.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 public class BookingDTO {
-
-    //nome do recurso
-
     @NotEmpty
     private Integer quantityOfPeople;
 
     @NotEmpty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date;
 
     @NotEmpty

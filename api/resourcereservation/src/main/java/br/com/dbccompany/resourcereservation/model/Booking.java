@@ -1,7 +1,7 @@
 package br.com.dbccompany.resourcereservation.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,16 +13,15 @@ public class Booking {
     @Id
     private String id;
 
-    @DBRef
-    private Test test_id;
-
     @NotEmpty
     private Integer quantityOfPeople;
 
     @NotEmpty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date;
 
     @NotEmpty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date creationDate;
 
     @NotEmpty
@@ -47,14 +46,6 @@ public class Booking {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Test getTest_id() {
-        return test_id;
-    }
-
-    public void setTest_id(Test test_id) {
-        this.test_id = test_id;
     }
 
     public Integer getQuantityOfPeople() {
@@ -95,9 +86,5 @@ public class Booking {
 
     public void setUse_tv(Boolean use_tv) {
         this.use_tv = use_tv;
-    }
-
-    public static BookingResponseDTO turnsToDTO(Booking booking) {
-        return new BookingResponseDTO(booking.getId(), booking.getTest_id(), booking.getQuantityOfPeople(), booking.getDate(), booking.getCreationDate(), booking.getCanceled(), booking.getUse_tv());
     }
 }

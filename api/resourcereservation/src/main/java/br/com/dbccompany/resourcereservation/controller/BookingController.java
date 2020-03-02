@@ -2,7 +2,6 @@ package br.com.dbccompany.resourcereservation.controller;
 
 import br.com.dbccompany.resourcereservation.model.Booking;
 import br.com.dbccompany.resourcereservation.model.BookingDTO;
-import br.com.dbccompany.resourcereservation.model.BookingResponseDTO;
 import br.com.dbccompany.resourcereservation.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,10 +30,9 @@ public class BookingController {
     public ResponseEntity<Booking> newBooking(@RequestBody BookingDTO dto ){
         Booking booking = service.save( dto.turnsToObject() );
         return new ResponseEntity<>( booking, HttpStatus.CREATED );
-//        return new ResponseEntity<>( BookingResponseDTO.toDTO(booking), HttpStatus.CREATED );
     }
 
-    @PutMapping("/edit")
+    @PutMapping("/edit/{id}")
     @ResponseBody
     public ResponseEntity<Booking> edit( @PathVariable String id, @RequestBody BookingDTO dto) {
         Date date = service.findById(id).getCreationDate();

@@ -1,7 +1,6 @@
 package br.com.dbccompany.resourcereservation.service;
 
 import br.com.dbccompany.resourcereservation.model.Booking;
-import br.com.dbccompany.resourcereservation.model.Test;
 import br.com.dbccompany.resourcereservation.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,7 @@ public class BookingService {
     @Transactional( rollbackFor = Exception.class )
     public Booking edit( Booking booking, String id, Date date ){
         booking.setId( id );
+        booking.setCreationDate( date );
         return repository.save( booking );
     }
 
