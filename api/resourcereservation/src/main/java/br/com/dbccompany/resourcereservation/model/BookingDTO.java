@@ -10,7 +10,7 @@ public class BookingDTO {
     private Integer quantityOfPeople;
 
     @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private Date date;
 
     @NotEmpty
