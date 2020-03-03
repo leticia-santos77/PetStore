@@ -2,10 +2,5 @@
 html, body{
     margin: 0px;
     padding: 0px;
-    width: 100vw;
-    height: 100vh;
-    
-    background:url("./background.png"),
-    linear-gradient(to right bottom, rgb(41, 91, 167), rgb(120, 180, 84));
     font-family: 'Poppins', sans-serif;
   }
