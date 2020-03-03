@@ -17,7 +17,18 @@ public class BookingDTO {
     private Boolean canceled;
 
     @NotEmpty
-    private Boolean use_tv;
+    private Boolean useTv;
+
+    // raf
+    private Resource resource;
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
+    }
 
     public Integer getQuantityOfPeople() {
         return quantityOfPeople;
@@ -44,15 +55,15 @@ public class BookingDTO {
     }
 
     public Boolean getUse_tv() {
-        return use_tv;
+        return useTv;
     }
 
-    public void setUse_tv(Boolean use_tv) {
-        this.use_tv = use_tv;
+    public void setUse_tv(Boolean useTv) {
+        this.useTv = useTv;
     }
 
     public Booking turnsToObject(){
-        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.use_tv );
+        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.useTv, this.resource.getId() );
     }
 
 }
