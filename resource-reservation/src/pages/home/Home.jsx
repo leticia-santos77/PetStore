@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import BookingList from '../../components/BookingList';
+import ResourceForm from '../../components/ResourceForm';
 
 export default class Home extends Component{
 
     render(){
         return(
             <React.Fragment>
-                <BookingList/>
+                <ResourceForm></ResourceForm>
             </React.Fragment>
         );
     }
