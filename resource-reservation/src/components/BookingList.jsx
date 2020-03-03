@@ -1,29 +1,61 @@
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
+import Api from '../service/Api';
+import Booking from '../components/Booking';
 
 export default class BookingList extends Component {
-  constructor() {
+  /* constructor() {
     super()
+    this.api = new Api();
     this.state = {
       list: [],
     }
-  }
+  } */
 
   /* componentDidMount() {
-    this.api.getAgencias()
+    this.api.getBookings()
       .then((res) => {
         this.setState({
-          agencias: res.data.agencias
+          list: res.data.bookings
         });
         console.log(res.data)
       }).catch((err) => {
         console.log(err);
       })
-    }  */
+    } 
+ */
 
+  constructor( props ) {
+    super( props );
+    this.api = new Api();
+    this.state = {
+      bookings: []
+    }
+  }
+
+  componentDidMount() {
+    this._asyncRequest = this.requestBookings();
+    this._asyncRequest = null;
+  }
+
+  componentWillUnmount() {
+    if ( this._asyncReques ) {
+      this._asyncRequest.cancel();
+    }
+  }
+
+  requestBookings = () => {
+    return this.api.getBookings()
+      .then( value => this.setState({
+        bookings: value.data.bookings.map( b => b = new Booking(
+          b.id,
+          b.nome,
+        ))}))
+      .catch( "Nao foi possivel carregar o conteúdo" )
+  }
 
   render() {
-    const { list } = this.state;
+    const { bookings } = this.state;
     return (
       <React.Fragment>
         <div>
@@ -39,13 +71,13 @@ export default class BookingList extends Component {
               </thead>
               <tbody>
                 {
-                  list.map(list => {
+                  bookings.map(bookings => {
                     return <tr>
-                      <th>{list.id}</th>
-                      {/* <th>>{list.nomeDoRecurso}</th> */}
-                      <th>>{list.date}</th>
-                      <th>>{list.quantityOfPeople}</th>
-                      <th>>{list.use_tv ? <span>Sim</span> : <span>Não</span>}</th>
+                      <th>{bookings.id}</th>
+                      {/* <th>>{bookings.nomeDoRecurso}</th> */}
+                      <th>>{bookings.date}</th>
+                      <th>>{bookings.quantityOfPeople}</th>
+                      <th>>{bookings.use_tv ? <span>Sim</span> : <span>Não</span>}</th>
                     </tr>
                   })
                 }
