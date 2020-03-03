@@ -1,2 +1,2 @@
- const isAutheticated = () => true;
+ const isAutheticated = () => false;
  export default isAutheticated;
