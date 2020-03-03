@@ -7,7 +7,7 @@
 .div-logo{
     width: 200px;
     height: 60px;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 90px;
     margin-right: 80px;
 }
@@ -16,27 +16,14 @@
     width: 100%;
 }
 .div-login-text{
-    font-size: 15px;
-    font-family: sans-serif;
+    font-size: 10px;
     color: lightslategrey;
 }
 .div-login-input{
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.input-login{
-    border-radius: 5px;
-    border: 1px solid transparent;
-    margin: 10px;
-    height: 40px;
-    background-color: #dde3ec;
-    padding-left: 10px;
-    width: 250px;
-}
-.input-login::placeholder {
-    color: #6c757d;
-    opacity: 1;
-}
+ 
 .container {
     width: 100vw;
     height: 100vh;
@@ -65,6 +52,7 @@
     color: white;
     width: 266px;
     opacity: 0.8;
+    cursor: pointer;
 }
 .button-login:hover{
     opacity: 1;
