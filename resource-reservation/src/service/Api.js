@@ -9,7 +9,7 @@ export default class Api {
     })
   }
 
-  getBookings = () => this.api.get('/bookings/all');
+  getBookings = () => this.api.get('/booking/all');
 
   //postLogin = (email, password) => this.api.post("/login", { "email": email, "senha":password });
 
