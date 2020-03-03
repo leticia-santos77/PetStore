@@ -1,6 +1,8 @@
 package br.com.dbccompany.resourcereservation.security;
 
+
 import br.com.dbccompany.resourcereservation.model.User;
+import br.com.dbccompany.resourcereservation.model.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +27,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-         User credentials = new ObjectMapper()
+        User credentials = new ObjectMapper()
                 .readValue(request.getInputStream(), User.class);
 
         return getAuthenticationManager().authenticate(
@@ -45,4 +47,5 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             Authentication authResult) throws IOException, ServletException {
         TokenAuthenticationService.addAuthentication(response, authResult.getName());
     }
+    
 }
