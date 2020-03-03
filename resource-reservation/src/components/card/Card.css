@@ -1,0 +1,23 @@
+.styleCard{
+    width: 200px;
+    height: 300px;
+    background-color: #ccc;
+    justify-content: center;
+    margin:20px 20px;
+    text-align: center;
+}
+.blue{
+    background-color: #5271C2;
+}
+.green{
+    background-color: #35a541;
+}
+.yellow{
+    background-color: #bdb235;
+}
+.orange{
+    background-color: #db6623;
+}
+.brown{
+    background-color: #aa9e5c;
+}
