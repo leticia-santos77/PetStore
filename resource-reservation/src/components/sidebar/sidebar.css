@@ -17,7 +17,7 @@
     font-size: 22px;
     background: rgb(70, 70, 70);
     text-align: center;
-    line-height: 70px;
+    line-height: 90px;
     color: seashell;
     user-select: none; 
 }
@@ -67,7 +67,7 @@ ul li:hover p {
     border-radius: 50px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
 
     .vertical-nav {
         /* display: none; */
@@ -95,7 +95,7 @@ ul li:hover p {
     .toggle {
         border-color: white;
         /* transform: translateX(180px); */
-        z-index: 2;
+      
     }
 
     .toggle div {

@@ -28,10 +28,10 @@ export default class Sidebar extends Component {
             <nav className="vertical-nav">
                 <header>ECOS</header>
                 <ul>
-                    <li><Link to="#"><p><i className="fas fa-home"></i>Dashboard </p></Link></li>
-                    <li><Link to="#"><p><i className="fas fa-plus"></i>Nova Reserva</p> </Link></li>
-                    <li><Link to="#"><p><i className="fas fa-folder-plus"></i>Criar Recurso </p></Link></li>
-                    <li><Link to="#"><p><i className="fas fa-stream"></i>Lista de Recursos </p></Link></li>
+                    <li><Link to="#"><p><i className="fas fa-home"></i>Dashboard</p></Link></li>
+                    <li><Link to="#"><p><i className="fas fa-plus"></i>Nova Reserva</p></Link></li>
+                    <li><Link to="#"><p><i className="fas fa-folder-plus"></i>Criar Recurso</p></Link></li>
+                    <li><Link to="#"><p><i className="fas fa-stream"></i>Lista de Recursos</p></Link></li>
                 </ul>
             </nav>
 

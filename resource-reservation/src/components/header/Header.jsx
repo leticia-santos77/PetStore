@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-
-// import { Container } from './styles';
+import './header.css';
 
 export default class Header extends Component {
   render() {
     return (
-        <div>
+        <React.Fragment>
+          <div className="main-header">
+            <section className="input-header">
+              <input type="text"></input>
+            </section>
             
-        </div>
+            <section className="profile-menu">
+              <i className="fas fa-user"></i>
+              <label htmlFor="prof-icon">Rafael</label> 
+            </section>
+            
+            
+          </div>            
+        </React.Fragment>
     );
   }
 }
