@@ -26,7 +26,7 @@ export default class Sidebar extends Component {
             </div>
 
             <nav className="vertical-nav">
-                <header>ECOS</header>
+                <header><p>ECOS</p></header>
                 <ul>
                     <li><Link to="#"><p><i className="fas fa-home"></i>Dashboard</p></Link></li>
                     <li><Link to="#"><p><i className="fas fa-plus"></i>Nova Reserva</p></Link></li>

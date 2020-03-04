@@ -21,6 +21,24 @@
     line-height: 120px;
     color: seashell;
     user-select: none; 
+    font-weight: lighter;
+}
+
+.vertical-nav header p::before,
+.vertical-nav header p::after {
+    font-size: 60px;
+    vertical-align: bottom;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding: 0 5px;
+}
+
+.vertical-nav header p::before{
+    content: "<";
+}
+
+.vertical-nav header p::after {
+    content: ">";
 }
 
 .vertical-nav ul p {
