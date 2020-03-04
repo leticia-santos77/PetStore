@@ -1,5 +1,7 @@
-package br.com.dbccompany.resourcereservation.model;
+package br.com.dbccompany.resourcereservation.dto;
 
+import br.com.dbccompany.resourcereservation.model.Booking;
+import br.com.dbccompany.resourcereservation.model.Resource;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.NotEmpty;
@@ -20,14 +22,14 @@ public class BookingDTO {
     private Boolean useTv;
 
     // raf
-    private Resource resource;
+    private String resourceId;
 
-    public Resource getResource() {
-        return resource;
+    public String getResourceId() {
+        return resourceId;
     }
 
-    public void setResource(Resource resource) {
-        this.resource = resource;
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 
     public Integer getQuantityOfPeople() {
@@ -54,16 +56,16 @@ public class BookingDTO {
         this.canceled = canceled;
     }
 
-    public Boolean getUse_tv() {
+    public Boolean getUseTv() {
         return useTv;
     }
 
-    public void setUse_tv(Boolean useTv) {
+    public void setUseTv(Boolean useTv) {
         this.useTv = useTv;
     }
 
     public Booking turnsToObject(){
-        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.useTv, this.resource.getId() );
+        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.useTv, this.resourceId );
     }
 
 }

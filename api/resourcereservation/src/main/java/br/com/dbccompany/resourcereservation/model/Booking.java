@@ -14,6 +14,9 @@ public class Booking {
     private String id;
 
     @NotEmpty
+    private String resourceId;
+
+    @NotEmpty
     private Integer quantityOfPeople;
 
     @NotEmpty
@@ -28,18 +31,36 @@ public class Booking {
     private Boolean canceled;
 
     @NotEmpty
-    private Boolean use_tv;
+    private Boolean useTv;
 
-    public Booking(Integer quantityOfPeople, Date date, Boolean canceled, Boolean use_tv) {
+    public Booking(Integer quantityOfPeople, Date date, Boolean canceled, Boolean useTv, String  resourceId) {
         this.quantityOfPeople = quantityOfPeople;
         this.date = date;
         this.canceled = canceled;
-        this.use_tv = use_tv;
+        this.useTv = useTv;
+        this.resourceId = resourceId;
     }
+
 
     public Booking() {
     }
 
+
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public Boolean getUseTv() {
+        return useTv;
+    }
+
+    public void setUseTv(Boolean useTv) {
+        this.useTv = useTv;
+    }
     public String getId() {
         return id;
     }
@@ -78,13 +99,5 @@ public class Booking {
 
     public void setCanceled(Boolean canceled) {
         this.canceled = canceled;
-    }
-
-    public Boolean getUse_tv() {
-        return use_tv;
-    }
-
-    public void setUse_tv(Boolean use_tv) {
-        this.use_tv = use_tv;
     }
 }

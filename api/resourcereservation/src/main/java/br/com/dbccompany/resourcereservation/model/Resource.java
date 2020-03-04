@@ -2,8 +2,10 @@ package br.com.dbccompany.resourcereservation.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -13,14 +15,30 @@ public class Resource {
     @NotNull
     @Id
     private String id;
+
     @NotEmpty
+    @Indexed(unique=true)
     private String name;
+
     @NotEmpty
     private Integer numberOfSeats;
+
+
+    @NotBlank
     @NotEmpty
     private boolean hasTelevision;
+
+    public Integer getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(Integer numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
     @NotEmpty
     private boolean activeRoom;
+
     @NotEmpty
     @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" )
     private Date creationDate;
@@ -33,22 +51,6 @@ public class Resource {
         this.numberOfSeats = numberOfSeats;
         this.hasTelevision = hasTelevision;
         this.activeRoom = activeRoom;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getnumberOfSeats() {
-        return numberOfSeats;
-    }
-
-    public void setnumberOfSeats(Integer numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
     }
 
     public boolean isHasTelevision() {
@@ -65,6 +67,14 @@ public class Resource {
 
     public void setActiveRoom(boolean activeRoom) {
         this.activeRoom = activeRoom;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Date getCreationDate() {

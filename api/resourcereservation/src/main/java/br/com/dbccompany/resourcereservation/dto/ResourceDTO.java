@@ -1,4 +1,6 @@
-package br.com.dbccompany.resourcereservation.model;
+package br.com.dbccompany.resourcereservation.dto;
+
+import br.com.dbccompany.resourcereservation.model.Resource;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,11 +31,11 @@ public class ResourceDTO {
         this.name = name;
     }
 
-    public Integer getnumberOfSeats() {
+    public Integer getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setnumberOfSeats(Integer numberOfSeats) {
+    public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 
