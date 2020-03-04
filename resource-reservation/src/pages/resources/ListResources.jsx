@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Api from '../service/Api';
-import Resource from './Resource';
+import Api from '../../service/Api';
+import Resource from './Resources';
+import Card from '../../components/card/Card'
+import '../../components/card/Card.css'
 
 export default class ListResources extends Component{
     constructor(props){
@@ -13,7 +15,7 @@ export default class ListResources extends Component{
     requestResources = () => {
     return this.api.getResources()
         .then( value => this.setState({
-        resources: value.data.resources.map( r => r = new Resource(
+        resources: value.data.map( r => r = new Resource(
             r.id,
             r.name,
             r.numberOfSeats,
@@ -38,13 +40,13 @@ export default class ListResources extends Component{
         return(
         <React.Fragment>
              {resources.map( resource =>{
-             return <ul key={resource.id}>
+             return <Card className="styleCard blue"><ul key={resource.id} className="tirar">
                <li>{resource.name}</li>
                <li>{resource.numberOfSeats}</li>
                <li>{resource.hasTelevision ? `Possui Televisão`:'Não possui Televisão'}</li>
                <li>{resource.activeRoom ? `Sala ativa` : `Sala Inativa`}</li>    
                <li>{resource.creationDate}</li>
-          </ul>})}
+          </ul></Card>})}
         </React.Fragment>
        )
     }

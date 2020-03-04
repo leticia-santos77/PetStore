@@ -26,7 +26,7 @@ public class ResourceController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    @GetMapping(value = "/listAll")
+    @GetMapping(value = "/all")
     @ResponseBody
     public List<Resource> allRecources(){
         return service.findAllResources();
