@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './toggle.css'
 
-export default class ResourceForm extends Component {
+export default class Toggle extends Component {
+  
     render() {
+      const {name, onChange, checked} = this.props;
       return (
-        <label class="switch">
-            <input type="checkbox"/>
-            <span class="slider round"></span>
+        <label className="switch">
+            <input name={name} onChange={onChange} checked={checked} type="checkbox"/>
+            <span className="slider round"></span>
         </label>
       )
     }

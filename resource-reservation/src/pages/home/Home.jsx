@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ResourceForm from '../../components/ResourceForm';
+import ResourceForm from '../../components/modal/ModalResources';
 
 export default class Home extends Component{
 
