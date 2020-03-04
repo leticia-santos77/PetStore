@@ -7,6 +7,7 @@
     height: 100%;
     background-color: rgb(48, 48, 48);
     transition: transform 0.5s ease-in;
+    z-index: 2;
 }
 
 .main-content {
@@ -17,7 +18,7 @@
     font-size: 22px;
     background: rgb(70, 70, 70);
     text-align: center;
-    line-height: 90px;
+    line-height: 120px;
     color: seashell;
     user-select: none; 
 }
@@ -55,6 +56,7 @@ ul li:hover p {
     transition: transform 0.5s ease-in;
     margin-top: 15px;
     margin-left: 15px;
+    z-index: 3;
 }
 
 
@@ -93,9 +95,10 @@ ul li:hover p {
     }
 
     .toggle {
+        position: fixed;
         border-color: white;
         /* transform: translateX(180px); */
-      
+        
     }
 
     .toggle div {

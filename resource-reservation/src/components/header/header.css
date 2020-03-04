@@ -28,7 +28,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    
 }
 
 .main-header .input-header input {
@@ -36,5 +35,17 @@
     height: 70%;
     border: none;
     border-radius: 10px;
+    
 }
 
+@media screen and (max-width: 1024px) {
+
+    .main-header {
+        padding-left: 100px;
+    }
+
+    .main-header .input-header input {
+        width: 200px;
+    }
+
+}
