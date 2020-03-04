@@ -5,23 +5,32 @@
   margin: 20px 20px;
   text-align: left;
   float: left;
+ 
+}
+.styleCard li{
+  font-size: 25px;
+  line-height: 1.5;
+  color: white;
+  text-shadow: black 0.05em 0.05em 0.1em;
+  list-style:none;
+ }
+ .styleCard i{
+  margin-right: 18px;
+ }
+ 
+.styleCard  {
+  background-color: #77B9F2;
+}
+.styleCard:nth-child(2n) {
+  background-color: #3B6D8C;
+}
+.styleCard:nth-child(3n) {
+  background-color: #73BFBF;
+}
+.styleCard:nth-child(4n) {
+  background-color:#AFBF34;
+}
+.styleCard:nth-child(5n) {
+  background-color: #8C7D4F;
+}
 
-  
-}.tirar{
-    list-style:none;
-}
-.blue {
-  background-color: #5271c2;
-}
-.green {
-  background-color: #35a541;
-}
-.yellow {
-  background-color: #bdb235;
-}
-.orange {
-  background-color: #db6623;
-}
-.brown {
-  background-color: #aa9e5c;
-}
