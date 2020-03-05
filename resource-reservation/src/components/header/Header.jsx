@@ -7,7 +7,7 @@ export default class Header extends Component {
         <React.Fragment>
           <div className="main-header">
             <section className="input-header">
-              <input type="text"></input>
+              <input type="text" placeholder="Pesquisa"></input>
             </section>
             
             <section className="profile-menu">
