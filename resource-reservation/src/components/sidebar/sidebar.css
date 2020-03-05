@@ -66,7 +66,7 @@ ul li:hover p {
 
 /* mobile menu */
 .burger {
-    border: 2px solid #727272;
+    border: none;
     border-radius: 8px;
     position: absolute;
     display: none;
@@ -77,11 +77,10 @@ ul li:hover p {
     z-index: 3;
 }
 
-
 .burger div {
-    width: 25px;
-    height: 4px;
-    background-color: #121212;
+    width: 30px;
+    height: 5px;
+    background-color: #3b3b3b;
     margin: 4px;
     transition: all 0.3s ease;
     border-radius: 50px;
@@ -90,7 +89,6 @@ ul li:hover p {
 @media screen and (max-width: 1024px) {
 
     .vertical-nav {
-        /* display: none; */
         transform: translateX(-250px);
         overflow-x: hidden;
     }
@@ -104,7 +102,6 @@ ul li:hover p {
     }
 
     .nav-active {
-       /* display: block; */
        transform: translateX(0px);
     }
 
@@ -113,10 +110,9 @@ ul li:hover p {
     }
 
     .toggle {
+        border: 2px solid rgb(255, 255, 255);
         position: fixed;
-        border-color: white;
         /* transform: translateX(180px); */
-        
     }
 
     .toggle div {
