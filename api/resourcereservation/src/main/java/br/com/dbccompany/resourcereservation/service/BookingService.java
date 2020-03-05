@@ -2,11 +2,14 @@ package br.com.dbccompany.resourcereservation.service;
 
 import br.com.dbccompany.resourcereservation.dto.BookingDTO;
 import br.com.dbccompany.resourcereservation.model.Booking;
+import br.com.dbccompany.resourcereservation.model.Resource;
 import br.com.dbccompany.resourcereservation.repository.BookingRepository;
+import br.com.dbccompany.resourcereservation.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,21 +21,78 @@ public class BookingService {
     private BookingRepository repository;
 
     @Autowired
-    private ResourceService ResourceService;
+    ResourceService resourceService;
+
+
+
+    @Autowired
+
+    private ResourceRepository resourceRepository;
+
 
     @Transactional( rollbackFor = Exception.class )
-    public Booking save( Booking booking ){
-        booking.setCreationDate( new Date());
+    public Booking save( BookingDTO dto ){
+
+        Resource resource = resourceService.findById( dto.getResourceId() );
+
+        Booking booking = new Booking();
+
+        Date today = new Date();
+
+        Date eventDate = booking.getDate();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        dateFormat.format(today);
+
+        dateFormat.format(eventDate);
+
+        if(resource == null){
+            throw new  RuntimeException(" Recurso não encontrado");
+        }
+        if( !(resource.isActiveRoom()) ){
+            throw new  RuntimeException(" Recurso indisponivel no momento");
+        }
+        if( booking.getQuantityOfPeople() > resource.getNumberOfSeats() || booking.getQuantityOfPeople() < 1 ){
+            throw new  RuntimeException("A quantidade de pessoas não suporta o recurso selecionado");
+        }
+        if ( !( resource.isHasTelevision() ) && booking.getUseTv() ){
+            throw new RuntimeException("Este recurso não possui televisão");
+        }
+        if( today.after( eventDate ) ){
+            throw new RuntimeException("A data deve ser maior que a data atual");
+        }
+
+
+        booking.setResourceId(dto.getResourceId());
+        booking.setQuantityOfPeople(dto.getQuantityOfPeople());
+        booking.setUseTv(dto.getUseTv());
+        booking.setDate(dto.getDate());
+        booking.setCanceled(dto.getCanceled());
+        booking.setCreationDate( today );
+
         return repository.save( booking );
     }
 
     @Transactional( rollbackFor = Exception.class )
     public Booking edit( String id, BookingDTO dto ){
+
         Booking booking = repository.findById(id).get();
+
+        Resource resource = resourceRepository.findById(booking.getResourceId()).get();
+
         booking.setId( id );
-        booking.setCreationDate( dto.getDate() == null ? booking.getDate() : dto.getDate() );
-        booking.setQuantityOfPeople(dto.getQuantityOfPeople() == null  && dto.getQuantityOfPeople() <= booking.getQuantityOfPeople()? booking.getQuantityOfPeople() : dto.getQuantityOfPeople());
-        booking.setUseTv(dto.getUseTv() == null ? booking.getUseTv() : dto.getUseTv());
+        booking.setResourceId( booking.getResourceId() );
+        booking.setDate( dto.getDate() == null ? booking.getDate() : dto.getDate() );
+        booking.setCreationDate( booking.getCreationDate() );
+        booking.setCanceled( dto.getCanceled() );
+        booking.setUseTv( dto.getUseTv() );
+
+        if(dto.getQuantityOfPeople() == null || dto.getQuantityOfPeople() > resource.getNumberOfSeats() ){
+            booking.setQuantityOfPeople( booking.getQuantityOfPeople() );
+        }else {
+            booking.setQuantityOfPeople( dto.getQuantityOfPeople() );
+        }
+
         return repository.save( booking );
     }
 

@@ -28,14 +28,15 @@ public class BookingController {
     }
 
     @GetMapping(value = "/{id}")
+    @ResponseBody
     public Booking consultId(@PathVariable String id){
         return service.findById(id);
     }
 
     @PostMapping("/add")
     @ResponseBody
-    public ResponseEntity<Booking> newBooking(@RequestBody Booking booking ){
-        service.save(booking);
+    public ResponseEntity<Booking> newBooking(@RequestBody BookingDTO dto ){
+        Booking booking = service.save(dto);
         return new ResponseEntity<>( booking, HttpStatus.CREATED );
     }
 

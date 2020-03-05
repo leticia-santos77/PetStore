@@ -12,8 +12,9 @@ import java.util.Date;
 
 @Document(collection = "Resource")
 public class Resource {
-    @NotNull
+
     @Id
+    @NotNull
     private String id;
 
     @NotEmpty
@@ -26,7 +27,7 @@ public class Resource {
 
     @NotBlank
     @NotEmpty
-    private boolean hasTelevision;
+    private boolean hasTelevision = false;
 
     public Integer getNumberOfSeats() {
         return numberOfSeats;
@@ -37,7 +38,7 @@ public class Resource {
     }
 
     @NotEmpty
-    private boolean activeRoom;
+    private boolean activeRoom = true;
 
     @NotEmpty
     @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" )

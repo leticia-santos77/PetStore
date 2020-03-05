@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,8 +17,8 @@ public class ResourceController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public ResponseEntity<Resource> newResource(@RequestBody Resource resource){
-        service.save(resource);
+    public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO dto){
+        Resource resource= service.save(dto);
         return new ResponseEntity<>(resource, HttpStatus.CREATED);
     }
 

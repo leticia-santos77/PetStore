@@ -8,20 +8,16 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 public class BookingDTO {
-    @NotEmpty
+
     private Integer quantityOfPeople;
 
-    @NotEmpty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private Date date;
 
-    @NotEmpty
-    private Boolean canceled;
+    private boolean canceled = false;
 
-    @NotEmpty
-    private Boolean useTv;
+    private boolean useTv = false;
 
-    // raf
     private String resourceId;
 
     public String getResourceId() {
@@ -48,7 +44,7 @@ public class BookingDTO {
         this.date = date;
     }
 
-    public Boolean getCanceled() {
+    public boolean getCanceled() {
         return canceled;
     }
 
@@ -56,7 +52,7 @@ public class BookingDTO {
         this.canceled = canceled;
     }
 
-    public Boolean getUseTv() {
+    public boolean getUseTv() {
         return useTv;
     }
 

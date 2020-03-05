@@ -2,22 +2,15 @@ package br.com.dbccompany.resourcereservation.dto;
 
 import br.com.dbccompany.resourcereservation.model.Resource;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 public class ResourceDTO {
 
-    @NotEmpty
     private String name;
 
-    @NotEmpty
     private Integer numberOfSeats;
 
-    @NotEmpty
     private boolean hasTelevision;
 
-    @NotEmpty
-    private boolean activeRoom;
+    private boolean activeRoom = true;
 
     public Resource toObject(){
         return new Resource(this.name,this.numberOfSeats,this.hasTelevision,this.activeRoom);
