@@ -1,21 +1,18 @@
-package br.com.dbccompany.resourcereservation.model;
+package br.com.dbccompany.resourcereservation.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import br.com.dbccompany.resourcereservation.model.Resource;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 public class ResourceDTO {
 
-    @NotEmpty
+    @Indexed(unique=true)
     private String name;
 
-    @NotEmpty
     private Integer numberOfSeats;
 
-    @NotEmpty
     private boolean hasTelevision;
 
-    @NotEmpty
-    private boolean activeRoom;
+    private boolean activeRoom = true;
 
     public Resource toObject(){
         return new Resource(this.name,this.numberOfSeats,this.hasTelevision,this.activeRoom);
@@ -29,11 +26,11 @@ public class ResourceDTO {
         this.name = name;
     }
 
-    public Integer getnumberOfSeats() {
+    public Integer getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setnumberOfSeats(Integer numberOfSeats) {
+    public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 

@@ -1,23 +1,32 @@
-package br.com.dbccompany.resourcereservation.model;
+package br.com.dbccompany.resourcereservation.dto;
 
+import br.com.dbccompany.resourcereservation.model.Booking;
+import br.com.dbccompany.resourcereservation.model.Resource;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 public class BookingDTO {
-    @NotEmpty
+
     private Integer quantityOfPeople;
 
-    @NotEmpty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private Date date;
 
-    @NotEmpty
-    private Boolean canceled;
+    private boolean canceled = false;
 
-    @NotEmpty
-    private Boolean use_tv;
+    private boolean useTv = false;
+
+    private String resourceId;
+
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
+    }
 
     public Integer getQuantityOfPeople() {
         return quantityOfPeople;
@@ -35,7 +44,7 @@ public class BookingDTO {
         this.date = date;
     }
 
-    public Boolean getCanceled() {
+    public boolean getCanceled() {
         return canceled;
     }
 
@@ -43,16 +52,16 @@ public class BookingDTO {
         this.canceled = canceled;
     }
 
-    public Boolean getUse_tv() {
-        return use_tv;
+    public boolean getUseTv() {
+        return useTv;
     }
 
-    public void setUse_tv(Boolean use_tv) {
-        this.use_tv = use_tv;
+    public void setUseTv(Boolean useTv) {
+        this.useTv = useTv;
     }
 
     public Booking turnsToObject(){
-        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.use_tv );
+        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.useTv, this.resourceId );
     }
 
 }
