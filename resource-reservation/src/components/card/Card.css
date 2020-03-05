@@ -4,11 +4,11 @@
   margin: 20px 20px;
   text-align: center;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   line-height: 2.5;
   font-family: "Roboto";
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 .styleCard ul li h1 {
   background: #f14e4e;
@@ -23,4 +23,6 @@
 }
 .container-card {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

@@ -5,6 +5,9 @@ import Card from "../../components/card/Card";
 import "../../components/card/Card.css";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
+import iCheck from '../../components/card/image/clipboards.svg';
+
+
 export default class ListResources extends Component {
   constructor(props) {
     super(props);
@@ -44,38 +47,44 @@ export default class ListResources extends Component {
   }
 
   render() {
+
     const { resources } = this.state;
     resources.reverse();
+
     return (
       <React.Fragment>
+
         <Header user="Gabriel Eugênio" />
         <Sidebar />
+
         <div className="main-content">
+        <h1 className="content-title">Recursos</h1>
           <div className="container-card">
-          {resources.map(resource => {
-            return (
-              <Card className="styleCard" key={resource.id}>
-                <ul>
-                  <li>
-                    <h1>{resource.name}</h1>
+            
+            {resources.map(resource => {
+              return (
+                <Card className="styleCard" key={resource.id}>
+                  <ul>
+                    <li>
+                      <h1>{resource.name}</h1>
+                    </li>
+                    <li>
+                      <i className="fas fa-users"></i>
+                      {resource.numberOfSeats} Vagas
                   </li>
-                  <li>
-                    <i className="fas fa-users"></i>
-                    {resource.numberOfSeats} Vagas
-                  </li>
-                  <li>
-                    <i className="fas fa-tv"></i>
-                    {resource.hasTelevision ? `Possui` : "Não possui"}
-                  </li>
-                  <li>
-                    <i className="far fa-check-square"></i>
-                    {resource.activeRoom ? `Sala ativa` : `Sala inativa`}
-                  </li>
-                  <li>{resource.creationDate}</li>
-                </ul>
-              </Card>
-            );
-          })}
+                    <li>
+                      {resource.hasTelevision ? <i class="far fa-check-circle"></i> : <i class="far fa-times-circle"></i> }
+                      Televisão
+                    </li>
+                    <li>
+                      <i className="far fa-check-square"></i>
+                      {resource.activeRoom ? `Sala ativa` : `Sala inativa`}
+                    </li>
+                    <li>{resource.creationDate}</li>
+                  </ul>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </React.Fragment>
