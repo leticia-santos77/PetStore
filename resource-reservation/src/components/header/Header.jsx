@@ -11,8 +11,8 @@ export default class Header extends Component {
             </section>
             
             <section className="profile-menu">
-              <i className="fas fa-user"></i>
-              <label htmlFor="prof-icon">Rafael</label> 
+              <i className="fas fa-user" ></i>
+              <label>Rafael</label> 
             </section>
             
             
