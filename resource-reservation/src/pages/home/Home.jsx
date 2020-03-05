@@ -7,8 +7,8 @@ export default class Home extends Component{
     render(){
         return(
             <React.Fragment>
-                <Header />
-               <Sidebar />
+                <Header user="Rafael Scotti"/>
+                <Sidebar />
                 <section className="main-content">
                     <h1>Seja Bem Vindo!</h1>
                 </section>
