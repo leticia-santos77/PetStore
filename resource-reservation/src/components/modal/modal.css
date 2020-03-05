@@ -16,14 +16,14 @@
     -moz-transition: opacity 100ms ease-in;
     transition: opacity 100ms ease-in;
     pointer-events: none;
-    text-align: center;
+    text-align: justify;
 }
 .modalDialog:target {
     opacity:1;
     pointer-events: auto;
 }
 .modalDialog > div {
-    max-width: 800px;
+    max-width: 700px;
     width: 90%;
     position: relative;
     margin: 10% auto;
@@ -54,4 +54,12 @@
 }
 .close:hover {
     background: #fa3f6f;
+}
+
+@media (min-width: 1080px) {
+    .modalDialog > div {
+        max-width: 700px;
+        width: 90%;
+        vertical-align: middle;
+    }
 }

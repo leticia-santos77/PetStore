@@ -11,11 +11,7 @@ export default class Modal extends Component {
                 <div id={`openModal-${id}`} class="modalDialog">
                     <div>
                         <a href="#close" title="Close" class="close">X</a>
-                        <form onSubmit={this.submitHandler}>
-                            <div className="container-register">
-                                {children}
-                            </div>
-                        </form>
+                        {children}
                     </div>
                 </div>
             </React.Fragment>
