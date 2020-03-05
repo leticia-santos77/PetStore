@@ -34,39 +34,12 @@ export default class ListResources extends Component{
           this._asyncRequest.cancel();
         }
     }
-    colors = {
-        red: "#ff0000",
-    }
+  
     render(){
         const { resources } = this.state;
         resources.reverse();
         return(
-        <React.Fragment>
-             {/* {resources.map( resource =>{
-             return <Card className="styleCard">
-                 <ul key={resource.id} className="tirar">
-                    <li><i class="fas fa-campground"></i>{resource.name}</li>
-                    <li><i class="fas fa-users"></i>{resource.numberOfSeats}</li>
-                    <li><i class="fas fa-tv"></i>{resource.hasTelevision ? `Possui Televisão`:'Não possui Televisão'}</li>
-                    <li><i class="far fa-check-square"></i>{resource.activeRoom ? `Sala ativa` : `Sala Inativa`}</li>    
-                    <li><i class="far fa-calendar-alt"></i>{resource.creationDate}</li>
-                </ul>
-          </Card>
-        })} */}
-
-    <Card className="styleCard">   
-    </Card>
-    <Card className="styleCard">   
-    </Card>
-    <Card className="styleCard">   
-    </Card>
-    <Card className="styleCard">   
-    </Card>
-    <Card className="styleCard">   
-    </Card>
-    <Card className="styleCard">   
-    </Card>
-        </React.Fragment>
+       <Card resources={resources}></Card>
        )
     }
 }

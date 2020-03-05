@@ -5,7 +5,7 @@
   margin: 20px 20px;
   text-align: left;
   float: left;
- 
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
 }
 .styleCard li{
   font-size: 25px;
