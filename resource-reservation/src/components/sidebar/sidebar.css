@@ -1,0 +1,133 @@
+/* Sidebar */
+
+.vertical-nav {
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: rgb(48, 48, 48);
+    transition: transform 0.5s ease-in;
+    z-index: 2;
+}
+
+.main-content {
+    margin-left: 250px;
+}
+
+.vertical-nav header {
+    font-size: 22px;
+    background: rgb(70, 70, 70);
+    text-align: center;
+    line-height: 120px;
+    color: seashell;
+    user-select: none; 
+    font-weight: lighter;
+}
+
+.vertical-nav header p::before,
+.vertical-nav header p::after {
+    font-size: 60px;
+    vertical-align: bottom;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding: 0 5px;
+}
+
+.vertical-nav header p::before{
+    content: "<";
+}
+
+.vertical-nav header p::after {
+    content: ">";
+}
+
+.vertical-nav ul p {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 60px;
+    font-size: 18px;
+    color: white;
+    padding-left: 35px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    transition: .1s;
+    text-align: left;
+}
+
+ul li:hover p {
+    padding-left: 45px;
+    cursor: pointer;
+}
+
+.vertical-nav ul p i {
+    margin-right: 15px;
+}
+
+/* mobile menu */
+.burger {
+    border: none;
+    border-radius: 8px;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+    transition: transform 0.5s ease-in;
+    margin-top: 15px;
+    margin-left: 15px;
+    z-index: 3;
+}
+
+.burger div {
+    width: 25px;
+    height: 5px;
+    background-color: #3b3b3b;
+    margin: 4px;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .vertical-nav {
+        transform: translateX(-250px);
+        overflow-x: hidden;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .nav-active {
+       transform: translateX(0px);
+    }
+
+    .main-content {
+        padding-top: 60px;
+    }
+
+    .toggle {
+        border: 2px solid rgb(255, 255, 255);
+        position: fixed;
+        /* transform: translateX(180px); */
+    }
+
+    .toggle div {
+        background-color: white;
+    }
+
+}
+
+.toggle .line1{
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2{
+    opacity: 0;
+}
+.toggle .line3{
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+

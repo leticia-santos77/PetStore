@@ -1,0 +1,80 @@
+/* Header */
+
+.main-header {
+    background: #f1f1f1;
+    width: 100vw;
+    height: 60px;
+    padding-left: 250px;
+    color: blanchedalmond;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-content {
+    padding-top: 60px;
+}
+
+.main-header .profile-menu {
+    color: #212121;
+    margin-right: 50px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.main-header .profile-menu i {
+    margin-right: 8px;
+}
+
+.main-header .input-header {
+    height: 30px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.main-header .input-header input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #212121;
+    border-radius: 8px;
+    outline-style: none;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1024px) {
+    .main-header {
+        padding-left: 70px;        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 868px) {
+    .main-header {
+        padding-left: 70px;        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .main-header .profile-menu {
+       margin-right: 11px;
+       margin-left: 15px;
+       font-size: 22px;
+    }
+    .main-header .profile-menu label {
+        display: none;
+    }
+
+    .main-header .profile-menu i {
+        border: 2px solid #212121;
+        padding: 4px;
+        border-radius: 8px;
+        box-sizing: border-box;       
+    }
+}
