@@ -11,7 +11,7 @@ import ListResources from '../pages/resources/ListResources'
     <BrowserRouter>
         <Switch>
             <Route exact path='/'  component={ IsAuthenticated() ? Home : Login } />
-            <Route path='/teste' component={ListResources}/>
+            <Route path='/recursos' component={ListResources}/>
             <PrivateRoute exact path='/home'  component={ Home } />
         </Switch>
     </BrowserRouter>
