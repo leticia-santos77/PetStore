@@ -11,3 +11,8 @@
     color: #6c757d;
     opacity: 1;
 }
+
+.input-modal{
+    background-color: #ccc;
+    width: 300px;
+}
