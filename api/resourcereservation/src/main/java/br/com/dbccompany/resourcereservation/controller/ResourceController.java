@@ -18,7 +18,7 @@ public class ResourceController {
     @PostMapping(value = "/add")
     @ResponseBody
     public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO dto){
-        Resource resource= service.save(dto);
+        Resource resource = service.save(dto);
         return new ResponseEntity<>(resource, HttpStatus.CREATED);
     }
 

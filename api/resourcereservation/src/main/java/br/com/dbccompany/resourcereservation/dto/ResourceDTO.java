@@ -1,9 +1,11 @@
 package br.com.dbccompany.resourcereservation.dto;
 
 import br.com.dbccompany.resourcereservation.model.Resource;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 public class ResourceDTO {
 
+    @Indexed(unique=true)
     private String name;
 
     private Integer numberOfSeats;

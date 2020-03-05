@@ -22,10 +22,10 @@ public class ResourceService {
 
         Resource resource = new Resource();
 
-        if( resource.getName().isEmpty() ) {
+        if( dto.getName().isEmpty() ) {
             throw new RuntimeException("Deve ser informado o nome do recurso");
         }
-        if( resource.getNumberOfSeats() <= 0 ) {
+        if( dto.getNumberOfSeats() <= 0 ) {
             throw new RuntimeException("Deve ser informada a quantidade de assentos diponivel no recurso");
         }
 
