@@ -36,6 +36,7 @@ export default class ListResources extends Component {
       )
       .catch("Fail!!");
   };
+
   componentDidMount() {
     this._asyncRequest = this.requestResources();
     this.state.resources.reverse();
@@ -65,17 +66,13 @@ export default class ListResources extends Component {
                     <li>
                       <h1>{resource.name}</h1>
                     </li>
-                    <li>
-                    <p><i className="fas fa-users blue"></i>
+                    <li><p><i className="fas fa-users blue"></i>
                       {resource.numberOfSeats} Vagas</p>
                   </li>
-                    <li>
-                      <p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i> }
+                    <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i> }
                       Televisão</p>
                     </li>
-                    <li>
-                      <p>
-                      {resource.activeRoom ?<i className="far fa-check-square green"></i> : <i className="far fa-check-square red"></i>}
+                    <li><p>{resource.activeRoom ?<i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>

@@ -19,6 +19,10 @@
 .styleCard ul li:nth-child(2){
   margin-top: 20px;
 }
+.styleCard ul li p{
+  text-align: left;
+  margin-left: 60px;
+}
 .styleCard ul li:last-child{
   font-weight: normal;
   font-size: 22px;

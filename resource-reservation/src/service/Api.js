@@ -20,4 +20,5 @@ export default class Api {
   }
   getBookings = () => this.api.get('/api/booking/all')
   getResources = () => this.api.get('/api/resource/all')
+  getResource = (id) =>this.api.get(`/api/resource/findbyid/${id}`)
 }

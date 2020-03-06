@@ -1,8 +1,8 @@
 export default class Booking {
-    constructor( id, nameResource, resourceId,useTv,quantityOfPeople, creationDate,date,canceled) {
+    constructor( id,resourceId, nameResource, useTv,quantityOfPeople, creationDate,date,canceled) {
       this.id = id
-      this.name = nameResource
       this.resourceId = resourceId
+      this.nameResource = nameResource
       this.useTv = useTv
       this.quantityOfPeople = quantityOfPeople
       this.creationDate = creationDate
@@ -10,7 +10,7 @@ export default class Booking {
       this.canceled = canceled;
     }
     toString() {
-      return ( `id: ${ this.id } nameResource: ${ this.nameResource } resourceId: ${ this.resourceId } useTv: ${ this.useTv } quantityOfPeople: ${ this.quantityOfPeople } creationDate: ${this.creationDate} date: ${this.date} canceled: ${this.canceled}` )
+      return ( `id: ${ this.id } resourceId: ${ this.resourceId } nameResource: ${ this.nameResource }  useTv: ${ this.useTv } quantityOfPeople: ${ this.quantityOfPeople } creationDate: ${this.creationDate} date: ${this.date} canceled: ${this.canceled}` )
     }
   }
     
