@@ -27,24 +27,36 @@ public class BookingController {
         return service.listAllBookings();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/findbyid/{id}")
     @ResponseBody
-    public Booking consultId(@PathVariable String id){
-        return service.findById(id);
+    public ResponseEntity<Booking> findById(@PathVariable String id){
+        try{
+            Booking booking = service.findById(id);
+            return  new ResponseEntity<>(booking,HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<Booking> newBooking(@RequestBody BookingDTO dto ){
-        Booking booking = service.save(dto);
-        return new ResponseEntity<>( booking, HttpStatus.CREATED );
+        try{
+            Booking booking = service.save(dto);
+            return new ResponseEntity<>( booking, HttpStatus.CREATED );
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping(value = "/edit/{id}")
     @ResponseBody
     public ResponseEntity<Booking> edit( @PathVariable String id, @RequestBody BookingDTO dto) {
-        Booking booking = service.edit( id, dto);
-        return new ResponseEntity<>(booking, HttpStatus.OK);
+        try{
+            Booking booking = service.edit( id, dto);
+            return new ResponseEntity<>(booking, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

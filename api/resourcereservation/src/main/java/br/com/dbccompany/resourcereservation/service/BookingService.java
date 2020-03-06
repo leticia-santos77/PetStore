@@ -99,8 +99,8 @@ public class BookingService {
     }
 
     public Booking findById(String id){
-        Optional<Booking> booking = repository.findById(id);
-        return booking.orElse(null);
+        Booking booking = repository.findById(id).get();
+        return booking;
     }
 
 }
