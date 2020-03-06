@@ -9,6 +9,7 @@ import './resource-registration.css';
 import '../../components/input/input.css';
 import '../../components/button/Button';
 import '../../components/input/toggle.css';
+import Dropdown from 'react-dropdown';
 
 
 export default class ResourceForm extends Component {
@@ -18,6 +19,7 @@ export default class ResourceForm extends Component {
         hasTelevision: false,
         activeRoom: false
     }
+    
 
     changeHandler = e => {
         this.setState({
@@ -43,18 +45,20 @@ export default class ResourceForm extends Component {
         })
     }
 
+
     render() {
         return (
             <React.Fragment>
                 <Header user="Rafael Scotti" />
                 <Sidebar />
                 <div className="main-content">
+                    <h2>> Nova Reserva</h2>
                     <div className="form">
                         <form onSubmit={this.submitHandler}>
                             <div>
                                 <div className="justify">
-                                    <label>Recurso:</label>
-                                    <Input className="input-form" type="text" name="name" onBlur={this.changeHandler} />
+                                    <label>Nome do recurso:</label>
+                                    <Dropdown options={["one", "two", "three", "four"]} onChange={this._onSelect} placeholder="Select an option" />
                                 </div>
                                 <div className="justify">
                                     <label> Número de lugares: </label>
