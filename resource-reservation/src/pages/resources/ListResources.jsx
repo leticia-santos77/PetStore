@@ -5,6 +5,8 @@ import Card from "../../components/card/Card";
 import "../../components/card/Card.css";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
+import ModalResources from '../../components/modal/ModalResources';
+import { Link } from "react-router-dom";
 
 
 
@@ -63,7 +65,12 @@ export default class ListResources extends Component {
                 <Card className="styleCard" key={resource.id}>
                   <ul>
                     <li>
-                      <h1>{resource.name}</h1>
+                      
+                      <h1>{resource.name}<ModalResources 
+                            title={
+                               <Link to={{pathname: `/resource/${resource.id}`}}>asdfasdf</Link>
+                            } />  
+                      </h1>
                     </li>
                     <li>
                     <p><i className="fas fa-users blue"></i>

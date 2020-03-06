@@ -12,9 +12,10 @@ import ListBookings from '../pages/bookings/ListBookings'
     <BrowserRouter>
         <Switch>
             <Route exact path='/'  component={ IsAuthenticated() ? Home : Login } />
+            <PrivateRoute exact path='/home'  component={ Home } />
             <Route path='/recursos' component={ListResources}/>
             <Route path='/reservas' component={ListBookings}/>
-            <PrivateRoute exact path='/home'  component={ Home } />
+            
         </Switch>
     </BrowserRouter>
 );
