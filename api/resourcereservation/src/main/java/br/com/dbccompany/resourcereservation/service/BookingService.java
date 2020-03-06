@@ -23,8 +23,6 @@ public class BookingService {
     @Autowired
     ResourceService resourceService;
 
-
-
     @Autowired
 
     private ResourceRepository resourceRepository;

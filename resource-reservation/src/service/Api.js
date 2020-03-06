@@ -6,7 +6,7 @@ export default class Api {
 
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:8082"
+      baseURL: "http://localhost:8081"
     })
     
  /*    this.api.interceptors.request.use(async config => {
@@ -18,6 +18,6 @@ export default class Api {
     })*/
     
   }
-
-  getResources = () => this.api.get('/api/resources/all')
+  getBookings = () => this.api.get('/api/booking/all')
+  getResources = () => this.api.get('/api/resource/all')
 }

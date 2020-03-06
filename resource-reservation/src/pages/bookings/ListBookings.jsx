@@ -1,35 +1,34 @@
 import React, { Component } from "react";
 import Api from "../../service/Api";
-import Resource from "./Resources";
+import Booking from "./Booking";
 import Card from "../../components/card/Card";
 import "../../components/card/Card.css";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
 
-
-
-export default class ListResources extends Component {
+export default class ListBookings extends Component {
   constructor(props) {
     super(props);
     this.api = new Api();
     this.state = {
-      resources: []
+      bookings: []
     };
   }
-  requestResources = () => {
+  requestBookings = () => {
     return this.api
-      .getResources()
+      .getBookings()
       .then(value =>
         this.setState({
-          resources: value.data.map(
-            r =>
-              (r = new Resource(
-                r.id,
-                r.name,
-                r.numberOfSeats,
-                r.hasTelevision,
-                r.activeRoom,
-                r.creationDate
+          bookings: value.data.map(
+            b =>
+              (b = new Booking(
+                b.id,
+                b.resourceId,
+                b.useTv,
+                b.quantityOfPeople,
+                b.creationDate,
+                b.date,
+                b.canceled
               ))
           )
         })
@@ -37,8 +36,8 @@ export default class ListResources extends Component {
       .catch("Fail!!");
   };
   componentDidMount() {
-    this._asyncRequest = this.requestResources();
-    this.state.resources.reverse();
+    this._asyncRequest = this.requestBookings();
+    this.state.bookings.reverse();
     this._asyncRequest = null;
   }
   componentWillUnmount() {
@@ -48,36 +47,35 @@ export default class ListResources extends Component {
   }
 
   render() {
+    const { bookings } = this.state;
 
-    const { resources } = this.state;
-    
     return (
       <React.Fragment>
         <Header user="Gabriel Eugênio" />
         <Sidebar />
         <div className="main-content">
-        <h1 className="content-title">Recursos</h1>
+          <h1 className="content-title">Reservas</h1>
           <div className="container-card">
-            {resources.map(resource => {
+            {bookings.map(booking => {
               return (
-                <Card className="styleCard" key={resource.id}>
+                <Card className="styleCard" key={booking.id}>
                   <ul>
                     <li>
-                      <h1>{resource.name}</h1>
+                      <h1>Recurso Nome</h1>
                     </li>
                     <li>
                       <i className="fas fa-users"></i>
-                      {resource.numberOfSeats} Vagas
-                  </li>
+                      {booking.quantityOfPeople} Pessoas
+                    </li>
                     <li>
-                      {resource.hasTelevision ? <i className="far fa-check-circle"></i> : <i className="far fa-times-circle"></i> }
+                      {booking.useTv ? (
+                        <i className="far fa-check-circle"></i>
+                      ) : (
+                        <i className="far fa-times-circle"></i>
+                      )}
                       Televisão
                     </li>
-                    <li>
-                      <i className="far fa-check-square"></i>
-                      {resource.activeRoom ? `Sala ativa` : `Sala inativa`}
-                    </li>
-                    <li>{resource.creationDate}</li>
+                    <li>{booking.creationDate}</li>
                   </ul>
                 </Card>
               );
