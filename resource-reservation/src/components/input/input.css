@@ -1,0 +1,19 @@
+.input-login{
+    border-radius: 5px;
+    border: 1px solid transparent;
+    margin: 10px;
+    height: 40px;
+    background-color: #dde3ec;
+    padding-left: 10px;
+    width: 250px;
+}
+.input-login::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.input-modal{
+    background-color: #ccc;
+    margin: 0px;
+    margin-bottom: 0px ;
+}
