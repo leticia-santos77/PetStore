@@ -10,7 +10,7 @@ export default class Modal extends Component {
                 <a href={`#openModal-${id}`}>{title}</a>
                 <div id={`openModal-${id}`} class="modalDialog">
                     <div>
-                        <a href="#close" title="Close" class="close">X</a>
+                        <a href="#close" title="Close" className="close">X</a>
                         {children}
                     </div>
                 </div>

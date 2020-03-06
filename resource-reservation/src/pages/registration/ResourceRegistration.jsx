@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './modal.css';
-import '../../grid.css';
-import '../button/button.css';
-import './modal-form.css';
-import Input from '../input/Input';
-import Toggle from '../input/Toggle';
-import Modal from './Modal';
-import Button from '../button/Button';
-
+import Header from '../../components/header/Header';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Input from '../../components/input/Input';
+import Toggle from '../../components/input/Toggle';
+import Button from '../../components/button/Button';
+import './resource-registration.css';
+import '../../components/input/input.css';
+import '../../components/button/Button';
+import '../../components/input/toggle.css';
 
 
 export default class ResourceForm extends Component {
@@ -46,37 +46,40 @@ export default class ResourceForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <Modal title="Cadastrar recursos" id="resource">
-                    <div className="center">
-                        <div className="item">
-                            <h1> Cadastrar novo recurso </h1>
-                        </div>
+                <Header user="Rafael Scotti" />
+                <Sidebar />
+                <div className="main-content">
+                    <div className="form">
                         <form onSubmit={this.submitHandler}>
-                            <div className="container-form">
-                                <div className="item">
-                                    <Input className="input-login input-modal" type="text" name="name" placeholder="Digite o nome do recurso" onBlur={this.changeHandler} />
+                            <div>
+                                <div className="justify">
+                                    <label>Nome do recurso:</label>
+                                    <Input className="input-form" type="text" name="name" onBlur={this.changeHandler} />
                                 </div>
-                                <div className="item">
-                                    <Input className="input-login input-modal" type="number" name="numberOfSeats" placeholder="Número de lugares" onBlur={this.changeHandler} />
+                                <div className="justify">
+                                    <label> Número de lugares: </label>
+                                    <Input className="input-form" type="number" name="numberOfSeats" onBlur={this.changeHandler} />
                                 </div>
-                                <div className="item active-room">
+                                <div className="justify">
                                     <label>Possui TV</label>
-                                    <div className="toggle-right">
+                                    <div>
                                         <Toggle name="hasTelevision" onChange={this.optionHandler} />
                                     </div>
                                 </div>
-                                <div className="item active-room">
+                                <div className="justify">
                                     <label>Sala ativa</label>
                                     <Toggle type="checkbox" name="activeRoom" onChange={this.optionHandler} />
                                 </div>
-                                <div className="item button-center">
+                                <div>
                                     <Button type="submit" className="button button-blue button-large" tittle="Cadastrar" />
                                 </div>
                             </div>
                         </form>
                     </div>
-                </Modal>
+                </div>
+
             </React.Fragment>
         )
+
     }
 }
