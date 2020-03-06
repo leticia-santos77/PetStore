@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ResourceService {
@@ -53,14 +52,14 @@ public class ResourceService {
         return repository.save(resource);
     }
     public Resource findByName(String name){
-        Optional<Resource> resource = repository.findByName(name);
-        return resource.orElse(null);
+        Resource resource = repository.findByName(name).get();
+        return resource;
     }
     public List<Resource> findAllResources(){
         return (List<Resource>) repository.findAll();
     }
     public Resource findById(String id){
-        Optional<Resource> resource = repository.findById(id);
-        return resource.orElse(null);
+        Resource resource = repository.findById(id).get();
+        return resource;
     }
 }

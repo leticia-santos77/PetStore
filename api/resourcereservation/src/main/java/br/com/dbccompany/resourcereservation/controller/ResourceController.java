@@ -1,5 +1,6 @@
 package br.com.dbccompany.resourcereservation.controller;
 
+import br.com.dbccompany.resourcereservation.model.Booking;
 import br.com.dbccompany.resourcereservation.model.Resource;
 import br.com.dbccompany.resourcereservation.dto.ResourceDTO;
 import br.com.dbccompany.resourcereservation.service.ResourceService;
@@ -18,22 +19,44 @@ public class ResourceController {
     @PostMapping(value = "/add")
     @ResponseBody
     public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO dto){
-        Resource resource = service.save(dto);
-        return new ResponseEntity<>(resource, HttpStatus.CREATED);
+        try {
+            Resource resource = service.save(dto);
+            return new ResponseEntity<>(resource, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping( value = "/edit/{id}")
     @ResponseBody
     public ResponseEntity<Resource> edit( @PathVariable String id, @RequestBody ResourceDTO dto){
-        Resource resource = service.edit(id, dto);
-        return new ResponseEntity<>(resource, HttpStatus.OK);
+       try {
+           Resource resource = service.edit(id, dto);
+           return new ResponseEntity<>(resource, HttpStatus.OK);
+       }catch (Exception e){
+           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       }
     }
-        @GetMapping(value = "/findbyname/{name}")
+    @GetMapping(value = "/findbyname/{name}")
     @ResponseBody
-    public Resource findByName(@PathVariable String name){
-        return service.findByName(name);
+    public ResponseEntity<Resource> findByName(@PathVariable String name){
+        try {
+            Resource resource = service.findByName(name);
+            return new ResponseEntity<>(resource, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
+    @GetMapping(value = "/findbyid/{id}")
+    @ResponseBody
+    public ResponseEntity<Resource> findById(@PathVariable String id){
+        try{
+            Resource resource = service.findById(id);
+            return  new ResponseEntity<>(resource,HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @GetMapping(value = "/all")
     @ResponseBody
     public List<Resource> allRecources(){
