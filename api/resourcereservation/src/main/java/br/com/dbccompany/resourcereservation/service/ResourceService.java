@@ -19,50 +19,34 @@ public class ResourceService {
 
     @Transactional(rollbackFor = Exception.class)
     public Resource save(ResourceDTO dto){
-
         Resource resource = new Resource();
-
-        if( resource.getName().isEmpty() ) {
+        if( dto.getName().isEmpty() ) {
             throw new RuntimeException("Deve ser informado o nome do recurso");
         }
-        if( resource.getNumberOfSeats() <= 0 ) {
+        if( dto.getNumberOfSeats() <= 0 ) {
             throw new RuntimeException("Deve ser informada a quantidade de assentos diponivel no recurso");
         }
-
         resource.setName(dto.getName());
         resource.setNumberOfSeats(dto.getNumberOfSeats());
         resource.setHasTelevision(dto.isHasTelevision());
         resource.setActiveRoom(dto.isActiveRoom());
-
+        resource.setCreationDate(new Date());
         return repository.save(resource);
     }
     @Transactional(rollbackFor = Exception.class)
     public Resource edit( String id, ResourceDTO dto){
-
         Resource resource = repository.findById(id).get();
-
         if(resource == null){
             throw new RuntimeException("Recurso não localizado");
-
         }
-        resource.setName(dto.getName() == null ? resource.getName() : dto.getName());
-
         resource.setId( id );
-
         resource.setName(dto.getName() == null ? resource.getName() : dto.getName());
-
         resource.setHasTelevision(dto.isHasTelevision());
-
         resource.setActiveRoom(true);
-
         resource.setCreationDate( resource.getCreationDate() );
-
         if(dto.getNumberOfSeats() == null || dto.getNumberOfSeats() <= 0 ){
-
             resource.setNumberOfSeats(resource.getNumberOfSeats());
-
         }else{
-
             resource.setNumberOfSeats(dto.getNumberOfSeats());
 
         }

@@ -23,8 +23,6 @@ public class BookingService {
     @Autowired
     ResourceService resourceService;
 
-
-
     @Autowired
 
     private ResourceRepository resourceRepository;
@@ -39,7 +37,7 @@ public class BookingService {
 
         Date today = new Date();
 
-        Date eventDate = booking.getDate();
+        Date eventDate = dto.getDate();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dateFormat.format(today);
@@ -52,10 +50,10 @@ public class BookingService {
         if( !(resource.isActiveRoom()) ){
             throw new  RuntimeException(" Recurso indisponivel no momento");
         }
-        if( booking.getQuantityOfPeople() > resource.getNumberOfSeats() || booking.getQuantityOfPeople() < 1 ){
+        if( dto.getQuantityOfPeople() > resource.getNumberOfSeats() || dto.getQuantityOfPeople() < 1 ){
             throw new  RuntimeException("A quantidade de pessoas não suporta o recurso selecionado");
         }
-        if ( !( resource.isHasTelevision() ) && booking.getUseTv() ){
+        if ( !( resource.isHasTelevision() ) && dto.getUseTv() ){
             throw new RuntimeException("Este recurso não possui televisão");
         }
         if( today.after( eventDate ) ){
