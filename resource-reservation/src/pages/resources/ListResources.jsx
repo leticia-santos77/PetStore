@@ -65,12 +65,8 @@ export default class ListResources extends Component {
                 <Card className="styleCard" key={resource.id}>
                   <ul>
                     <li>
-                      
-                      <h1>{resource.name}<ModalResources 
-                            title={
-                               <Link to={{pathname: `/resource/${resource.id}`}}>asdfasdf</Link>
-                            } />  
-                      </h1>
+                      <Link to={{pathname: `/resource/${resource.id}`}}>sdf</Link>
+                      <h1>{resource.name}<ModalResources title={resource.id} />  </h1>
                     </li>
                     <li>
                     <p><i className="fas fa-users blue"></i>

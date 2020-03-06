@@ -55,7 +55,7 @@ export default class ResourceForm extends Component {
         return (
             
             <React.Fragment>
-                <Modal title="0" id="booking">
+                <Modal title="+" id="booking">
                     <div className="modal-title">
                         <div className="item">
                             <h2 className="title"> {this.state.name} </h2>
