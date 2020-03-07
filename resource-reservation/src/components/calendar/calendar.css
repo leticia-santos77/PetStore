@@ -1,0 +1,8 @@
+/* Calendar */
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+.main-calendar {
+    padding: 0 50px;
+}

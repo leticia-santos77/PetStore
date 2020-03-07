@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Header from '../../components/header/Header';
-import BookingForm from '../../components/modal/BookingForm';
-import ModalResources from '../../components/modal/ModalResources';
+import Calendar from '../../components/calendar/Calendar';
 
 export default class Home extends Component{
 
@@ -13,9 +12,7 @@ export default class Home extends Component{
                 <Header user="Rafael Scotti"/>
                 <Sidebar />
                 <section className="main-content">
-                    <h1>Seja Bem Vindo!</h1>
-                    <ModalResources></ModalResources>
-                    <BookingForm />
+                    <Calendar />
                 </section>
             </React.Fragment>
         );
