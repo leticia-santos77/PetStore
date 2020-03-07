@@ -1,0 +1,46 @@
+.styleCard {
+  width: 250px;
+  height: 300px;
+  margin: 20px 20px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  line-height: 2.3;
+  font-family: "Roboto";
+  font-weight: lighter;
+}
+.styleCard ul li h1 {
+  background: #f14e4e;
+  padding-top: 20px;
+  color: white;
+  width: 250px;
+  height: 80px;
+}
+.styleCard ul li:nth-child(2){
+  margin-top: 20px;
+}
+.styleCard ul li p{
+  text-align: left;
+  margin-left: 60px;
+}
+.styleCard ul li:last-child{
+  font-weight: normal;
+  font-size: 22px;
+}
+.styleCard i {
+  margin-right: 18px;
+}
+.container-card {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
+.blue{
+  color: cornflowerblue;
+}
