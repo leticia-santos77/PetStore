@@ -8,6 +8,7 @@ export default class Home extends Component{
 
     render(){
         return(
+
             <React.Fragment>
                 <Header user="Rafael Scotti"/>
                 <Sidebar />

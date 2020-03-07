@@ -1,48 +1,66 @@
 package br.com.dbccompany.resourcereservation.controller;
 
+import br.com.dbccompany.resourcereservation.model.Booking;
 import br.com.dbccompany.resourcereservation.model.Resource;
-import br.com.dbccompany.resourcereservation.model.ResourceDTO;
+import br.com.dbccompany.resourcereservation.dto.ResourceDTO;
 import br.com.dbccompany.resourcereservation.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/resources")
+@RequestMapping("/api/resource")
 public class ResourceController {
     @Autowired
     ResourceService service;
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO resourceDTO){
-        if (resourceDTO.getName()!=null){
-            Resource resource = service.save(resourceDTO.toObject());
-            return new ResponseEntity<>(resource, HttpStatus.OK);
+    public ResponseEntity<Resource> newResource(@RequestBody ResourceDTO dto){
+        try {
+            Resource resource = service.save(dto);
+            return new ResponseEntity<>(resource, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-    @GetMapping(value = "/listAll")
-    @ResponseBody
-    public List<Resource> allRecources(){
-        return service.findAllResources();
     }
 
     @PutMapping( value = "/edit/{id}")
     @ResponseBody
-    public ResponseEntity<Resource> edit( @PathVariable String id, @RequestBody ResourceDTO resourceDTO){
-        Date date = service.findById(id).getCreationDate();
-        Resource resource = service.edit(resourceDTO.toObject(),id,date);
-        return new ResponseEntity<>(resource, HttpStatus.OK);
+    public ResponseEntity<Resource> edit( @PathVariable String id, @RequestBody ResourceDTO dto){
+       try {
+           Resource resource = service.edit(id, dto);
+           return new ResponseEntity<>(resource, HttpStatus.OK);
+       }catch (Exception e){
+           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       }
     }
-    @GetMapping(value = "/findByName/{name}")
+    @GetMapping(value = "/findbyname/{name}")
     @ResponseBody
-    public Resource findByName(@PathVariable String name){
-        return service.findByName(name);
+    public ResponseEntity<Resource> findByName(@PathVariable String name){
+        try {
+            Resource resource = service.findByName(name);
+            return new ResponseEntity<>(resource, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    @GetMapping(value = "/findbyid/{id}")
+    @ResponseBody
+    public ResponseEntity<Resource> findById(@PathVariable String id){
+        try{
+            Resource resource = service.findById(id);
+            return  new ResponseEntity<>(resource,HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    @GetMapping(value = "/all")
+    @ResponseBody
+    public List<Resource> allRecources(){
+        return service.findAllResources();
     }
 
 }
