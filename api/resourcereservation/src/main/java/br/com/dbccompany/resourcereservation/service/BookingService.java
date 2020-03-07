@@ -62,7 +62,7 @@ public class BookingService {
 
 
         booking.setResourceId(dto.getResourceId());
-        booking.setNameResource(resource.getName());
+        booking.setResourceName(resource.getName());
         booking.setQuantityOfPeople(dto.getQuantityOfPeople());
         booking.setUseTv(dto.getUseTv());
         booking.setDate(dto.getDate());

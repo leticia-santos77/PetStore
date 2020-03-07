@@ -24,13 +24,13 @@ export default class ListBookings extends Component {
               (b = new Booking(
                 b.id,
                 b.resourceId,
-                b.nameResource,
+                b.resourceName,
                 b.useTv,
                 b.quantityOfPeople,
                 b.creationDate,
                 b.date,
                 b.canceled
-              )) ,console.log(value.data)
+              )) 
           )
           }) 
       ))
@@ -62,7 +62,7 @@ export default class ListBookings extends Component {
                 <Card className="styleCard" key={booking.id}>
                   <ul>
                     <li>
-                      <h1>{booking.nameResource}</h1>
+                      <h1>{booking.resourceName}</h1>
                     </li>
                     <li>
                      <p><i className="fas fa-users blue"></i>
