@@ -62,7 +62,7 @@
     text-align: left;
 }
 
-ul li:hover p {
+.vertical-nav ul li:hover p {
     padding-left: 45px;
     cursor: pointer;
 }

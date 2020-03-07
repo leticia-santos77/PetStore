@@ -14,29 +14,31 @@ export default class ListBookings extends Component {
       bookings: []
     };
   }
-  requestBookings = () => {
+  requestBookings = async () => {
     return this.api
       .getBookings()
-      .then(value =>
+      .then(await (value =>
         this.setState({
           bookings: value.data.map(
-            b =>
+            b => 
               (b = new Booking(
                 b.id,
                 b.resourceId,
+                b.resourceName,
                 b.useTv,
                 b.quantityOfPeople,
                 b.creationDate,
                 b.date,
                 b.canceled
-              ))
+              )) 
           )
-        })
-      )
-      .catch("Fail!!");
+          }) 
+      ))
+      .catch("Fail!!");    
   };
+
   componentDidMount() {
-    this._asyncRequest = this.requestBookings();
+    this._asyncRequest = this.requestBookings() 
     this.state.bookings.reverse();
     this._asyncRequest = null;
   }
@@ -48,7 +50,6 @@ export default class ListBookings extends Component {
 
   render() {
     const { bookings } = this.state;
-
     return (
       <React.Fragment>
         <Header user="Gabriel Eugênio" />
@@ -61,21 +62,17 @@ export default class ListBookings extends Component {
                 <Card className="styleCard" key={booking.id}>
                   <ul>
                     <li>
-                      <h1>Recurso Nome</h1>
+                      <h1>{booking.resourceName}</h1>
                     </li>
                     <li>
-                      <i className="fas fa-users"></i>
-                      {booking.quantityOfPeople} Pessoas
+                     <p><i className="fas fa-users blue"></i>
+                      {booking.quantityOfPeople} Pessoas</p>
                     </li>
                     <li>
-                      {booking.useTv ? (
-                        <i className="far fa-check-circle"></i>
-                      ) : (
-                        <i className="far fa-times-circle"></i>
-                      )}
-                      Televisão
+                      <p>{booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
+                      Televisão</p>
                     </li>
-                    <li>{booking.creationDate}</li>
+                    <li><p>{booking.date}</p></li>
                   </ul>
                 </Card>
               );

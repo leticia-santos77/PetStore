@@ -27,7 +27,7 @@ public class Resource {
 
     @NotBlank
     @NotEmpty
-    private boolean hasTelevision = false;
+    private Boolean hasTelevision = true;
 
     public Integer getNumberOfSeats() {
         return numberOfSeats;
@@ -38,35 +38,19 @@ public class Resource {
     }
 
     @NotEmpty
-    private boolean activeRoom = true;
+    private Boolean activeRoom = null;
 
     @NotEmpty
-    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" )
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy" )
     private Date creationDate;
 
     public Resource() {
     }
 
-    public Resource(@NotEmpty String name, @NotEmpty Integer numberOfSeats, @NotEmpty boolean hasTelevision, @NotEmpty boolean activeRoom) {
+    public Resource(@NotEmpty String name, @NotEmpty Integer numberOfSeats, @NotEmpty Boolean hasTelevision, @NotEmpty Boolean activeRoom) {
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.hasTelevision = hasTelevision;
-        this.activeRoom = activeRoom;
-    }
-
-    public boolean isHasTelevision() {
-        return hasTelevision;
-    }
-
-    public void setHasTelevision(boolean hasTelevision) {
-        this.hasTelevision = hasTelevision;
-    }
-
-    public boolean isActiveRoom() {
-        return activeRoom;
-    }
-
-    public void setActiveRoom(boolean activeRoom) {
         this.activeRoom = activeRoom;
     }
 
@@ -78,19 +62,35 @@ public class Resource {
         this.id = id;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getHasTelevision() {
+        return hasTelevision;
+    }
+
+    public void setHasTelevision(Boolean hasTelevision) {
+        this.hasTelevision = hasTelevision;
+    }
+
+    public Boolean getActiveRoom() {
+        return activeRoom;
+    }
+
+    public void setActiveRoom(Boolean activeRoom) {
+        this.activeRoom = activeRoom;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }

@@ -47,25 +47,25 @@ public class BookingService {
         if(resource == null){
             throw new  RuntimeException(" Recurso não encontrado");
         }
-        if( !(resource.isActiveRoom()) ){
+        if( !(resource.getActiveRoom())){
             throw new  RuntimeException(" Recurso indisponivel no momento");
         }
         if( dto.getQuantityOfPeople() > resource.getNumberOfSeats() || dto.getQuantityOfPeople() < 1 ){
             throw new  RuntimeException("A quantidade de pessoas não suporta o recurso selecionado");
         }
-        if ( !( resource.isHasTelevision() ) && dto.getUseTv() ){
+        if ( !(resource.getHasTelevision()) && dto.getUseTv() ){
             throw new RuntimeException("Este recurso não possui televisão");
         }
         if( today.after( eventDate ) ){
             throw new RuntimeException("A data deve ser maior que a data atual");
         }
 
-
         booking.setResourceId(dto.getResourceId());
+        booking.setResourceName(resource.getName());
         booking.setQuantityOfPeople(dto.getQuantityOfPeople());
-        booking.setUseTv(dto.getUseTv());
+        booking.setUseTv(dto.getUseTv() == null ? false : dto.getUseTv());
         booking.setDate(dto.getDate());
-        booking.setCanceled(dto.getCanceled());
+        booking.setCanceled(dto.getCanceled() == null ? false : dto.getCanceled());
         booking.setCreationDate( today );
 
         return repository.save( booking );
@@ -82,8 +82,8 @@ public class BookingService {
         booking.setResourceId( booking.getResourceId() );
         booking.setDate( dto.getDate() == null ? booking.getDate() : dto.getDate() );
         booking.setCreationDate( booking.getCreationDate() );
-        booking.setCanceled( dto.getCanceled() );
-        booking.setUseTv( dto.getUseTv() );
+        booking.setCanceled( dto.getCanceled() == null ? false : dto.getCanceled() );
+        booking.setUseTv( dto.getUseTv() == null ? false : dto.getUseTv() );
 
         if(dto.getQuantityOfPeople() == null || dto.getQuantityOfPeople() > resource.getNumberOfSeats() ){
             booking.setQuantityOfPeople( booking.getQuantityOfPeople() );
@@ -101,6 +101,9 @@ public class BookingService {
     public Booking findById(String id){
         Booking booking = repository.findById(id).get();
         return booking;
+    }
+    public List<Booking> findAllByResourceId(String resourceId){
+        return repository.findAllByResourceId(resourceId);
     }
 
 }

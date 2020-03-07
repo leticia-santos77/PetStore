@@ -37,6 +37,11 @@ public class BookingController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping(value = "/findbyresource/{resourceId}")
+    @ResponseBody
+    public List<Booking> findByResourceId(@PathVariable String resourceId){
+                return  service.findAllByResourceId(resourceId);
+    }
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<Booking> newBooking(@RequestBody BookingDTO dto ){
