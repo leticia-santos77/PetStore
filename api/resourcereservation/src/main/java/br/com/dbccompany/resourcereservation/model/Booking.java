@@ -16,6 +16,7 @@ public class Booking {
     @NotEmpty
     private String resourceId;
 
+    private String nameResource;
     @NotEmpty
     private Integer quantityOfPeople;
 
@@ -33,7 +34,23 @@ public class Booking {
     @NotEmpty
     private boolean useTv = false;
 
-    public Booking(@NotEmpty Integer quantityOfPeople, @NotEmpty Date date,@NotEmpty boolean canceled,@NotEmpty boolean useTv,@NotEmpty String  resourceId) {
+    public String getNameResource() {
+        return nameResource;
+    }
+
+    public void setNameResource(String nameResource) {
+        this.nameResource = nameResource;
+    }
+
+    public boolean isCanceled() {
+        return canceled;
+    }
+
+    public boolean isUseTv() {
+        return useTv;
+    }
+
+    public Booking(@NotEmpty Integer quantityOfPeople, @NotEmpty Date date, @NotEmpty boolean canceled, @NotEmpty boolean useTv, @NotEmpty String  resourceId) {
         this.quantityOfPeople = quantityOfPeople;
         this.date = date;
         this.canceled = canceled;

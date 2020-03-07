@@ -11,7 +11,6 @@ export default class ListBookings extends Component {
     super(props);
     this.api = new Api();
     this.state = {
-      resources: [],
       bookings: []
     };
   }
@@ -25,7 +24,7 @@ export default class ListBookings extends Component {
               (b = new Booking(
                 b.id,
                 b.resourceId,
-                b.nameResouce=this.requestResource(b.resourceId),
+                b.nameResource,
                 b.useTv,
                 b.quantityOfPeople,
                 b.creationDate,
@@ -35,18 +34,11 @@ export default class ListBookings extends Component {
           )
           }) 
       ))
-      .catch("Fail!!");
-      
+      .catch("Fail!!");    
   };
-   requestResource = async ( id ) => {
-     return await this.api.getResource(id).then(value =>  value.data.name);
 
-  }
   componentDidMount() {
-    /* this._asyncRequestResources = this.api.requestResources() */
     this._asyncRequest = this.requestBookings() 
-    
-    /* this._asyncRequestResource = this.requestResource(); */
     this.state.bookings.reverse();
     this._asyncRequest = null;
   }
@@ -70,17 +62,17 @@ export default class ListBookings extends Component {
                 <Card className="styleCard" key={booking.id}>
                   <ul>
                     <li>
-                      <h1>{booking.nameResouce}</h1>
+                      <h1>{booking.nameResource}</h1>
                     </li>
                     <li>
-                      <i className="fas fa-users blue"></i>
-                      {booking.quantityOfPeople} Pessoas
+                     <p><i className="fas fa-users blue"></i>
+                      {booking.quantityOfPeople} Pessoas</p>
                     </li>
                     <li>
-                      {booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
-                      Televisão
+                      <p>{booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
+                      Televisão</p>
                     </li>
-                    <li>{booking.date}</li>
+                    <li><p>{booking.date}</p></li>
                   </ul>
                 </Card>
               );
