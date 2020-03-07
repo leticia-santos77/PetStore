@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Header from '../../components/header/Header';
 import Calendar from '../../components/calendar/Calendar';
-
+import ListBookings from '../bookings/ListBookings';
 export default class Home extends Component{
 
     render(){
@@ -10,8 +10,9 @@ export default class Home extends Component{
 
             <React.Fragment>
                 <Header user="Rafael Scotti"/>
-                <Sidebar />
+                <Sidebar />{/*<ListBookings /> */}
                 <section className="main-content">
+                    
                     <Calendar />
                 </section>
             </React.Fragment>
