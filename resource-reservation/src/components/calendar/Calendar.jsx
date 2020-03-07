@@ -29,23 +29,30 @@ export default class Calendar extends Component {
     return day + " " + hour;
   }
 
-  componentDidMount() {
-
-    this.api.getBookings().then( value => {
-      return value.data.map( res => {
-        this.setState({
-          calendarEvents: this.state.calendarEvents.concat({ // creates a new array
-            title: res.resourceName,
-            start: this.formatDate(res.date)
-          })
+  loadCalendarData = ( dataArray ) => {
+    dataArray.map(res =>
+      this.setState({
+        calendarEvents: this.state.calendarEvents.concat({ // creates a new array
+          title: res.resourceName,
+          start: this.formatDate(res.date),
+          qtdOfPeople: res.quantityOfPeople,
+          useTv: res.useTv
         })
       })
-    })
+    )
+  }
+
+  componentDidMount() {
+    this.loadData = this.api.getBookings().then( value => 
+      this.loadCalendarData(value.data)
+    )
+  }
+
+  componentWillUnmount() {
+    this.loadData.cancel()
   }
 
   render() {
-
-    
 
     return (
       <React.Fragment>
@@ -68,20 +75,16 @@ export default class Calendar extends Component {
   }
 
   eventClick = ( evt ) => {
-    alert("Evento: " + evt.event.title);
-    evt.el.style.borderColor = 'red';
-  }
-
-  handleDateClick = ( arg ) => {
-    var person = prompt("Insira o nome do evento", arg.date);
-    if(person){
-      this.setState({ 
-        calendarEvents: this.state.calendarEvents.concat({ // creates a new array
-          title: person,
-          start: arg.date,
-          allDay: arg.allDay
-        })
-      })
-    }
+    let resource = evt.event.title;
+    let date = evt.event.start.getUTCDate() + "/" + evt.event.start.getUTCMonth() + "/" + evt.event.start.getUTCFullYear();
+    let time = evt.event.start.getUTCHours() + ":" + evt.event.start.getUTCMinutes();
+    let people = evt.event.extendedProps.qtdOfPeople;
+    let tv = evt.event.extendedProps.useTv ? "Sim" : "Não";
+    
+    alert("Recurso: " + resource + 
+        "\nData: " + date +
+        "\nHora: " + time +
+        "\nHaverá um total de " + people + " pessoa(s)" +
+        "\nUtilização da tv: " + tv );
   }
 }
