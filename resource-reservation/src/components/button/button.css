@@ -1,0 +1,51 @@
+.button {
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 100%;
+    
+    color: #222;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.button-large{
+    height: 40px;
+    width: 100%;
+    
+}
+
+.button:hover {
+    text-decoration: none;
+    transition: background 0.2s ease-in-out 0s;
+}
+
+.button-right {
+    float: right;
+    clear: both;
+}
+
+.button-big {
+    padding: 25px 40px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.button-blue {
+    color: #fff;
+    background: #007aff;
+}
+
+.button-blue:hover {
+    background: #2d92ff;
+}
+
+.button-green {
+    color: #fff;
+    background: #39b54a;
+}
+
+.button-green:hover {
+    background: #6cfd7f;
+}
