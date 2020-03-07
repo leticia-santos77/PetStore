@@ -1,6 +1,5 @@
 package br.com.dbccompany.resourcereservation.dto;
 
-import br.com.dbccompany.resourcereservation.model.Resource;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 public class ResourceDTO {
@@ -10,13 +9,9 @@ public class ResourceDTO {
 
     private Integer numberOfSeats;
 
-    private boolean hasTelevision;
+    private Boolean hasTelevision = null;
 
-    private boolean activeRoom = true;
-
-    public Resource toObject(){
-        return new Resource(this.name,this.numberOfSeats,this.hasTelevision,this.activeRoom);
-    }
+    private Boolean activeRoom = null;
 
     public String getName() {
         return name;
@@ -34,19 +29,19 @@ public class ResourceDTO {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public boolean isHasTelevision() {
+    public Boolean getHasTelevision() {
         return hasTelevision;
     }
 
-    public void setHasTelevision(boolean hasTelevision) {
+    public void setHasTelevision(Boolean hasTelevision) {
         this.hasTelevision = hasTelevision;
     }
 
-    public boolean isActiveRoom() {
+    public Boolean getActiveRoom() {
         return activeRoom;
     }
 
-    public void setActiveRoom(boolean activeRoom) {
+    public void setActiveRoom(Boolean activeRoom) {
         this.activeRoom = activeRoom;
     }
 }
