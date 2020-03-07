@@ -5,7 +5,7 @@
     height: 40px;
     background-color: #e3e9f3;
     padding-left: 10px;
-    width: 250px;
+    width: 100%;
     outline-color: rgba(41, 91, 167, 0.35);
 }
 .input-login::placeholder {
