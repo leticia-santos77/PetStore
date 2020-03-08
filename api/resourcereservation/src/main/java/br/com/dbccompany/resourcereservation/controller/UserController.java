@@ -33,10 +33,5 @@ public class UserController {
         return service.findByUsername( username );
     }
 
-    // ONLY FOR TESTING PORPOISE
-    @GetMapping(value = "/teste")
-    public String getTeste() {
-        return "TESTE RETURNED";
-    }
 }
 

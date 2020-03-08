@@ -2,7 +2,6 @@ package br.com.dbccompany.resourcereservation.security;
 
 
 import br.com.dbccompany.resourcereservation.model.User;
-import br.com.dbccompany.resourcereservation.model.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

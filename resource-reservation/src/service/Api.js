@@ -6,7 +6,7 @@ export default class Api {
 
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:8081"
+      baseURL: "https://heroku-booking-resources.herokuapp.com/"
     })
     
       this.api.interceptors.request.use(async config => {
@@ -18,8 +18,8 @@ export default class Api {
     })  
     
   }
-  getBookings = () => this.api.get('/api/booking/all',{headers: {Authorization:getToken()} });
-  getResources = () => this.api.get('/api/resource/all',{headers: {Authorization:getToken()} });
+  getBookings = () => this.api.get('/api/booking/all');
+  getResources = () => this.api.get('/api/resource/all');
   postLogin = (username, password) => this.api.post("/login", { "username": username, "password":password });
 }
 
