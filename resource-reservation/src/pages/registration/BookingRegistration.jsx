@@ -13,6 +13,40 @@ import Dropdown from 'react-dropdown';
 
 
 export default class ResourceForm extends Component {
+    constructor(props) {
+        super(props);
+        this.api = new Api();
+        this.state = {
+          bookingsElements: []
+        };
+      }
+      requestBookings = async () => {
+        return this.api
+          .getBookings()
+          .then(await (value =>
+            this.setState({
+              bookingsElements: value.data.map(
+                b =>
+                  (b = new Booking(
+                    b.resourceName
+                  ))
+              )
+            })
+          ))
+          .catch("Fail!!");
+      };
+    
+      componentDidMount() {
+        this._asyncRequest = this.requestBookings()
+        this.state.bookingsElements.reverse();
+        this._asyncRequest = null;
+      }
+      componentWillUnmount() {
+        if (this._asyncReques) {
+          this._asyncRequest.cancel();
+        }
+      }
+    
     state = {
         name: '',
         numberOfSeats: '',
@@ -47,6 +81,7 @@ export default class ResourceForm extends Component {
 
 
     render() {
+        const { bookingsElements } = this.state;
         return (
             <React.Fragment>
                 <Header user="Rafael Scotti" />
@@ -58,7 +93,7 @@ export default class ResourceForm extends Component {
                             <div>
                                 <div className="justify">
                                     <label>Nome do recurso:</label>
-                                    <Dropdown options={["one", "two", "three", "four"]} onChange={this._onSelect} placeholder="Select an option" />
+                                    <Dropdown options={bookingsElements.map(booking => {booking.resourceName})} onChange={this._onSelect} placeholder="Select an option"/>
                                 </div>
                                 <div className="justify">
                                     <label> Número de lugares: </label>
