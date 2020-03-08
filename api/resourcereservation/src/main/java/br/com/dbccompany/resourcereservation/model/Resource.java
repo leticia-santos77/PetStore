@@ -2,33 +2,52 @@ package br.com.dbccompany.resourcereservation.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Document(collection = "Resource")
 public class Resource {
-    @NotNull
+
     @Id
+    @NotNull
     private String id;
+
     @NotEmpty
+    @Indexed(unique=true)
     private String name;
+
     @NotEmpty
     private Integer numberOfSeats;
+
+
+    @NotBlank
     @NotEmpty
-    private boolean hasTelevision;
+    private Boolean hasTelevision = true;
+
+    public Integer getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(Integer numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
     @NotEmpty
-    private boolean activeRoom;
+    private Boolean activeRoom = null;
+
     @NotEmpty
-    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy" )
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy" )
     private Date creationDate;
 
     public Resource() {
     }
 
-    public Resource(@NotEmpty String name, @NotEmpty Integer numberOfSeats, @NotEmpty boolean hasTelevision, @NotEmpty boolean activeRoom) {
+    public Resource(@NotEmpty String name, @NotEmpty Integer numberOfSeats, @NotEmpty Boolean hasTelevision, @NotEmpty Boolean activeRoom) {
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.hasTelevision = hasTelevision;
@@ -43,27 +62,27 @@ public class Resource {
         this.id = id;
     }
 
-    public Integer getnumberOfSeats() {
-        return numberOfSeats;
+    public String getName() {
+        return name;
     }
 
-    public void setnumberOfSeats(Integer numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isHasTelevision() {
+    public Boolean getHasTelevision() {
         return hasTelevision;
     }
 
-    public void setHasTelevision(boolean hasTelevision) {
+    public void setHasTelevision(Boolean hasTelevision) {
         this.hasTelevision = hasTelevision;
     }
 
-    public boolean isActiveRoom() {
+    public Boolean getActiveRoom() {
         return activeRoom;
     }
 
-    public void setActiveRoom(boolean activeRoom) {
+    public void setActiveRoom(Boolean activeRoom) {
         this.activeRoom = activeRoom;
     }
 
@@ -73,13 +92,5 @@ public class Resource {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

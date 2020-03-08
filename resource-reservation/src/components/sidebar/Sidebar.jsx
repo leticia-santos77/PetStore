@@ -29,9 +29,15 @@ export default class Sidebar extends Component {
                 <header><p>ECOS</p></header>
                 <ul>
                     <li><Link to="#"><p><i className="fas fa-home"></i>Dashboard</p></Link></li>
+<<<<<<< HEAD
                     <li><Link to="/bookingRegistration"><p><i className="fas fa-plus"></i>Nova Reserva</p></Link></li>
                     <li><Link to="/resourceRegistration"><p><i className="fas fa-folder-plus"></i>Criar Recurso</p></Link></li>
                     <li><Link to="#"><p><i className="fas fa-stream"></i>Lista de Recursos</p></Link></li>
+=======
+                    <li><Link to="#"><p><i className="fas fa-plus"></i>Nova Reserva</p></Link></li>
+                    <li><Link to="#"><p><i className="fas fa-folder-plus"></i>Criar Recurso</p></Link></li>
+                    <li><Link to={{pathname:`/recursos`}}><p><i className="fas fa-stream"></i>Lista de Recursos</p></Link></li>
+>>>>>>> 5a5c2c4b6cce5a69580b25692454e020de16d248
                 </ul>
             </nav>
 

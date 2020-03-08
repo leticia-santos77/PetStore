@@ -14,28 +14,44 @@ public class Booking {
     private String id;
 
     @NotEmpty
+    private String resourceId;
+
+    private String resourceName;
+    @NotEmpty
     private Integer quantityOfPeople;
 
     @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     private Date date;
 
     @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date creationDate;
 
     @NotEmpty
-    private Boolean canceled;
+    private Boolean canceled = null;
 
     @NotEmpty
-    private Boolean use_tv;
+    private Boolean useTv = null;
 
-    public Booking(Integer quantityOfPeople, Date date, Boolean canceled, Boolean use_tv) {
+    public String getResourceName() {
+        return resourceName;
+    }
+
+    public void setResourceName(String resourceName) {
+        this.resourceName = resourceName;
+    }
+
+
+    public Booking(@NotEmpty Integer quantityOfPeople, @NotEmpty Date date, @NotEmpty Boolean canceled, @NotEmpty Boolean useTv, @NotEmpty String  resourceId,String resourceName) {
         this.quantityOfPeople = quantityOfPeople;
         this.date = date;
         this.canceled = canceled;
-        this.use_tv = use_tv;
+        this.useTv = useTv;
+        this.resourceId = resourceId;
+        this.resourceName = resourceName;
     }
+
 
     public Booking() {
     }
@@ -46,6 +62,14 @@ public class Booking {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 
     public Integer getQuantityOfPeople() {
@@ -80,11 +104,11 @@ public class Booking {
         this.canceled = canceled;
     }
 
-    public Boolean getUse_tv() {
-        return use_tv;
+    public Boolean getUseTv() {
+        return useTv;
     }
 
-    public void setUse_tv(Boolean use_tv) {
-        this.use_tv = use_tv;
+    public void setUseTv(Boolean useTv) {
+        this.useTv = useTv;
     }
 }

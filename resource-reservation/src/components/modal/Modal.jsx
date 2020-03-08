@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 import './modal.css';
 // import { Container } from './styles';
 
@@ -8,7 +8,7 @@ export default class Modal extends Component {
         return (
             <React.Fragment>
                 <a href={`#openModal-${id}`}>{title}</a>
-                <div id={`openModal-${id}`} class="modalDialog">
+                <div id={`openModal-${id}`} className="modalDialog">
                     <div>
                         <a href="#close" title="Close" className="close">X</a>
                         {children}

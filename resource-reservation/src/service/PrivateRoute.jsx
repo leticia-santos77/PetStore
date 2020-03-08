@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import IsAuthenticated from './Auth.jsx';
+import { isAuthenticated } from './Auth.jsx';
 
 const PrivateRoute = ( { component: Component, ...rest } ) => (
     <Route 
         { ...rest }  
         render = { props => 
-            IsAuthenticated() ? (
+            isAuthenticated() ? (
                 <Component { ...props} />
             ) : ( 
                 <Redirect to={{ pathname:'/', state: { from: props.location } }}/>
