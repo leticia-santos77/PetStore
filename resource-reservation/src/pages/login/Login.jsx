@@ -1,78 +1,78 @@
-import React, { Component } from 'react';
-import './login.css';
-import Logo from './logoECOS.png';
-import Input from '../../components/input/Input';
-import Button from '../../components/button/Button'
-import { login } from '../../service/Auth'
-import Api from '../../service/Api'
-import axios from 'axios'
+import React, { Component } from "react";
+import "./login.css";
+import Logo from "./logoECOS.png";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
+import { login } from "../../service/Auth";
+import { Redirect } from "react-router-dom";
+import Api from "../../service/Api";
 
 export default class Login extends Component {
-    constructor() {
-        super();
-        this.api = new Api();
-        this.state = {
-            username: '',
-            password: '',
-            access: false,
-            error:''
-        }
+  constructor() {
+    super();
+    this.api = new Api();
+    this.state = {
+      username: "",
+      password: "",
+      access: false
+    };
+  }
+  handleChange = event => {
+    if (event.target.name === "password") {
+      this.setState({ password: event.target.value });
     }
-    handleChange = (event) => {
-        if (event.target.name === "username")
-          this.setState({ username: event.target.value })
-    
-        if (event.target.name === "password")
-          this.setState({ password: event.target.value })
-        
-          console.log(this.state.username)
+    if (event.target.name === "username") {
+      this.setState({ username: event.target.value });
     }
-   /*  onClick = async () => {
-        const { username, password } = this.state;
-        
-        const response = await this.api.postLogin(username , password).then(response => {if(response.status === 200){localStorage.setItem('Authorization',response.data.token)}})
-     
-    } */
+  };
+  onClick = async () => {
+    const { username, password } = this.state;
 
-    onClick = async () => {
-   
-        await axios.post('http://localhost:8081/login',{username: this.state.username, password: this.state.password}).then(
-                                                                                                         response =>{
-                                                                                                           if (response.status === 200) {
-                                                                                                            console.log(response)
-                                                                                                            login( response.data.token)
-                                                                                                             this.setState({ redirecionaParaProximaPagina: true })
-                                                                                                             if (response.status === 400) {
-                                                                                                               this.setState({ redirecionaParaProximaPagina: false })
-                                                                                                             } 
-                                                                                                           }
-           
-         })
-       }
-    render() {
-        return (
-            <div className="container-login">
-                <div className="box">
-                    <div className="div-logo" >
-                        <img alt="logo" className="logo" src={ Logo }/>
-                    </div>
-                    <div className="div-login div-login-text">
-                        <h2>Reserva de Recurso</h2>
-                    </div>
-                    <div className="div-login div-login-input">
-                   {/*      <Input className={"input-login"} name="username" placeholder={"usuário"} onBlur={this.handleChange}/> */}
-                 {/*        <Input className={"input-login"} type={'password'} name="password"  placeholder={"senha"} onBlur={this.handleChange}/> */}
-                 <input className="input-login" type="text" name="username" placeholder={"usuário"} onBlur={this.handleChange}/>
+    await this.api.postLogin(username, password).then(response => {
+      if (response.status === 200) {
+        login(response.headers.authorization);
+      }
+      this.setState({ access: true });
+      if (response.status === 400) {
+        this.setState({ access: false });
+      }
+    });
+  };
 
-                        <input className="input-login" type="password" name="password" placeholder={"senha"} onBlur={this.handleChange}/>
-                    </div>
-                    <div className="div-login div-login-button">
-                        <Button className={"button-login"} onClick={this.onClick} title={"ENTRAR"}></Button>
-                    </div>
-                </div>
-
+  render() {
+    const { access } = this.state;
+    if (access) return <Redirect to={{ pathname: "/home" }} />;
+    else
+      return (
+        <div className="container-login">
+          <div className="box">
+            <div className="div-logo">
+              <img alt="logo" className="logo" src={Logo} />
             </div>
-
-        )
-    }
+            <div className="div-login div-login-text">
+              <h2>Reserva de Recurso</h2>
+            </div>
+            <div className="div-login div-login-input">
+              <Input
+                className={"input-login"}
+                name="username"
+                placeholder={"usuário"}
+                onBlur={this.handleChange}
+              />
+              <Input
+                className={"input-login"}
+                type={"password"}
+                name="password"
+                placeholder={"senha"}
+                onBlur={this.handleChange}
+              />
+            </div>
+          
+          <div className="div-login div-login-button">
+              <Button className={"button-login"} onClick={this.onClick.bind()} tittle={'ENTRAR'}></Button>
+              </div>
+              </div>
+        </div>
+      );
+  }
 }

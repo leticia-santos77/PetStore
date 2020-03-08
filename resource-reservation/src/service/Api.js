@@ -9,17 +9,17 @@ export default class Api {
       baseURL: "http://localhost:8081"
     })
     
-/*       this.api.interceptors.request.use(async config => {
+      this.api.interceptors.request.use(async config => {
       const token = getToken();
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `${token}`;
       }
       return config;
-    })  */
+    })  
     
   }
-  getBookings = () => this.api.get('/api/booking/all' )
-  getResources = () => this.api.get('/api/resource/all')
+  getBookings = () => this.api.get('/api/booking/all',{headers: {Authorization:getToken()} });
+  getResources = () => this.api.get('/api/resource/all',{headers: {Authorization:getToken()} });
   postLogin = (username, password) => this.api.post("/login", { "username": username, "password":password });
 }
 
