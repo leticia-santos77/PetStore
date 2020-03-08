@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Header from '../../components/header/Header';
 import BookingsCardList from '../../components/bookings/BookingsCardList';
+import Welcome from '../../components/banner/Welcome';
+
 export default class Home extends Component{
 
     render(){
@@ -11,9 +13,9 @@ export default class Home extends Component{
                 <Header user="Rafael Scotti"/>
                 <Sidebar />{/*<ListBookings /> */}
                 <section className="main-content">
-                    <h1>
-                        Bem vindo!
-                    </h1>
+                    <Welcome />
+
+                    <h1 className="content-title">Reservas <i class="far fa-calendar-alt"></i></h1>
                     <BookingsCardList />
                     
                 </section>
