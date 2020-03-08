@@ -7,6 +7,7 @@ import Welcome from '../../components/banner/Welcome';
 export default class Home extends Component{
 
     render(){
+
         return(
 
             <React.Fragment>
@@ -15,7 +16,10 @@ export default class Home extends Component{
                 <section className="main-content">
                     <Welcome />
 
-                    <h1 className="content-title">Reservas <i class="far fa-calendar-alt"></i></h1>
+                    
+                    
+                   
+                
                     <BookingsCardList />
                     
                 </section>

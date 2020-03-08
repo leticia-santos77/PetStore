@@ -4,7 +4,7 @@
     background-color: red;
     /* height: 15vh; */
     min-height: 200px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,11 +12,9 @@
     font-size: 24px;
     font-weight: lighter;
     color: #212121;
-
     border-bottom: 60px solid #f1f1f1;
-
-background: rgba(255, 255, 255, 0);
-background: radial-gradient(circle, #038C8C 0%, #026873 100%);
+    background: rgba(255, 255, 255, 0);
+    background: radial-gradient(circle, #038C8C 0%, #026873 100%);
 
 }
 
@@ -28,3 +26,4 @@ background: radial-gradient(circle, #038C8C 0%, #026873 100%);
    color: #212121;
     font-size: 16px;
 }
+

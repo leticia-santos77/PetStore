@@ -3,6 +3,8 @@ import Api from "../../service/Api";
 import Booking from "../../pages/bookings/Booking";
 import Card from "../card/Card";
 import "../card/Card.css";
+import "./bookingsCardList.css";
+import { Link } from 'react-router-dom'
 
 export default class BookingsCardList extends Component {
   constructor(props) {
@@ -50,7 +52,14 @@ export default class BookingsCardList extends Component {
     const { bookingsElements } = this.state;
     return (
       <React.Fragment>
+        <section className="section-header">
+          <h1 className="content-title">Reservas</h1>
+          <Link to={{ pathname: "/calendario" }} >
+            <h1 className="content-title" ><i className="far fa-calendar-alt"></i></h1>
+          </Link>
+        </section> 
         <div className="container-card">
+   
           {
             bookingsElements.map(booking => {
               return (
