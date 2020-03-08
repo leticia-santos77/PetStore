@@ -2,20 +2,27 @@
   width: 250px;
   height: 300px;
   margin: 20px 20px;
-  text-align: center;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-  justify-content: center;
   line-height: 2.3;
-  font-family: "Roboto";
+  font-family: 'Poppins', sans-serif;
   font-weight: lighter;
 }
 .styleCard ul li h1 {
+  font-size: 24px;
+
+}
+
+.styleCard ul li:nth-child(1) {
   background: #f14e4e;
-  padding-top: 20px;
   color: white;
   width: 250px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
+
 .styleCard ul li:nth-child(2){
   margin-top: 20px;
 }
@@ -30,11 +37,7 @@
 .styleCard i {
   margin-right: 18px;
 }
-.container-card {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+
 .green{
   color: green;
 }

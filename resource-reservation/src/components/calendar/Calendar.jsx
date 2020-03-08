@@ -57,9 +57,7 @@ export default class Calendar extends Component {
   render() {
 
     return (
-      <React.Fragment>
-        <h1 className="content-title">Calendario</h1>
-        
+      <React.Fragment>       
         <section className="main-calendar">
           <FullCalendar 
             defaultView="dayGridMonth" 

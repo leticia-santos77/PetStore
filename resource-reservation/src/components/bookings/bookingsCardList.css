@@ -1,25 +1,22 @@
 .section-header {
 
-    height: 50px;
+  
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
+    
 
 }
 
-.main-content .section-header .content-title {
-    font-size: 30px;
-    padding: 10px;
-    outline-style: none;
+.container-card {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-
-.main-content .section-header .content-title:nth-child(2) {  
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    box-shadow: 1px 20px 50px rgba(128, 128, 128, 0.11);
-    cursor: pointer;
+.section-header .icon-calendar {
+    font-size: 50px;
+    color: #5E4242;
 }
 
 

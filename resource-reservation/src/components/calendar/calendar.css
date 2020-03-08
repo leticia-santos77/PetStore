@@ -6,3 +6,10 @@
 .main-calendar {
     padding: 0 50px;
 }
+
+.fc-toolbar h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: lighter;
+}
