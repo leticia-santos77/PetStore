@@ -39,6 +39,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             userService.save(user);
         }
         builder.userDetailsService(username -> new UserDTO(userService.findByUsername(username)));
-
     }
 }

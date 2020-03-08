@@ -19,7 +19,7 @@ public class TokenAuthenticationService {
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
 
-    // cria o token
+
     static void addAuthentication(HttpServletResponse response, String username) {
         String JWT = Jwts.builder()
                 .setSubject(username)
@@ -30,24 +30,19 @@ public class TokenAuthenticationService {
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
     }
 
-    // valida o token
+
     static  Authentication getByToken(String token){
         String user = Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                 .getBody()
                 .getSubject();
-//        if(user != null) {
-//            return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
-//        }
-//        return null;
         return user != null ? new UsernamePasswordAuthenticationToken(user, null, null) : null;
     }
     static Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
 
         if( token != null ) {
-
             return getByToken(token);
         }
        return null;
