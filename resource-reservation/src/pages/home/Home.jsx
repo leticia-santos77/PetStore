@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Header from '../../components/header/Header';
-import Calendar from '../../components/calendar/Calendar';
-import ListBookings from '../bookings/ListBookings';
+import BookingsCardList from '../../components/bookings/BookingsCardList';
 export default class Home extends Component{
 
     render(){
@@ -12,9 +11,13 @@ export default class Home extends Component{
                 <Header user="Rafael Scotti"/>
                 <Sidebar />{/*<ListBookings /> */}
                 <section className="main-content">
+                    <h1>
+                        Bem vindo!
+                    </h1>
+                    <BookingsCardList />
                     
-                    <Calendar />
                 </section>
+                
             </React.Fragment>
         );
     }
