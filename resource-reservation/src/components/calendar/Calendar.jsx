@@ -9,7 +9,6 @@ import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import './calendar.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
-import { formatDate } from '@fullcalendar/core';
 
 export default class Calendar extends Component {
 
@@ -22,9 +21,9 @@ export default class Calendar extends Component {
     }
   }
 
-  formatDate = (date) =>{ // format from 'DD-MM-YYYY hh:mm' to 'YYYY-MM-DD hh:mm'
+  formatDate = (date) =>{ // format from 'DD/MM/YYYY hh:mm' to 'YYYY-MM-DD hh:mm'
     let newDate = date.split(' ');
-    let day = newDate[0].split('-').reverse().join('-');
+    let day = newDate[0].split('/').reverse().join('-');
     let hour = newDate[1];
     return day + " " + hour;
   }
@@ -46,10 +45,13 @@ export default class Calendar extends Component {
     this.loadData = this.api.getBookings().then( value => 
       this.loadCalendarData(value.data)
     )
+    this.loadData = null;
   }
 
   componentWillUnmount() {
-    this.loadData.cancel()
+    if(this.loadData) {
+      this.loadData.cancel()
+    }
   }
 
   render() {
