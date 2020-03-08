@@ -69,13 +69,13 @@ export default class ListResources extends Component {
                     <li>
                       <h1>{resource.name}</h1>
                     </li>
-                    <li><p><i className="fas fa-users blue"></i>
+                    <li className="li-icon-title"><p><i className="fas fa-users blue"></i>
                       {resource.numberOfSeats} Vagas</p>
                     </li>
-                    <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
+                    <li className="li-icon-title"><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                     </li>
-                    <li><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
+                    <li className="li-icon-title"><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>

@@ -58,21 +58,29 @@ export default class BookingsCardList extends Component {
 
           {
             bookingsElements.map(booking => {
+
+              let fullDate = booking.date.split(' ');
+              let date = fullDate[0];
+              let hour = fullDate[1];
+
               return (
                 <Card className="styleCard" key={booking.id}>
                   <ul>
                     <li>
                       <h1>{booking.resourceName}</h1>
                     </li>
-                    <li>
+                    <li className="li-icon-title">
                       <p><i className="fas fa-users blue"></i>
                         {booking.quantityOfPeople} Pessoas</p>
                     </li>
-                    <li>
+                    <li className="li-icon-title">
                       <p>{booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                         Televisão</p>
                     </li>
-                    <li><p>{booking.date}</p></li>
+                    <li>
+                      <p>{date}</p>
+                      <p>{hour}</p>  
+                    </li>
                   </ul>
                 </Card>
               );

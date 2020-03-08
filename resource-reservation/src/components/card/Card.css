@@ -20,20 +20,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 20px;
 }
 
-.styleCard ul li:nth-child(2){
-  margin-top: 20px;
-}
+
 .styleCard ul li p{
   text-align: left;
-  margin-left: 60px;
 }
+
+
+.styleCard ul li.li-icon-title {
+  padding-left: 60px;
+}
+
 .styleCard ul li:last-child{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: normal;
   font-size: 22px;
+  font-weight: lighter;
 }
+
 .styleCard i {
   margin-right: 18px;
 }
