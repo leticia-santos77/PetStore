@@ -11,17 +11,24 @@ import Sidebar from "../../components/sidebar/Sidebar";
 export default class ListResources extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.api = new Api();
     this.state = {
       resources: []
     };
   }
-  requestResources = () => {
-    return this.api
+  requestResources = async () => {
+    return await this.api
       .getResources()
-      .then(value =>
+  };
+
+  componentDidMount() {
+    this._isMounted = true;
+
+    this._asyncRequest = this.requestResources().then(result => {
+      if (this._isMounted) {
         this.setState({
-          resources: value.data.map(
+          resources: result.data.map(
             r =>
               (r = new Resource(
                 r.id,
@@ -32,32 +39,28 @@ export default class ListResources extends Component {
                 r.creationDate
               ))
           )
-        })
-      )
-      .catch("Fail!!");
-  };
+        });
 
-  componentDidMount() {
-    this._asyncRequest = this.requestResources();
-    this.state.resources.reverse();
+        this.state.resources.reverse();
+      }
+    });
+    
     this._asyncRequest = null;
   }
   componentWillUnmount() {
-    if (this._asyncReques) {
-      this._asyncRequest.cancel();
-    }
+    this._isMounted = false;
   }
 
   render() {
 
     const { resources } = this.state;
-    
+
     return (
       <React.Fragment>
         <Header user="Gabriel Eugênio" />
         <Sidebar />
         <div className="main-content">
-        <h1 className="content-title">Recursos</h1>
+          <h1 className="content-title">Recursos</h1>
           <div className="container-card">
             {resources.map(resource => {
               return (
@@ -68,11 +71,11 @@ export default class ListResources extends Component {
                     </li>
                     <li><p><i className="fas fa-users blue"></i>
                       {resource.numberOfSeats} Vagas</p>
-                  </li>
-                    <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i> }
+                    </li>
+                    <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                     </li>
-                    <li><p>{resource.activeRoom ?<i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
+                    <li><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>

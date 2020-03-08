@@ -4,20 +4,25 @@ import Booking from "../../pages/bookings/Booking";
 import Card from "../card/Card";
 import "../card/Card.css";
 import "./bookingsCardList.css";
-import { Link } from 'react-router-dom'
 
 export default class BookingsCardList extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.api = new Api();
     this.state = {
       bookingsElements: []
     };
   }
-  requestBookings = async () => {
+  requestBookings = () => {
     return this.api
       .getBookings()
-      .then(await (value =>
+  };
+
+  componentDidMount() {
+    this._isMounted = true;
+    this._asyncRequest = this.requestBookings().then(value => {
+      if (this._isMounted) {
         this.setState({
           bookingsElements: value.data.map(
             b =>
@@ -32,20 +37,14 @@ export default class BookingsCardList extends Component {
                 b.canceled
               ))
           )
-        })
-      ))
-      .catch("Fail!!");
-  };
-
-  componentDidMount() {
-    this._asyncRequest = this.requestBookings()
+        });
+      }
+    });
     this.state.bookingsElements.reverse();
     this._asyncRequest = null;
   }
   componentWillUnmount() {
-    if (this._asyncReques) {
-      this._asyncRequest.cancel();
-    }
+    this._isMounted = false;
   }
 
   render() {
@@ -54,9 +53,9 @@ export default class BookingsCardList extends Component {
       <React.Fragment>
         <section className="section-header">
 
-        </section> 
+        </section>
         <div className="container-card">
-   
+
           {
             bookingsElements.map(booking => {
               return (

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
-import { Link } from 'react-router-dom';
 import Calendar from '../../components/calendar/Calendar'
 
-// import { Container } from './styles';
 
 export default class CalendarPage extends Component {
   render() {
