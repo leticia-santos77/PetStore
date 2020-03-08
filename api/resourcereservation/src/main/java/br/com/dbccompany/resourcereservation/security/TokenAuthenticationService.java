@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,20 +31,25 @@ public class TokenAuthenticationService {
     }
 
     // valida o token
+    static  Authentication getByToken(String token){
+        String user = Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                .getBody()
+                .getSubject();
+//        if(user != null) {
+//            return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+//        }
+//        return null;
+        return user != null ? new UsernamePasswordAuthenticationToken(user, null, null) : null;
+    }
     static Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
 
         if( token != null ) {
-            String user = Jwts.parser()
-                    .setSigningKey(SECRET)
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
 
-            if(user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
-            }
+            return getByToken(token);
         }
-        return null;
+       return null;
     }
 }
