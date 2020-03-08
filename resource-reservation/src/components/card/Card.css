@@ -9,9 +9,9 @@
   font-family: "Roboto";
   font-weight: lighter;
 }
-.styleCard-title {
+.styleCard ul li h1 {
   background: #f14e4e;
-  padding-top: 1px;
+  padding-top: 20px;
   color: white;
   width: 250px;
   height: 80px;

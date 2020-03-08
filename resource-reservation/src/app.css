@@ -13,8 +13,12 @@
     margin-right: 5px;
     height: 10px;
     width: 10px;
+    position: absolute;
 }
 .pen{
-    height: 23px;
+    height: 20px;
     width: 23px;
+    position: relative;
+    left: 220px;
+    cursor: pointer;
 }

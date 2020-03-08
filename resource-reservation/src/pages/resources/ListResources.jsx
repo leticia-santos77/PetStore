@@ -1,23 +1,21 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import Api from "../../service/Api";
 import Resource from "./Resources";
 import Card from "../../components/card/Card";
-import "../../components/card/Card.css";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
-import ModalResources from '../../components/modal/ModalResources';
-import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
+import ImgEdit from '../../pen.png';
+
+import "../../components/card/Card.css";
 import '../../components/modal/modal.css';
 import '../../grid.css';
 import '../../components/button/button.css';
 import '../../components/modal/modal-form.css';
-import Input from '../../components/input/Input';
-import Toggle from '../../components/input/Toggle';
-import Button from '../../components/button/Button';
-import ImgEdit from '../../pen.png';
 import '../../app.css'
 import '../../components/input/toggle.css'
+import './popup.css';
 
 
 
@@ -25,56 +23,23 @@ import '../../components/input/toggle.css'
 export default class ListResources extends Component {
   constructor(props) {
     super(props);
-    this.changeHandler = this.changeHandler.bind(this);
-    this.resourceEdit = this.resourceEdit.bind(this);
     this.api = new Api();
 
     this.state = {
       resources: [],
-      resourceEdited: {
-        id: "",
-        name: "",
-        numberOfSeats: 0,
-        hasTelevision: false,
-        activeRoom: true,
-        creationDate: "",
-      }
+        id:'',
     };
   }
 
-  changeHandler = e => {
-    let arr = this.state.resources;
-    let element = arr.find(v => v.id === e.target.id)
-    return element;
-  }
-
-  /*getElementToUpdate = e => {
-    let arr = this.state.resources;
-    let element = arr.find(v => v.id === e.target.id)
-    return element;
-  }*/
-
-  changeHandler = e => this.state.resources.map(resource => {
-
-  });
-
-  resourceEdit = e => {
-
-
-  }
-
-  optionHandler = e => {
-
-    let aux = this.state.resourceEdited[e.target.name];
-    this.setState({
-      resourceEdited: {
-        [e.target.name]: !aux
-      }
-    })
-    console.log(this.state.resourceEdited)
-
-  }
-
+  submit = e => {
+           e.preventDefault();
+                       
+           axios.put(`http://localhost:8081/api/resource/edit/${this.state.id}`, { name: this.state.name, numberOfSeats: this.state.numberOfSeats, hasTelevision: this.state.hasTelevision, activeRoom: this.state.activeRoom })
+               .then(res => {
+                   console.log(res);
+                   console.log(res.data);
+               })
+       }
   requestResources = () => {
     return this.api
       .getResources()
@@ -95,7 +60,14 @@ export default class ListResources extends Component {
       )
       .catch("Fail!!");
   };
-
+  resourceEdit = e =>{
+    
+    this.setState({
+      id: e.target.id,
+      [e.target.name]: e.target.value
+    })
+    console.log(e.target.value)
+  }
   componentDidMount() {
     this._asyncRequest = this.requestResources();
     this.state.resources.reverse();
@@ -115,56 +87,56 @@ export default class ListResources extends Component {
       <React.Fragment>
         <Header user="Gabriel Eugênio" />
         <Sidebar />
+        <button onClick={this.state}/>
         <div className="main-content">
-          <h1 className="content-title">Recursos</h1>
+          <h1 className="content-title"onClick={this.ola}>Recursos</h1>
           <div className="container-card">
-            {console.log(this.state.resourceEdited)}
             {resources.map(resource => {
               return (
                 <Card id="id" className="styleCard" key={resource.id}>
 
                   <ul>
-                    <li className="styleCard-title">
+                    <li className="">
                       <div className="pen-edit">
-                        <Popup trigger={<img className="pen" alt="Imagem de editar" name={`${resource.id}`} src={ImgEdit} />} modal>
+                        <Popup trigger={<img onClick={this.removeProps} className="pen" alt="Imagem de editar" name={`${resource.id}`} src={ImgEdit} />} modal>
                           {close => (
                             <div className="modal">
-                              <button className="close-popup" onClick={close}>
+                              <button className="button-clese-popup close-popup" onClick={close}>
                                 &times;        </button>
                               <div className="modal-title">
-                                <div className="item">
-                                  <h1 className="title"> {resource.id} </h1>
+                                <div className=" popup-title ">
+                                  <h2 className="popup-title"> {resource.name} </h2>
                                 </div>
                                 <form onSubmit={this.submitHandler}>
                                   <div className="container-form">
                                     <div className="item">
-                                      <input id="name" className="input-login input-modal" type="text" name="name" placeholder="Nome do recurso" defaultValue={resource.name}></input>
+                                      <input id={resource.id} className=" input-popup input-login input-modal" type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}placeholder="Nome do recurso" ></input>
                                     </div>
                                     <div className="item">
-                                      <input id="numberOfSeats" className="input-login input-modal" type="number" min={1} name="numberOfSeats" placeholder="Número de lugares" defaultValue={resource.numberOfSeats}></input>
+                                      <input id={resource.id} className="input-popup input-login input-modal" onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats" placeholder="Número de lugares" defaultValue={resource.numberOfSeats}></input>
                                     </div>
-                                    <div className="item active-room">
+                                    <div className="item active-room" >
                                       <label>Possui TV</label>
 
-                                      <div className="toggle-right">
+                                      <div className="toggle-right" name="hasTelevision" onBlur={this.resourceEdit} value={`${resource.activeRoom ? true : false}`}>
                                         <label className="switch">
-                                          <input id="hasTV" type="checkbox" name="hasTelevision" onChange={this.optionHandler} defaultChecked={resource.hasTelevision ? "checked" : ""} defaultValue={`${resource.hasTelevision}`} />
-                                          <span className="slider round" />
+                                          <input id={resource.id} type="checkbox" name="hasTelevision"  defaultChecked={resource.hasTelevision ? true : false } defaultValue={`${ !(resource.hasTelevision)}`} />
+                                          <span className="slider round"/>
                                         </label>
                                       </div>
                                     </div>
                                     <div className="item active-room">
                                       <label>Sala ativa</label>
 
-                                      <div className="toggle-right">
+                                      <div className="toggle-right" name="activeRoom"  onBlur={this.resourceEdit} value={`${!(resource.activeRoom)}`}>
                                         <label className="switch">
-                                          <input id={resource.id} type="checkbox" name="activeRoom" onChange={this.optionHandler} defaultChecked={resource.activeRoom ? "checked" : ""} defaultValue={`${resource.activeRoom}`} />
-                                          <span className="slider round" />
+                                          <input id={resource.id} type="checkbox" name="activeRoom"  defaultChecked={resource.activeRoom ?true: false} defaultValue={`${!(resource.activeRoom)}`} />
+                                          <span className="slider round"/>
                                         </label>
                                       </div>
                                     </div>
                                     <div className="item button-center">
-                                      <button className="button button-blue button-large" onClick={this.resourceEdit}>Atualizar</button>
+                                      <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large" title="Atualizar"  value={resource.id}>Atualizar</button>
                                     </div>
                                   </div>
                                 </form>
