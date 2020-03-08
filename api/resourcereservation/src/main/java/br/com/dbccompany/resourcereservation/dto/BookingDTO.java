@@ -11,22 +11,14 @@ public class BookingDTO {
 
     private Integer quantityOfPeople;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     private Date date;
 
-    private boolean canceled = false;
+    private Boolean canceled = null;
 
-    private boolean useTv = false;
+    private Boolean useTv = null;
 
     private String resourceId;
-
-    public String getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(String resourceId) {
-        this.resourceId = resourceId;
-    }
 
     public Integer getQuantityOfPeople() {
         return quantityOfPeople;
@@ -44,7 +36,7 @@ public class BookingDTO {
         this.date = date;
     }
 
-    public boolean getCanceled() {
+    public Boolean getCanceled() {
         return canceled;
     }
 
@@ -52,7 +44,7 @@ public class BookingDTO {
         this.canceled = canceled;
     }
 
-    public boolean getUseTv() {
+    public Boolean getUseTv() {
         return useTv;
     }
 
@@ -60,8 +52,11 @@ public class BookingDTO {
         this.useTv = useTv;
     }
 
-    public Booking turnsToObject(){
-        return new Booking( this.quantityOfPeople, this.date, this.canceled, this.useTv, this.resourceId );
+    public String getResourceId() {
+        return resourceId;
     }
 
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
+    }
 }

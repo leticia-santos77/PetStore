@@ -21,18 +21,18 @@ public class Booking {
     private Integer quantityOfPeople;
 
     @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     private Date date;
 
     @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date creationDate;
 
     @NotEmpty
-    private boolean canceled = false;
+    private Boolean canceled = null;
 
     @NotEmpty
-    private boolean useTv = false;
+    private Boolean useTv = null;
 
     public String getResourceName() {
         return resourceName;
@@ -42,15 +42,8 @@ public class Booking {
         this.resourceName = resourceName;
     }
 
-    public boolean isCanceled() {
-        return canceled;
-    }
 
-    public boolean isUseTv() {
-        return useTv;
-    }
-
-    public Booking(@NotEmpty Integer quantityOfPeople, @NotEmpty Date date, @NotEmpty boolean canceled, @NotEmpty boolean useTv, @NotEmpty String  resourceId,String resourceName) {
+    public Booking(@NotEmpty Integer quantityOfPeople, @NotEmpty Date date, @NotEmpty Boolean canceled, @NotEmpty Boolean useTv, @NotEmpty String  resourceId,String resourceName) {
         this.quantityOfPeople = quantityOfPeople;
         this.date = date;
         this.canceled = canceled;
@@ -63,6 +56,13 @@ public class Booking {
     public Booking() {
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getResourceId() {
         return resourceId;
@@ -70,21 +70,6 @@ public class Booking {
 
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
-    }
-
-    public boolean getUseTv() {
-        return useTv;
-    }
-
-    public void setUseTv(boolean useTv) {
-        this.useTv = useTv;
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Integer getQuantityOfPeople() {
@@ -111,11 +96,19 @@ public class Booking {
         this.creationDate = creationDate;
     }
 
-    public boolean getCanceled() {
+    public Boolean getCanceled() {
         return canceled;
     }
 
-    public void setCanceled(boolean canceled) {
+    public void setCanceled(Boolean canceled) {
         this.canceled = canceled;
+    }
+
+    public Boolean getUseTv() {
+        return useTv;
+    }
+
+    public void setUseTv(Boolean useTv) {
+        this.useTv = useTv;
     }
 }
