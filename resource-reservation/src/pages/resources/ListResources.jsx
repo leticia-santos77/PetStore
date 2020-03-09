@@ -39,7 +39,7 @@ export default class ListResources extends Component {
 
   componentDidMount() {
     this._asyncRequest = this.requestResources();
-    this.state.resources.reverse();
+  
     this._asyncRequest = null;
   }
   componentWillUnmount() {

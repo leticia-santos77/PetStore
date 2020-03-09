@@ -1,7 +1,7 @@
 package br.com.dbccompany.resourcereservation.security;
 
+import br.com.dbccompany.resourcereservation.dto.UserDTO;
 import br.com.dbccompany.resourcereservation.model.User;
-import br.com.dbccompany.resourcereservation.model.UserDTO;
 import br.com.dbccompany.resourcereservation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,11 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void authenticationManager(AuthenticationManagerBuilder builder, UserService userService) throws Exception {
         if (userService.count() == 0) {
-            User user = new User();
-            user.setUsername("admin");
-            user.setPassword("admin");
-            userService.save(user);
+            UserDTO dto = new UserDTO();
+            dto.setUsername("admin");
+            dto.setPassword("admin");
+            userService.save(dto);
         }
-        builder.userDetailsService(username -> new UserDTO(userService.findByUsername(username)));
+        builder.userDetailsService(username -> new MyUserDetails(userService.findByUsername(username)));
     }
 }

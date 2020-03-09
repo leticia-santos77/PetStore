@@ -27,8 +27,8 @@ public class ResourceRepositoryTest {
         Resource resource = new Resource();
         resource.setName(dto.getName());
         resource.setNumberOfSeats(dto.getNumberOfSeats());
-        resource.setActiveRoom(dto.isActiveRoom());
-        resource.setHasTelevision(dto.isHasTelevision());
+        resource.setActiveRoom(dto.getActiveRoom());
+        resource.setHasTelevision(dto.getHasTelevision());
         this.resourceRepository.save(resource);
         Assert.assertEquals("Test",resourceRepository.findById(resource.getId()).get().getName());
         this.resourceRepository.delete(resource);
@@ -45,7 +45,7 @@ public class ResourceRepositoryTest {
         dto2.setNumberOfSeats(10);
         dto2.setActiveRoom(true);
         dto2.setHasTelevision(true);
-        Resource resource = new Resource(dto.getName(),dto.getNumberOfSeats(),dto.isHasTelevision(),dto.isActiveRoom());
+        Resource resource = new Resource(dto.getName(),dto.getNumberOfSeats(),dto.getHasTelevision(),dto.getActiveRoom());
         this.resourceRepository.save(resource);
         Assert.assertEquals("TestTwo",resourceRepository.findById(resource.getId()).get().getName());
         this.service.edit(resource.getId(),dto2);

@@ -1,5 +1,6 @@
 package br.com.dbccompany.resourcereservation.controller;
 
+import br.com.dbccompany.resourcereservation.dto.UserDTO;
 import br.com.dbccompany.resourcereservation.model.User;
 import br.com.dbccompany.resourcereservation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,20 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping( value = "/findAll" )
+    @GetMapping( value = "/all" )
     public List<User> findAll() {
         return service.findAll();
     }
 
     @PostMapping( value = "/add" )
-    public ResponseEntity<?> add(@RequestBody User user ) {
-        return ResponseEntity
-                .status( HttpStatus.OK )
-                .body( service.save( user ));
+    public ResponseEntity<?> add(@RequestBody UserDTO dto ) {
+        try {
+            return ResponseEntity
+                    .status( HttpStatus.OK )
+                    .body( service.save( dto ));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("USUÁRIO INVÁLIDO");
+        }
     }
 
     @GetMapping(value = "/findByUsername/{username}")

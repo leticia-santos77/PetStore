@@ -1,6 +1,7 @@
 package br.com.dbccompany.resourcereservation.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -13,6 +14,7 @@ public class User {
 
     @Id
     private String id;
+    @Indexed(unique=true)
     private String username;
     private String password;
 

@@ -1,16 +1,17 @@
-package br.com.dbccompany.resourcereservation.model;
+package br.com.dbccompany.resourcereservation.security;
 
+import br.com.dbccompany.resourcereservation.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class UserDTO implements UserDetails {
+public class MyUserDetails implements UserDetails {
 
     private String username;
     private String password;
 
-    public UserDTO(User user) {
+    public MyUserDetails(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
     }

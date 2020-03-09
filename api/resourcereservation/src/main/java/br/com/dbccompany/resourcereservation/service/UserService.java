@@ -1,6 +1,7 @@
 package br.com.dbccompany.resourcereservation.service;
 
 
+import br.com.dbccompany.resourcereservation.dto.UserDTO;
 import br.com.dbccompany.resourcereservation.model.User;
 import br.com.dbccompany.resourcereservation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,11 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public User save(User user){
+    public User save(UserDTO dto){
+        User user = new User();
+        if(dto == null) throw new RuntimeException("Preencha todos os campos");
+        user.setUsername(dto.getUsername());
+        user.setPassword(dto.getPassword());
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         return repository.save(user);
     }
