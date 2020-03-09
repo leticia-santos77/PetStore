@@ -10,6 +10,8 @@ import '../../components/input/input.css';
 import '../../components/button/Button';
 import '../../components/input/toggle.css';
 import Dropdown from 'react-dropdown';
+import Api from '../../service/Api';
+import Booking from '../bookings/Booking'
 
 
 export default class ResourceForm extends Component {
@@ -17,7 +19,11 @@ export default class ResourceForm extends Component {
         super(props);
         this.api = new Api();
         this.state = {
-          bookingsElements: []
+          booking: [],
+          resourceName: '',
+          quantityOfPlaces: '',
+          useTv: false
+
         };
       }
       requestBookings = async () => {
@@ -25,35 +31,23 @@ export default class ResourceForm extends Component {
           .getBookings()
           .then(await (value =>
             this.setState({
-              bookingsElements: value.data.map(
+              booking: value.data.map(
                 b =>
                   (b = new Booking(
-                    b.resourceName
+                    b.resourceName,
+                    b.quantityOfPeople,
+                    b.useTv
                   ))
               )
             })
           ))
           .catch("Fail!!");
-      };
-    
+          
+        };
       componentDidMount() {
         this._asyncRequest = this.requestBookings()
         this.state.bookingsElements.reverse();
-        this._asyncRequest = null;
       }
-      componentWillUnmount() {
-        if (this._asyncReques) {
-          this._asyncRequest.cancel();
-        }
-      }
-    
-    state = {
-        name: '',
-        numberOfSeats: '',
-        hasTelevision: false,
-        activeRoom: false
-    }
-    
 
     changeHandler = e => {
         this.setState({
@@ -72,7 +66,6 @@ export default class ResourceForm extends Component {
     }
 
     optionHandler = e => {
-
         let aux = this.state[e.target.name];
         this.setState({
             [e.target.name]: !aux
@@ -81,7 +74,7 @@ export default class ResourceForm extends Component {
 
 
     render() {
-        const { bookingsElements } = this.state;
+        const { booking } = this.state;
         return (
             <React.Fragment>
                 <Header user="Rafael Scotti" />
@@ -93,24 +86,24 @@ export default class ResourceForm extends Component {
                             <div>
                                 <div className="justify">
                                     <label>Nome do recurso:</label>
-                                    <Dropdown options={bookingsElements.map(booking => {booking.resourceName})} onChange={this._onSelect} placeholder="Select an option"/>
+                                    <Dropdown options={ booking.map(booking => booking.resourceName)} onChange={this._onSelect} placeholder="Select an option"/>
                                 </div>
                                 <div className="justify">
-                                    <label> Número de lugares: </label>
-                                    <Input className="input-form" type="number" name="numberOfSeats" onBlur={this.changeHandler} />
+                                    <label> Quantidade de lugares: </label>
+                                    <Input className="input-form" type="number" name="quantityOfPeople" onBlur={this.changeHandler} defaultValue={booking.quantityOfPeople} />
                                 </div>
                                 <div className="justify">
-                                    <label>Possui TV</label>
+                                    <label> Data: </label>
+                                    <Input className="input-form" type="datetime-local" name="date" onBlur={this.changeHandler} value={booking.date} />
+                                </div>
+                                <div className="justify">
+                                    <label>Usará televisão?</label>
                                     <div>
-                                        <Toggle name="hasTelevision" onChange={this.optionHandler} />
+                                        <Toggle name="useTv" onChange={this.optionHandler} />
                                     </div>
                                 </div>
-                                <div className="justify">
-                                    <label>Sala ativa</label>
-                                    <Toggle type="checkbox" name="activeRoom" onChange={this.optionHandler} />
-                                </div>
                                 <div>
-                                    <Button type="submit" className="button button-blue button-large" tittle="Cadastrar" />
+                                    <Button type="submit" className="button button-blue button-large" tittle="Register" />
                                 </div>
                             </div>
                         </form>
