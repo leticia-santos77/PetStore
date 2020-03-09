@@ -41,7 +41,6 @@ export default class ResourceForm extends Component {
         };
       componentDidMount() {
         this._asyncRequest = this.requestBookings()
-        this.state.bookingsElements.reverse();
       }
 
     changeHandler = e => {

@@ -4,14 +4,19 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Input from '../../components/input/Input';
 import Toggle from '../../components/input/Toggle';
 import Button from '../../components/button/Button';
+import Api from '../../service/Api';
 import './resource-registration.css';
 
 export default class ResourceForm extends Component {
-    state = {
-        name: '',
-        numberOfSeats: '',
-        hasTelevision: false,
-        activeRoom: false
+    constructor(props) {
+        super(props);
+        this.api = new Api();
+        this.state = {
+            name: '',
+            numberOfSeats: '',
+            hasTelevision: false,
+            activeRoom: false
+        }
     }
 
     changeHandler = e => {
