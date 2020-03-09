@@ -39,7 +39,7 @@ export default class ListResources extends Component {
 
   componentDidMount() {
     this._asyncRequest = this.requestResources();
-    this.state.resources.reverse();
+  
     this._asyncRequest = null;
   }
   componentWillUnmount() {
@@ -72,7 +72,7 @@ export default class ListResources extends Component {
                     <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i> }
                       Televisão</p>
                     </li>
-                    <li><p>{resource.activeRoom ?<i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
+                    <li><p>{resource.activeRoom ?<i className="far fa-check-square green"></i> : <i className="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>
