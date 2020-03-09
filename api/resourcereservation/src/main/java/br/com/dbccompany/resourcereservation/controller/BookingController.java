@@ -43,12 +43,10 @@ public class BookingController {
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<Booking> newBooking(@RequestBody BookingDTO dto ){
-        try{
+
             Booking booking = service.save(dto);
             return new ResponseEntity<>( booking, HttpStatus.CREATED );
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+
     }
 
     @PutMapping(value = "/edit/{id}")
