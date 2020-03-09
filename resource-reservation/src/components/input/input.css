@@ -3,17 +3,30 @@
     border: 1px solid transparent;
     margin: 10px;
     height: 40px;
-    background-color: #dde3ec;
+    background-color: #e3e9f3;
     padding-left: 10px;
-    width: 250px;
+    width: 100%;
+    outline-color: rgba(41, 91, 167, 0.35);
 }
 .input-login::placeholder {
     color: #6c757d;
     opacity: 1;
 }
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
 
 .input-modal{
-    background-color: #ccc;
     margin: 0px;
     margin-bottom: 0px ;
+}
+
+.input-form{
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #ccc;
+    margin: 10px;
+    height: 40px;
+    width: 300px;
 }

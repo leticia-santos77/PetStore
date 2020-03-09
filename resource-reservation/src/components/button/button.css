@@ -13,6 +13,7 @@
 .button-large{
     height: 40px;
     width: 100%;
+    margin-top: 20px;
     
 }
 
@@ -34,16 +35,17 @@
 
 .button-blue {
     color: #fff;
-    background: #007aff;
+    background: #75d6ce;
+    outline-color: azure;
 }
 
 .button-blue:hover {
-    background: #2d92ff;
+    background: #5eb9b2;
 }
 
 .button-green {
     color: #fff;
-    background: #39b54a;
+    background: #6df2bb;
 }
 
 .button-green:hover {

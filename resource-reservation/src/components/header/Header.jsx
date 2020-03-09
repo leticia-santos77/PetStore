@@ -8,9 +8,8 @@ export default class Header extends Component {
         <React.Fragment>
           <div className="main-header">
             <section className="input-header">
-              <input type="text" placeholder="Pesquisa"></input>
-            </section>
-            
+              {this.props.children}
+            </section>            
             <section className="profile-menu">
               <i className="fas fa-user" ></i>
               <label>{user}</label> 

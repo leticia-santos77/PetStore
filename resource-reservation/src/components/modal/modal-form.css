@@ -8,11 +8,13 @@
     text-align: left;
 }
 
+
 .item{
     flex: 1;
     font-size: large;
     align-items: center;
     margin-bottom: 10px;
+    color: black;
 }
 
 .button-center{
@@ -25,10 +27,17 @@
     margin: auto;
 }
 
-.center h1{
+.modal-title{
     text-align: center;
+    background-color: white;
+}
+
+.modal-title {
+    color: black;
     margin-bottom: 10px;
     margin-top: 5px;
+    background-color: white;
+    text-align: center;
 }
 
 

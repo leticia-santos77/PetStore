@@ -6,4 +6,19 @@
     list-style: none;
     text-decoration: none;
 }
-
+.pen-edit{
+    margin-top: 3px;
+    margin-left: 5px;
+    margin-bottom: 7px;
+    margin-right: 5px;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+}
+.pen{
+    height: 20px;
+    width: 23px;
+    position: relative;
+    left: 220px;
+    cursor: pointer;
+}

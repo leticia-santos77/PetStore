@@ -35,6 +35,13 @@ export default class ResourceForm extends Component {
             })
     }
 
+    componentDidMount() {
+        const {title} = this.props
+        this.setState({
+            name: title
+        });
+    }
+
     optionHandler = e => {
 
         let aux = this.state[e.target.name];
@@ -44,12 +51,14 @@ export default class ResourceForm extends Component {
     }
 
     render() {
+    
         return (
+            
             <React.Fragment>
-                <Modal title="Cadastrar recursos" id="booking">
+                <Modal title="Cadastrar recursos" id="resource">
                     <div className="center">
                         <div className="item">
-                            <h1> Cadastrar novo recurso </h1>
+                            <h2 className="title"> {this.state.name} </h2>
                         </div>
                         <form onSubmit={this.submitHandler}>
                             <div className="container-form">
@@ -57,7 +66,7 @@ export default class ResourceForm extends Component {
                                     <Input className="input-login input-modal" type="text" name="name" placeholder="Digite o nome do recurso" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="item">
-                                    <Input className="input-login input-modal" type="number" name="numberOfSeats" placeholder="Número de lugares" onBlur={this.changeHandler} />
+                                    <Input className="input-login input-modal" type="number" min={1} name="numberOfSeats" placeholder="Número de lugares" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="item active-room">
                                     <label>Possui TV</label>
