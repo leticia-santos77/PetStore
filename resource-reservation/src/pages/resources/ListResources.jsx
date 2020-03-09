@@ -24,6 +24,7 @@ export default class ListResources extends Component {
 
     this.state = {
       resources: [],
+      resourcesFilter:[],
       id: '',
     };
   }
@@ -64,11 +65,32 @@ export default class ListResources extends Component {
                 r.activeRoom,
                 r.creationDate
               ))
+          ),
+          resourcesFilter: value.data.map(
+            r =>
+              (r = new Resource(
+                r.id,
+                r.name,
+                r.numberOfSeats,
+                r.hasTelevision,
+                r.activeRoom,
+                r.creationDate
+              ))
           )
         })
       )
       .catch("Fail!!");
   };
+
+  filterResources(name) {
+    const { resources } = this.state
+    const resource = resources.filter(resource => resource.name.includes(name.target.value))
+    this.setState({
+        resourcesFilter: resource
+    });
+    console.log(name.target.value)
+}
+
   resourceEdit = e => {
 
     this.setState({
@@ -100,16 +122,16 @@ export default class ListResources extends Component {
 
   render() {
 
-    const { resources } = this.state;
+    const { resourcesFilter } = this.state;
 
     return (
       <React.Fragment>
-        <Header user="Gabriel Eugênio" />
+        <Header user="Gabriel Eugênio" ><input placeholder="Informe o nome " onChange={this.filterResources.bind(this)} /></Header>        
         <Sidebar />
         <div className="main-content">
-          <h1 className="content-title">Recursos</h1>
+          <h1 className="content-title">Recursos</h1>          
           <div className="container-card">
-            {resources.map(resource => {
+            {resourcesFilter.map(resource => {
               return (
                 <Card id="id" className="styleCard" key={resource.id}>
                   <ul>
@@ -120,7 +142,6 @@ export default class ListResources extends Component {
                             <div className="modal">
                               <button className="button-clese-popup close-popup" onClick={close}>
                                 &times;        </button>
-
                               <div className="modal-title">
                                 <div className=" popup-title ">
                                   <h2 className="popup-title"> {resource.name} </h2>
