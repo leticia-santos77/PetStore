@@ -1,0 +1,19 @@
+.popup-title {
+    text-align: center !important;
+    background-color: white !important;
+    color: darkslategray !important;
+    font-size: xx-large;
+    margin: 0px;
+  }
+  .popup-content{
+      border-radius: 8px !important;
+  }
+  .button-popup{
+    margin-bottom: 18px;
+  }
+  .input-popup{
+    margin-bottom: 4px;
+  }
+ .button-clese-popup{
+      padding-top: 0px;
+  }
