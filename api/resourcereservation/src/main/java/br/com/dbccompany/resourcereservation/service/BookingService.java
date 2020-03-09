@@ -29,16 +29,11 @@ public class BookingService {
     public Booking save( BookingDTO dto ){
 
         Resource resource = resourceService.findById( dto.getResourceId() );
-
         Booking booking = new Booking();
-
         Date today = new Date();
-
         Date eventDate = dto.getDate();
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dateFormat.format(today);
-
         dateFormat.format(eventDate);
 
         if(resource == null){
@@ -75,7 +70,6 @@ public class BookingService {
         Resource resource = resourceRepository.findById(booking.getResourceId()).get();
         booking.setId( id );
         booking.setResourceId( booking.getResourceId() );
-
         booking.setCreationDate( booking.getCreationDate() );
         booking.setCanceled( dto.getCanceled() == null ? booking.getCanceled() : dto.getCanceled() );
         booking.setUseTv( dto.getUseTv() == null ? booking.getUseTv() : dto.getUseTv() );
