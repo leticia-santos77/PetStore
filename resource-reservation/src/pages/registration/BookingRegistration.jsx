@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Input from '../../components/input/Input';
 import Toggle from '../../components/input/Toggle';
 import Button from '../../components/button/Button';
 import './resource-registration.css';
-import '../../components/input/input.css';
-import '../../components/button/Button';
-import '../../components/input/toggle.css';
 import Dropdown from 'react-dropdown';
 import Api from '../../service/Api';
 import Booking from '../bookings/Booking'
@@ -23,7 +19,6 @@ export default class ResourceForm extends Component {
           resourceName: '',
           quantityOfPlaces: '',
           useTv: false
-
         };
       }
       requestBookings = async () => {
@@ -58,7 +53,8 @@ export default class ResourceForm extends Component {
     submitHandler = e => {
         e.preventDefault();
 
-        axios.post('http://localhost:8082/api/resources/add', { name: this.state.name, numberOfSeats: this.state.numberOfSeats, hasTelevision: this.state.hasTelevision, activeRoom: this.state.activeRoom })
+        return this.api
+          .postBookings({resourceName: this.state.resourceName, quantityOfPeople: this.state.quantityOfPeople, useTv: this.state.useTv, date: this.state.date })
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -71,7 +67,6 @@ export default class ResourceForm extends Component {
             [e.target.name]: !aux
         })
     }
-
 
     render() {
         const { booking } = this.state;
@@ -103,15 +98,13 @@ export default class ResourceForm extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <Button type="submit" className="button button-blue button-large" tittle="Register" />
+                                    <Button type="submit" className="button button-blue button-large" tittle="Cadastrar" />
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </React.Fragment>
         )
-
     }
 }
