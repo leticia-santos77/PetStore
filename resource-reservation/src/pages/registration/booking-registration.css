@@ -1,0 +1,11 @@
+.form {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 1000px) {
+    .form {
+        padding-top: 100px;
+    }
+}
