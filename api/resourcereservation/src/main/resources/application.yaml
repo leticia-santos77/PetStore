@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   profiles:
-    active: deploy
+    active: dev
 ---
 spring:
   profiles: dev
