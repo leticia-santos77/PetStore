@@ -88,7 +88,6 @@ export default class ListResources extends Component {
     this.setState({
         resourcesFilter: resource
     });
-    console.log(name.target.value)
 }
 
   resourceEdit = e => {
