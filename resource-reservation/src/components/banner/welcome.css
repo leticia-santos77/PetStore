@@ -1,9 +1,7 @@
 /* Welcome */
 
 .main-welcome {
-    background-color: red;
-    /* height: 15vh; */
-    min-height: 200px;
+    min-height: 100px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -12,10 +10,10 @@
     font-size: 24px;
     font-weight: lighter;
     color: #212121;
-    border-bottom: 60px solid #f1f1f1;
+    /* border-bottom: 60px solid #f1f1f1; */
     background: rgba(255, 255, 255, 0);
     background: radial-gradient(circle, #038C8C 0%, #026873 100%);
-
+    text-align: center;
 }
 
 .main-welcome .welcome-title {
