@@ -22,7 +22,8 @@ export default class ListBookings extends Component {
     super(props);
     this.api = new Api();
     this.state = {
-      bookings: []
+      bookings: [],
+      bookingsFilter: []
     };
   }
   submit = e => {
@@ -63,12 +64,35 @@ export default class ListBookings extends Component {
                 b.creationDate,
                 b.date,
                 b.canceled
+              ))              
+          ),
+          bookingsFilter: value.data.map(
+            b =>
+              (b = new Booking(
+                b.id,
+                b.resourceId,
+                b.resourceName,
+                b.useTv,
+                b.quantityOfPeople,
+                b.creationDate,
+                b.date,
+                b.canceled
               ))
           )
+          
         })
       ))
       .catch("Fail!!");
   };
+
+  filterBooking(name) {
+    const { bookings } = this.state
+    const booking = bookings.filter(booking => booking.resourceName.includes(name.target.value))
+    this.setState({
+      bookingsFilter: booking
+    });
+  }
+
   bookingEdit = e => {
 
     if (e.target.name === 'canceled') {
@@ -100,15 +124,15 @@ export default class ListBookings extends Component {
 
 
   render() {
-    const { bookings } = this.state;
+    const { bookingsFilter } = this.state;
     return (
       <React.Fragment>
-        <Header user="Gabriel Eugênio" />
+        <Header user="Gabriel Eugênio"><input placeholder="Informe o nome " onChange={this.filterBooking.bind(this)} /></Header>
         <Sidebar />
         <div className="main-content">
           <h1 className="content-title">Reservas</h1>
           <div className="container-card">
-            {bookings.map(booking => {
+            {bookingsFilter.map(booking => {
               return (
                 <Card className="styleCard" key={booking.id}>
                   <ul>
