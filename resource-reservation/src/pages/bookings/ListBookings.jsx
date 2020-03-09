@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import Api from "../../service/Api";
 import Booking from "./Booking";
 import Card from "../../components/card/Card";
@@ -28,15 +27,15 @@ export default class ListBookings extends Component {
   }
   submit = e => {
     e.preventDefault();
-    console.log(this.state)
-    axios.put(`http://localhost:8081/api/booking/edit/${this.state.id}`, {
-      quantityOfPeople: this.state.quantityOfPeople,
-      date: this.state.date,
-      useTv: this.state.useTv,
-      canceled: this.state.canceled
-    })
+    this.api.putBooking(
+      this.state.id,
+      this.state.useTv,
+      this.state.quantityOfPeople,
+      this.state.date,
+      this.state.canceled
+    )
       .then(this.requestBookings)
-      .then();
+
 
   }
   updateProps = e => {
@@ -113,9 +112,9 @@ export default class ListBookings extends Component {
               return (
                 <Card className="styleCard" key={booking.id}>
                   <ul>
-                    <li  onClick={this.updateProps} >
+                    <li onClick={this.updateProps} >
                       <div className="pen-edit">
-                        <Popup trigger={<img  id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
+                        <Popup trigger={<img id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
 
                           {close => (
 
@@ -130,12 +129,12 @@ export default class ListBookings extends Component {
                                   <div className="container-form">
                                     <div className="item">
                                       <input name="quantityOfPeople" className="input-popup input-login input-modal"
-                                        onBlur={this.bookingEdit} type="number" min={1} placeholder="Quantidade de pessoas" 
+                                        onBlur={this.bookingEdit} type="number" min={1} placeholder="Quantidade de pessoas"
                                         defaultValue={booking.quantityOfPeople}
                                       ></input>
                                     </div>
                                     <div className="item">
-                                      <input  name="date" className="input-popup input-login input-modal"
+                                      <input name="date" className="input-popup input-login input-modal"
                                         onBlur={this.bookingEdit} type="date-time" placeholder="Data da Reserva" defaultValue={booking.date}
                                       ></input>
                                     </div>
@@ -143,7 +142,7 @@ export default class ListBookings extends Component {
                                       <label>Uso da TV</label>
                                       <div className="toggle-right" name="useTv" onBlur={this.bookingEdit} value={`${booking.useTv ? true : false}`}>
                                         <label className="switch">
-                                          <input  type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
+                                          <input type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
                                             defaultValue={`${!(booking.useTv)}`}
                                           />
                                           <span className="slider round" />
@@ -159,7 +158,7 @@ export default class ListBookings extends Component {
                                       <div className="toggle-right" name="canceled" onClick={this.bookingEdit} value={`${!(booking.canceled)}`}>
                                         <label className="switch">
                                           <input type="checkbox" name="canceled" defaultChecked={!(booking.canceled)}
-                                           defaultValue={`${!(booking.canceled)}`}
+                                            defaultValue={`${!(booking.canceled)}`}
                                           />
                                           <span className="slider round" />
                                         </label>
@@ -168,7 +167,7 @@ export default class ListBookings extends Component {
                                     <div className="item button-center" >
 
                                       <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large"
-                                       title="Atualizar"
+                                        title="Atualizar"
                                       >Atualizar</button>
                                     </div>
                                   </div>

@@ -8,22 +8,31 @@ export default class Api {
     this.api = axios.create({
       baseURL: "http://localhost:8081"
     })
-    
- /*    this.api.interceptors.request.use(async config => {
-      const token = getToken();
-      if (token) {
-        config.headers.Authorization = `${token}`
-      }
-      return config;
-    })*/
-    
+
+    /*    this.api.interceptors.request.use(async config => {
+         const token = getToken();
+         if (token) {
+           config.headers.Authorization = `${token}`
+         }
+         return config;
+       })*/
+
   }
   getBookings = () => this.api.get('/api/booking/all')
   getResources = () => this.api.get('/api/resource/all')
-  puttResources = ( id, name, numberOfSeats, hasTelevision, activeRoom) => 
-    this.api.put(`api/resource/edit/${id}`,{ 
-      "name": name, 
-      "numberOfSeats": numberOfSeats, 
-      "hasTelevision": hasTelevision, 
-      "activeRoom": activeRoom})
+  puttResource = (id, name, numberOfSeats, hasTelevision, activeRoom) =>
+    this.api.put(`api/resource/edit/${id}`, {
+      "name": name,
+      "numberOfSeats": numberOfSeats,
+      "hasTelevision": hasTelevision,
+      "activeRoom": activeRoom
+    })
+
+putBooking = (id, useTv, quantityOfPeople, date, canceled) =>
+  this.api.put(`api/booking/edit/${id}`, {
+    "useTv": useTv,
+    "quantityOfPeople": quantityOfPeople,
+    "date": date,
+    "canceled": canceled
+  })
 }

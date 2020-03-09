@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import Api from "../../service/Api";
 import Resource from "./Resources";
 import Card from "../../components/card/Card";
@@ -31,8 +30,14 @@ export default class ListResources extends Component {
 
   submit = e => {
     e.preventDefault();
-    this.api.puttResources( this.state.id, this.state.name, this.state.numberOfSeats, this.state.hasTelevision, this.state.activeRoom )
-    .then(this.requestResources);
+    this.api.puttResource(
+      this.state.id,
+      this.state.name,
+      this.state.numberOfSeats,
+      this.state.hasTelevision,
+      this.state.activeRoom
+    )
+      .then(this.requestResources);
   }
 
   updateProps = e => {
