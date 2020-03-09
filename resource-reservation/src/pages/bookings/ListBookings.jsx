@@ -1,18 +1,56 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import Api from "../../service/Api";
 import Booking from "./Booking";
 import Card from "../../components/card/Card";
-import "../../components/card/Card.css";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
+import Popup from 'reactjs-popup';
+import ImgEdit from '../../pen.png';
+
+import "../../components/card/Card.css";
+import '../../components/modal/modal.css';
+import '../../grid.css';
+import '../../components/button/button.css';
+import '../../components/modal/modal-form.css';
+import '../../app.css'
+import '../../components/input/toggle.css'
+import '../../pages/resources/popup.css';
+
 
 export default class ListBookings extends Component {
   constructor(props) {
     super(props);
     this.api = new Api();
     this.state = {
-      bookings: []
+      bookings: [],
+      id: '',
+      canceled: true,
     };
+  }
+  submit = e => {
+    e.preventDefault();
+
+    axios.put(`http://localhost:8081/api/booking/edit/${this.state.id}`, {
+      quantityOfPeople: this.state.quantityOfPeople,
+      date: this.state.date,
+      useTv: this.state.useTv,
+      canceled: this.state.canceled
+    })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+    window.location.reload()
+  }
+  updateProps = e => {
+    this.setState({
+      id: '',
+      quantityOfPeople: null,
+      date: null,
+      useTv: null,
+      canceled: null,
+    })
   }
   requestBookings = async () => {
     return this.api
@@ -20,7 +58,7 @@ export default class ListBookings extends Component {
       .then(await (value =>
         this.setState({
           bookings: value.data.map(
-            b => 
+            b =>
               (b = new Booking(
                 b.id,
                 b.resourceId,
@@ -30,15 +68,35 @@ export default class ListBookings extends Component {
                 b.creationDate,
                 b.date,
                 b.canceled
-              )) 
+              ))
           )
-          }) 
+        })
       ))
-      .catch("Fail!!");    
+      .catch("Fail!!");
   };
+  bookingEdit = e => {
 
+    if (e.target.name === 'canceled') {
+      this.setState({
+        id: e.target.id,
+        [e.target.name]: e.target.checked ? false : true
+      })
+    } else {
+      this.setState({
+        id: e.target.id,
+        [e.target.name]: e.target.value
+      })
+    }
+    if (e.target.name === "useTv") {
+      let aux = e.target.checked ? true : false
+      this.setState({
+        id: e.target.id,
+        [e.target.name]: aux
+      })
+    }
+  }
   componentDidMount() {
-    this._asyncRequest = this.requestBookings() 
+    this._asyncRequest = this.requestBookings()
     this.state.bookings.reverse();
     this._asyncRequest = null;
   }
@@ -47,6 +105,7 @@ export default class ListBookings extends Component {
       this._asyncRequest.cancel();
     }
   }
+
 
   render() {
     const { bookings } = this.state;
@@ -61,16 +120,80 @@ export default class ListBookings extends Component {
               return (
                 <Card className="styleCard" key={booking.id}>
                   <ul>
-                    <li>
+                    <li onClick={this.updateProps} >
+                      <div className="pen-edit">
+                        <Popup trigger={<img className="pen" alt="Imagem de editar" name={`${booking.id}`} src={ImgEdit} />} modal>
+
+                          {close => (
+
+                            <div className="modal">
+                              <button className="button-clese-popup close-popup" onClick={close}>
+                                &times;        </button>
+                              <div className="modal-title">
+                                <div className=" popup-title ">
+                                  <h2 className="popup-title">{booking.resourceName}</h2>
+                                </div>
+                                <form onSubmit={this.submitHandler}>
+                                  <div className="container-form">
+                                    <div className="item">
+                                      <input id={booking.id} name="quantityOfPeople" className="input-popup input-login input-modal"
+                                        onBlur={this.bookingEdit} type="number" min={1} placeholder="Quantidade de pessoas" 
+                                        defaultValue={booking.quantityOfPeople}
+                                      ></input>
+                                    </div>
+                                    <div className="item">
+                                      <input id={booking.id} name="date" className="input-popup input-login input-modal"
+                                        onBlur={this.bookingEdit} type="date-time" placeholder="Data da Reserva" Value={booking.date}
+                                      ></input>
+                                    </div>
+                                    <div className="item active-room" >
+                                      <label>Uso da TV</label>
+                                      <div className="toggle-right" name="useTv" onBlur={this.bookingEdit} value={`${booking.useTv ? true : false}`}>
+                                        <label className="switch">
+                                          <input id={booking.id} type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
+                                            defaultValue={`${!(booking.useTv)}`}
+                                          />
+                                          <span className="slider round" />
+                                        </label>
+                                      </div>
+                                    </div>
+
+
+
+                                    <div className="item active-room">
+                                      <label>Reserva ativa</label>
+
+                                      <div className="toggle-right" name="canceled" onClick={this.bookingEdit} value={`${!(booking.canceled)}`}>
+                                        <label className="switch">
+                                          <input id={booking.id} type="checkbox" name="canceled" defaultChecked={!(booking.canceled)}
+                                           defaultValue={`${!(booking.canceled)}`}
+                                          />
+                                          <span className="slider round" />
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <div className="item button-center" >
+
+                                      <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large"
+                                       title="Atualizar" value={booking.id}
+                                      >Atualizar</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          )}
+                        </Popup>
+                      </div>
                       <h1>{booking.resourceName}</h1>
                     </li>
                     <li>
-                     <p><i className="fas fa-users blue"></i>
-                      {booking.quantityOfPeople} Pessoas</p>
+                      <p><i className="fas fa-users blue"></i>
+                        {booking.quantityOfPeople} Pessoas</p>
                     </li>
                     <li>
                       <p>{booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
-                      Televisão</p>
+                        Televisão</p>
                     </li>
                     <li><p>{booking.date}</p></li>
                   </ul>

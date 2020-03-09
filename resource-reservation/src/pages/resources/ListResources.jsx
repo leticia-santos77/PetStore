@@ -18,8 +18,6 @@ import '../../components/input/toggle.css'
 import './popup.css';
 
 
-
-
 export default class ListResources extends Component {
   constructor(props) {
     super(props);
@@ -27,19 +25,35 @@ export default class ListResources extends Component {
 
     this.state = {
       resources: [],
-        id:'',
+      id: '',
     };
   }
 
   submit = e => {
-           e.preventDefault();
-                       
-           axios.put(`http://localhost:8081/api/resource/edit/${this.state.id}`, { name: this.state.name, numberOfSeats: this.state.numberOfSeats, hasTelevision: this.state.hasTelevision, activeRoom: this.state.activeRoom })
-               .then(res => {
-                   console.log(res);
-                   console.log(res.data);
-               })
-       }
+    e.preventDefault();
+
+    axios.put(`http://localhost:8081/api/resource/edit/${this.state.id}`, { 
+      name: this.state.name,
+      numberOfSeats: this.state.numberOfSeats,
+      hasTelevision: this.state.hasTelevision,
+      activeRoom: this.state.activeRoom 
+    })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      window.location.reload()
+  }
+
+  updateProps = e => {
+    this.setState({
+      id: null,
+      name: null,
+      numberOfSeats: null,
+      hasTelevision: null,
+      activeRoom: null,
+    })
+  }
   requestResources = () => {
     return this.api
       .getResources()
@@ -60,13 +74,24 @@ export default class ListResources extends Component {
       )
       .catch("Fail!!");
   };
-  resourceEdit = e =>{
-    
+  resourceEdit = e => {
+
     this.setState({
       id: e.target.id,
       [e.target.name]: e.target.value
     })
-    console.log(e.target.value)
+    if(e.target.name === 'hasTelevision') {
+      let aux = e.target.checked ? true : false
+      this.setState({
+        [e.target.name]: aux
+      })
+    }
+    if(e.target.name === 'activeRoom') {
+      let aux = e.target.checked ? true : false
+      this.setState({
+        [e.target.name]: aux
+      })
+    }
   }
   componentDidMount() {
     this._asyncRequest = this.requestResources();
@@ -87,56 +112,74 @@ export default class ListResources extends Component {
       <React.Fragment>
         <Header user="Gabriel Eugênio" />
         <Sidebar />
-        <button onClick={this.state}/>
+        <button onClick={this.state} />
         <div className="main-content">
-          <h1 className="content-title"onClick={this.ola}>Recursos</h1>
+          <h1 className="content-title" onClick={this.ola}>Recursos</h1>
           <div className="container-card">
             {resources.map(resource => {
               return (
                 <Card id="id" className="styleCard" key={resource.id}>
-
                   <ul>
-                    <li className="">
+                    <li onClick={this.updateProps}>
                       <div className="pen-edit">
-                        <Popup trigger={<img onClick={this.removeProps} className="pen" alt="Imagem de editar" name={`${resource.id}`} src={ImgEdit} />} modal>
+                        <Popup trigger={<img  className="pen" alt="Imagem de editar" name={`${resource.id}`} src={ImgEdit} />} modal>
                           {close => (
                             <div className="modal">
                               <button className="button-clese-popup close-popup" onClick={close}>
                                 &times;        </button>
+                                
                               <div className="modal-title">
                                 <div className=" popup-title ">
                                   <h2 className="popup-title"> {resource.name} </h2>
                                 </div>
+                                <span onClick={this.ola}>sfsaf</span>
                                 <form onSubmit={this.submitHandler}>
                                   <div className="container-form">
                                     <div className="item">
-                                      <input id={resource.id} className=" input-popup input-login input-modal" type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}placeholder="Nome do recurso" ></input>
+                                      <input id={resource.id} className=" input-popup input-login input-modal"
+                                       type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}
+                                       placeholder="Nome do recurso" 
+                                      ></input>
                                     </div>
                                     <div className="item">
-                                      <input id={resource.id} className="input-popup input-login input-modal" onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats" placeholder="Número de lugares" defaultValue={resource.numberOfSeats}></input>
+                                      <input id={resource.id} className="input-popup input-login input-modal" 
+                                        onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats"
+                                        placeholder="Número de lugares" defaultValue={resource.numberOfSeats}
+                                      ></input>
                                     </div>
                                     <div className="item active-room" >
                                       <label>Possui TV</label>
-
-                                      <div className="toggle-right" name="hasTelevision" onBlur={this.resourceEdit} value={`${resource.activeRoom ? true : false}`}>
+                                      <div className="toggle-right" name="hasTelevision" onBlur={this.resourceEdit}
+                                       value={`${resource.hasTelevision ? true : false}`}
+                                      >
                                         <label className="switch">
-                                          <input id={resource.id} type="checkbox" name="hasTelevision"  defaultChecked={resource.hasTelevision ? true : false } defaultValue={`${ !(resource.hasTelevision)}`} />
-                                          <span className="slider round"/>
+                                          <input id={resource.id} type="checkbox" name="hasTelevision" 
+                                            defaultChecked={resource.hasTelevision ? true : false}
+                                            defaultValue={`${!(resource.hasTelevision)}`}
+                                          />
+                                          <span className="slider round" />
                                         </label>
                                       </div>
                                     </div>
                                     <div className="item active-room">
                                       <label>Sala ativa</label>
-
-                                      <div className="toggle-right" name="activeRoom"  onBlur={this.resourceEdit} value={`${!(resource.activeRoom)}`}>
+                                      <div className="toggle-right" name="activeRoom" onBlur={this.resourceEdit}
+                                       value={`${!(resource.activeRoom)}`}
+                                      >
                                         <label className="switch">
-                                          <input id={resource.id} type="checkbox" name="activeRoom"  defaultChecked={resource.activeRoom ?true: false} defaultValue={`${!(resource.activeRoom)}`} />
-                                          <span className="slider round"/>
+                                          <input id={resource.id} type="checkbox" name="activeRoom" 
+                                            defaultChecked={resource.activeRoom ? true : false} 
+                                            defaultValue={`${!(resource.activeRoom)}`}
+                                          />
+                                          <span className="slider round" />
                                         </label>
                                       </div>
                                     </div>
                                     <div className="item button-center">
-                                      <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large" title="Atualizar"  value={resource.id}>Atualizar</button>
+                                      <button onClick={this.submit} type="submit" 
+                                        className="button-popup button button-blue button-large"
+                                        title="Atualizar" value={resource.id}
+                                      >Atualizar</button>
                                     </div>
                                   </div>
                                 </form>
