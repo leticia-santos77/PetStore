@@ -35,9 +35,9 @@ export default class ListBookings extends Component {
       useTv: this.state.useTv,
       canceled: this.state.canceled
     })
-      .then(res => {
-      })
-      window.location.reload()
+      .then(this.requestBookings)
+      .then();
+
   }
   updateProps = e => {
     this.setState({

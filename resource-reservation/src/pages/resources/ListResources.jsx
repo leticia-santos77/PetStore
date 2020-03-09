@@ -31,18 +31,13 @@ export default class ListResources extends Component {
 
   submit = e => {
     e.preventDefault();
-
-    axios.put(`http://localhost:8081/api/resource/edit/${this.state.id}`, { 
+    axios.put(`http://localhost:8081/api/resource/edit/${this.state.id}`, {
       name: this.state.name,
       numberOfSeats: this.state.numberOfSeats,
       hasTelevision: this.state.hasTelevision,
-      activeRoom: this.state.activeRoom 
+      activeRoom: this.state.activeRoom
     })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-      window.location.reload()
+      .then(this.requestResources)
   }
 
   updateProps = e => {
@@ -79,13 +74,13 @@ export default class ListResources extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    if(e.target.name === 'hasTelevision') {
+    if (e.target.name === 'hasTelevision') {
       let aux = e.target.checked ? true : false
       this.setState({
         [e.target.name]: aux
       })
     }
-    if(e.target.name === 'activeRoom') {
+    if (e.target.name === 'activeRoom') {
       let aux = e.target.checked ? true : false
       this.setState({
         [e.target.name]: aux
@@ -125,7 +120,7 @@ export default class ListResources extends Component {
                             <div className="modal">
                               <button className="button-clese-popup close-popup" onClick={close}>
                                 &times;        </button>
-                                
+
                               <div className="modal-title">
                                 <div className=" popup-title ">
                                   <h2 className="popup-title"> {resource.name} </h2>
@@ -134,12 +129,12 @@ export default class ListResources extends Component {
                                   <div className="container-form">
                                     <div className="item">
                                       <input className=" input-popup input-login input-modal"
-                                       type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}
-                                       placeholder="Nome do recurso" 
+                                        type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}
+                                        placeholder="Nome do recurso"
                                       ></input>
                                     </div>
                                     <div className="item">
-                                      <input className="input-popup input-login input-modal" 
+                                      <input className="input-popup input-login input-modal"
                                         onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats"
                                         placeholder="Número de lugares" defaultValue={resource.numberOfSeats}
                                       ></input>
@@ -147,10 +142,10 @@ export default class ListResources extends Component {
                                     <div className="item active-room" >
                                       <label>Possui TV</label>
                                       <div className="toggle-right" name="hasTelevision" onBlur={this.resourceEdit}
-                                       value={`${resource.hasTelevision ? true : false}`}
+                                        value={`${resource.hasTelevision ? true : false}`}
                                       >
                                         <label className="switch">
-                                          <input type="checkbox" name="hasTelevision" 
+                                          <input type="checkbox" name="hasTelevision"
                                             defaultChecked={resource.hasTelevision ? true : false}
                                             defaultValue={`${!(resource.hasTelevision)}`}
                                           />
@@ -161,11 +156,11 @@ export default class ListResources extends Component {
                                     <div className="item active-room">
                                       <label>Sala ativa</label>
                                       <div className="toggle-right" name="activeRoom" onBlur={this.resourceEdit}
-                                       value={`${!(resource.activeRoom)}`}
+                                        value={`${!(resource.activeRoom)}`}
                                       >
                                         <label className="switch">
-                                          <input type="checkbox" name="activeRoom" 
-                                            defaultChecked={resource.activeRoom ? true : false} 
+                                          <input type="checkbox" name="activeRoom"
+                                            defaultChecked={resource.activeRoom ? true : false}
                                             defaultValue={`${!(resource.activeRoom)}`}
                                           />
                                           <span className="slider round" />
@@ -173,7 +168,7 @@ export default class ListResources extends Component {
                                       </div>
                                     </div>
                                     <div className="item button-center">
-                                      <button onClick={this.submit} type="submit" 
+                                      <button onClick={this.submit} type="submit"
                                         className="button-popup button button-blue button-large"
                                         title="Atualizar"
                                       >Atualizar</button>
