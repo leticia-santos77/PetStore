@@ -22,7 +22,6 @@ public class BookingService {
     ResourceService resourceService;
 
     @Autowired
-
     private ResourceRepository resourceRepository;
 
 
@@ -76,10 +75,20 @@ public class BookingService {
         Resource resource = resourceRepository.findById(booking.getResourceId()).get();
         booking.setId( id );
         booking.setResourceId( booking.getResourceId() );
-        booking.setDate( dto.getDate() == null ? booking.getDate() : dto.getDate() );
+
         booking.setCreationDate( booking.getCreationDate() );
         booking.setCanceled( dto.getCanceled() == null ? booking.getCanceled() : dto.getCanceled() );
         booking.setUseTv( dto.getUseTv() == null ? booking.getUseTv() : dto.getUseTv() );
+
+        Date today = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        dateFormat.format(today);
+
+        if ( ( dto.getDate() == null ) || ( today.compareTo( dto.getDate() ) > 0 ) ){
+            booking.setDate( booking.getDate() );
+        } else {
+            booking.setDate( dto.getDate() );
+        }
 
         if(dto.getQuantityOfPeople() == null || dto.getQuantityOfPeople() > resource.getNumberOfSeats() ){
             booking.setQuantityOfPeople( booking.getQuantityOfPeople() );
