@@ -13,3 +13,14 @@
     font-family: 'Poppins', sans-serif;
     font-weight: lighter;
 }
+
+.fc-content {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .main-calendar {
+        padding: 0 1px;
+    }
+
+}

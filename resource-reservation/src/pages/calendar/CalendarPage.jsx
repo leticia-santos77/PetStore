@@ -12,7 +12,7 @@ export default class CalendarPage extends Component {
             <Header user="Rafael Scotti" />
             <Sidebar />
             <div className="main-content">
-                <h1 className="content-title">Calendario</h1>
+                <h1 className="content-title">Agenda de Reservas</h1>
 
                 <Calendar />
             </div>
