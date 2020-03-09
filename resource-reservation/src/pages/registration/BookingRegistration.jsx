@@ -90,7 +90,7 @@ export default class ResourceForm extends Component {
                 <Header user="Rafael Scotti" />
                 <Sidebar />
                 <div className="main-content">
-                    <h2>> Nova Reserva</h2>
+                <h1 className="content-title">Nova Reserva</h1>
                     <div className="form">
                         <form>
                             <div>
@@ -120,7 +120,7 @@ export default class ResourceForm extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="submit" onClick={this.submitHandler} className="button button-blue button-large" tittle="Cadastrar" defaultValue="Botao"></input>
+                                    <input type="text" onClick={this.submitHandler} className="button button-blue button-large" tittle="Cadastrar" defaultValue="Botao"></input>
                                 </div>
                             </div>
                         </form>

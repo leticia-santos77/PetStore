@@ -56,6 +56,7 @@ export default class ResourceForm extends Component {
                 <Header user="Rafael Scotti" />
                 <Sidebar />
                 <div className="main-content">
+                <h1 className="content-title">Novo Recurso</h1>
                     <div className="form">
                         <form onSubmit={this.submitHandler}>
                             <div>
