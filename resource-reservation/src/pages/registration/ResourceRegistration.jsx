@@ -12,35 +12,44 @@ export default class ResourceForm extends Component {
         super(props);
         this.api = new Api();
         this.state = {
-            name: '',
-            numberOfSeats: '',
+            name: "",
+            numberOfSeats: 0,
             hasTelevision: false,
-            activeRoom: false
+            activeRoom: false,
+            erro:""
         }
     }
-
     changeHandler = e => {
         this.setState({
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value
         })
+        console.log(e.target.value);
+        
     }
-
-    submitHandler = e => {
-        e.preventDefault();
-            return this.api
-          .postResources({name: this.state.name, numberOfSeats: this.state.numberOfSeats, hasTelevision: this.state.hasTelevision, activeRoom: this.state.activeRoom })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
-    }
-
     optionHandler = e => {
         let aux = this.state[e.target.name];
         this.setState({
             [e.target.name]: !aux
         })
     }
+    submitHandler = e => {
+        const { name , numberOfSeats, hasTelevision, activeRoom} = this.state
+        try {
+            e.preventDefault();
+            return this.api.postResources(name, numberOfSeats, hasTelevision, activeRoom)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+        } catch (error) {
+            this.setState({
+                erro:"erro"
+            })
+        }
+        
+    }
+
+   
 
     render() {
         return (
