@@ -20,4 +20,10 @@ export default class Api {
   }
   getBookings = () => this.api.get('/api/booking/all')
   getResources = () => this.api.get('/api/resource/all')
+  puttResources = ( id, name, numberOfSeats, hasTelevision, activeRoom) => 
+    this.api.put(`api/resource/edit/${id}`,{ 
+      "name": name, 
+      "numberOfSeats": numberOfSeats, 
+      "hasTelevision": hasTelevision, 
+      "activeRoom": activeRoom})
 }

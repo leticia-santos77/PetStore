@@ -31,13 +31,8 @@ export default class ListResources extends Component {
 
   submit = e => {
     e.preventDefault();
-    axios.put(`http://localhost:8081/api/resource/edit/${this.state.id}`, {
-      name: this.state.name,
-      numberOfSeats: this.state.numberOfSeats,
-      hasTelevision: this.state.hasTelevision,
-      activeRoom: this.state.activeRoom
-    })
-      .then(this.requestResources)
+    this.api.puttResources( this.state.id, this.state.name, this.state.numberOfSeats, this.state.hasTelevision, this.state.activeRoom )
+    .then(this.requestResources);
   }
 
   updateProps = e => {
