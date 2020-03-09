@@ -23,14 +23,12 @@ export default class ListBookings extends Component {
     super(props);
     this.api = new Api();
     this.state = {
-      bookings: [],
-      id: '',
-      canceled: true,
+      bookings: []
     };
   }
   submit = e => {
     e.preventDefault();
-
+    console.log(this.state)
     axios.put(`http://localhost:8081/api/booking/edit/${this.state.id}`, {
       quantityOfPeople: this.state.quantityOfPeople,
       date: this.state.date,
@@ -38,14 +36,12 @@ export default class ListBookings extends Component {
       canceled: this.state.canceled
     })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
       })
-    window.location.reload()
+      window.location.reload()
   }
   updateProps = e => {
     this.setState({
-      id: '',
+      id: e.target.id,
       quantityOfPeople: null,
       date: null,
       useTv: null,
@@ -78,19 +74,16 @@ export default class ListBookings extends Component {
 
     if (e.target.name === 'canceled') {
       this.setState({
-        id: e.target.id,
         [e.target.name]: e.target.checked ? false : true
       })
     } else {
       this.setState({
-        id: e.target.id,
         [e.target.name]: e.target.value
       })
     }
     if (e.target.name === "useTv") {
       let aux = e.target.checked ? true : false
       this.setState({
-        id: e.target.id,
         [e.target.name]: aux
       })
     }
@@ -120,9 +113,9 @@ export default class ListBookings extends Component {
               return (
                 <Card className="styleCard" key={booking.id}>
                   <ul>
-                    <li onClick={this.updateProps} >
+                    <li  onClick={this.updateProps} >
                       <div className="pen-edit">
-                        <Popup trigger={<img className="pen" alt="Imagem de editar" name={`${booking.id}`} src={ImgEdit} />} modal>
+                        <Popup trigger={<img  id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
 
                           {close => (
 
@@ -136,21 +129,21 @@ export default class ListBookings extends Component {
                                 <form onSubmit={this.submitHandler}>
                                   <div className="container-form">
                                     <div className="item">
-                                      <input id={booking.id} name="quantityOfPeople" className="input-popup input-login input-modal"
+                                      <input name="quantityOfPeople" className="input-popup input-login input-modal"
                                         onBlur={this.bookingEdit} type="number" min={1} placeholder="Quantidade de pessoas" 
                                         defaultValue={booking.quantityOfPeople}
                                       ></input>
                                     </div>
                                     <div className="item">
-                                      <input id={booking.id} name="date" className="input-popup input-login input-modal"
-                                        onBlur={this.bookingEdit} type="date-time" placeholder="Data da Reserva" Value={booking.date}
+                                      <input  name="date" className="input-popup input-login input-modal"
+                                        onBlur={this.bookingEdit} type="date-time" placeholder="Data da Reserva" defaultValue={booking.date}
                                       ></input>
                                     </div>
                                     <div className="item active-room" >
                                       <label>Uso da TV</label>
                                       <div className="toggle-right" name="useTv" onBlur={this.bookingEdit} value={`${booking.useTv ? true : false}`}>
                                         <label className="switch">
-                                          <input id={booking.id} type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
+                                          <input  type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
                                             defaultValue={`${!(booking.useTv)}`}
                                           />
                                           <span className="slider round" />
@@ -165,7 +158,7 @@ export default class ListBookings extends Component {
 
                                       <div className="toggle-right" name="canceled" onClick={this.bookingEdit} value={`${!(booking.canceled)}`}>
                                         <label className="switch">
-                                          <input id={booking.id} type="checkbox" name="canceled" defaultChecked={!(booking.canceled)}
+                                          <input type="checkbox" name="canceled" defaultChecked={!(booking.canceled)}
                                            defaultValue={`${!(booking.canceled)}`}
                                           />
                                           <span className="slider round" />
@@ -175,7 +168,7 @@ export default class ListBookings extends Component {
                                     <div className="item button-center" >
 
                                       <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large"
-                                       title="Atualizar" value={booking.id}
+                                       title="Atualizar"
                                       >Atualizar</button>
                                     </div>
                                   </div>

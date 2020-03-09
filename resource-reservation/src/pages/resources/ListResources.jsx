@@ -47,7 +47,7 @@ export default class ListResources extends Component {
 
   updateProps = e => {
     this.setState({
-      id: null,
+      id: e.target.id,
       name: null,
       numberOfSeats: null,
       hasTelevision: null,
@@ -77,7 +77,6 @@ export default class ListResources extends Component {
   resourceEdit = e => {
 
     this.setState({
-      id: e.target.id,
       [e.target.name]: e.target.value
     })
     if(e.target.name === 'hasTelevision') {
@@ -112,9 +111,8 @@ export default class ListResources extends Component {
       <React.Fragment>
         <Header user="Gabriel Eugênio" />
         <Sidebar />
-        <button onClick={this.state} />
         <div className="main-content">
-          <h1 className="content-title" onClick={this.ola}>Recursos</h1>
+          <h1 className="content-title">Recursos</h1>
           <div className="container-card">
             {resources.map(resource => {
               return (
@@ -122,7 +120,7 @@ export default class ListResources extends Component {
                   <ul>
                     <li onClick={this.updateProps}>
                       <div className="pen-edit">
-                        <Popup trigger={<img  className="pen" alt="Imagem de editar" name={`${resource.id}`} src={ImgEdit} />} modal>
+                        <Popup trigger={<img id={resource.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
                           {close => (
                             <div className="modal">
                               <button className="button-clese-popup close-popup" onClick={close}>
@@ -132,17 +130,16 @@ export default class ListResources extends Component {
                                 <div className=" popup-title ">
                                   <h2 className="popup-title"> {resource.name} </h2>
                                 </div>
-                                <span onClick={this.ola}>sfsaf</span>
                                 <form onSubmit={this.submitHandler}>
                                   <div className="container-form">
                                     <div className="item">
-                                      <input id={resource.id} className=" input-popup input-login input-modal"
+                                      <input className=" input-popup input-login input-modal"
                                        type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}
                                        placeholder="Nome do recurso" 
                                       ></input>
                                     </div>
                                     <div className="item">
-                                      <input id={resource.id} className="input-popup input-login input-modal" 
+                                      <input className="input-popup input-login input-modal" 
                                         onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats"
                                         placeholder="Número de lugares" defaultValue={resource.numberOfSeats}
                                       ></input>
@@ -153,7 +150,7 @@ export default class ListResources extends Component {
                                        value={`${resource.hasTelevision ? true : false}`}
                                       >
                                         <label className="switch">
-                                          <input id={resource.id} type="checkbox" name="hasTelevision" 
+                                          <input type="checkbox" name="hasTelevision" 
                                             defaultChecked={resource.hasTelevision ? true : false}
                                             defaultValue={`${!(resource.hasTelevision)}`}
                                           />
@@ -167,7 +164,7 @@ export default class ListResources extends Component {
                                        value={`${!(resource.activeRoom)}`}
                                       >
                                         <label className="switch">
-                                          <input id={resource.id} type="checkbox" name="activeRoom" 
+                                          <input type="checkbox" name="activeRoom" 
                                             defaultChecked={resource.activeRoom ? true : false} 
                                             defaultValue={`${!(resource.activeRoom)}`}
                                           />
@@ -178,7 +175,7 @@ export default class ListResources extends Component {
                                     <div className="item button-center">
                                       <button onClick={this.submit} type="submit" 
                                         className="button-popup button button-blue button-large"
-                                        title="Atualizar" value={resource.id}
+                                        title="Atualizar"
                                       >Atualizar</button>
                                     </div>
                                   </div>
@@ -196,7 +193,7 @@ export default class ListResources extends Component {
                     <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                     </li>
-                    <li><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i class="far fa-window-close red"></i>}
+                    <li><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i className="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>
