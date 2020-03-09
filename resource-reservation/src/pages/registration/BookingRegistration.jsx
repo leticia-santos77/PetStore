@@ -3,7 +3,6 @@ import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Input from '../../components/input/Input';
 import Toggle from '../../components/input/Toggle';
-import Button from '../../components/button/Button';
 import './resource-registration.css';
 import Api from '../../service/Api';
 
@@ -44,6 +43,7 @@ export default class ResourceForm extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         })
+        console.log(e.target.value)
     }
 
     formatDate = (date) => { // format from 'yyyy-mm-ddThh:mm' to 'dd/mm/yyyy hh:mm'
@@ -62,6 +62,7 @@ export default class ResourceForm extends Component {
         const { quantityOfPeople, useTv, date } = this.state;
 
         let data = this.formatDate(date);
+        console.log(data)
         let name = this.getSelectorOption();
         let id = await this.getResourceId(name);
 
@@ -95,7 +96,7 @@ export default class ResourceForm extends Component {
                             <div>
                                 <div className="justify">
                                     <label>Nome do recurso:</label>
-                                    <select id="resourceName">
+                                    <select className="input-form" id="resourceName">
                                         {/* <option value="option">Selecione uma opção</option> */}
                                         {
                                             resources.map((resource, i) => {
@@ -110,7 +111,7 @@ export default class ResourceForm extends Component {
                                 </div>
                                 <div className="justify">
                                     <label> Data: </label>
-                                    <Input className="input-form" type="datetime-local" name="date" onBlur={this.changeHandler} />
+                                    <Input className="input-form" type="datetime-local" min={"2020-03-10T12:00"} name="date" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="justify">
                                     <label>Usará televisão?</label>
