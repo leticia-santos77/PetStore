@@ -87,7 +87,7 @@ export default class ListBookings extends Component {
 
   filterBooking(name) {
     const { bookings } = this.state
-    const booking = bookings.filter(booking => booking.resourceName.includes(name.target.value))
+    const booking = bookings.filter(booking => booking.resourceNametoUpperCase().includes(name.target.value.toUpperCase()))
     this.setState({
       bookingsFilter: booking
     });

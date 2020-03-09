@@ -21,10 +21,9 @@ public class BookingService {
     private BookingRepository repository;
 
     @Autowired
-    ResourceService resourceService;
+    private ResourceService resourceService;
 
     @Autowired
-
     private ResourceRepository resourceRepository;
 
 
@@ -80,12 +79,22 @@ public class BookingService {
 
         booking.setId( id );
         booking.setResourceId( booking.getResourceId() );
-        booking.setDate( dto.getDate() == null ? booking.getDate() : dto.getDate() );
         booking.setCreationDate( booking.getCreationDate() );
-        booking.setCanceled( dto.getCanceled() == null ? false : dto.getCanceled() );
-        booking.setUseTv( dto.getUseTv() == null ? false : dto.getUseTv() );
+        booking.setCanceled( dto.getCanceled() == null ? booking.getCanceled() : dto.getCanceled() );
+        booking.setUseTv( dto.getUseTv() == null ? booking.getUseTv() : dto.getUseTv() );
 
-        if(dto.getQuantityOfPeople() == null || dto.getQuantityOfPeople() > resource.getNumberOfSeats() ){
+        Date today = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        dateFormat.format(today);
+
+       if ( ( dto.getDate() == null ) || ( today.compareTo( dto.getDate() ) > 0 ) ){
+           booking.setDate( booking.getDate() );
+        } else {
+           booking.setDate( dto.getDate() );
+        }
+
+        if( ( dto.getQuantityOfPeople() == null )  || ( dto.getQuantityOfPeople() > resource.getNumberOfSeats() ) || ( dto.getQuantityOfPeople() < 1 )  ) {
             booking.setQuantityOfPeople( booking.getQuantityOfPeople() );
         }else {
             booking.setQuantityOfPeople( dto.getQuantityOfPeople() );

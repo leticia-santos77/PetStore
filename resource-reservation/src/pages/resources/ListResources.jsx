@@ -84,7 +84,7 @@ export default class ListResources extends Component {
 
   filterResources(name) {
     const { resources } = this.state
-    const resource = resources.filter(resource => resource.name.includes(name.target.value))
+    const resource = resources.filter(resource => resource.name.toUpperCase().includes(name.target.value.toUpperCase()))
     this.setState({
         resourcesFilter: resource
     });
