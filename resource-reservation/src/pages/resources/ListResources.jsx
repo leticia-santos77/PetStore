@@ -15,7 +15,7 @@ import '../../components/modal/modal-form.css';
 import '../../app.css'
 import '../../components/input/toggle.css'
 import './popup.css';
-
+import Swal from 'sweetalert2';
 
 export default class ListResources extends Component {
   constructor(props) {
@@ -37,7 +37,21 @@ export default class ListResources extends Component {
       this.state.numberOfSeats,
       this.state.hasTelevision,
       this.state.activeRoom
-    ).then(this.requestResources);
+    ).then(() => {
+      Swal.fire(
+        'Sucesso!',
+        'Recurso alterada com sucesso!',
+        'success'
+      )
+    }).catch(() => {
+      Swal.fire(
+        'Oh, não!',
+        'Não foi possivel editar o recurso :(',
+        'error'
+      )
+    })
+    .then(this.requestResources)
+    .catch("Nao foi possivel carregar os recursos!");
   }
 
   updateProps = e => {
