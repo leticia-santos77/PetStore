@@ -63,11 +63,7 @@
 }
 
 .styleCard ul li p{
-  text-align: left;
-}
-
-.styleCard ul li.li-icon-title {
-  padding-left: 60px;
+  text-align: center;
 }
 
 .styleCard ul li:last-child{
@@ -81,7 +77,7 @@
 }
 
 .styleCard i {
-  margin-right: 18px;
+  margin-right: 8px;
 }
 
 .green{
