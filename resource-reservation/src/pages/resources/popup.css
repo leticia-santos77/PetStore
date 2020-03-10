@@ -17,3 +17,44 @@
  .button-clese-popup{
       padding-top: 0px;
   }
+  .popup-alert .popup-content{
+    border-radius: 8px !important;
+    opacity: 0.95;
+    background-color: #f1f1f1 !important;
+    color: #212121;
+    font-weight: 100!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 55px;
+    word-spacing: 10px;
+    border-radius: 60px !important;
+    box-shadow: 0px 1px 5px #212121;
+  }
+
+  @media screen and (max-width:600px){
+    .popup-content {
+      border-radius: 8px !important;
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+      width: 100% !important;
+    }
+    .popup-title{
+      text-align: center;
+    color: darkslategray;
+    font-size: 17px;
+    }
+  }
+  @media screen and (min-width:1080px){
+    .popup-content {
+      width: 670px;
+      height: 420px;
+    }
+  }
+  @media screen and (min-width:1280px){
+    .popup-content {
+      width: 640px !important;
+    }
+  }
+  

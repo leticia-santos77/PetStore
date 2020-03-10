@@ -31,6 +31,9 @@ export default class Login extends Component {
     await this.api.postLogin(username, password).then(response => {
       if (response.status === 200) {
         login(response.headers.authorization);
+        
+          let log = JSON.parse(response.config.data);
+          sessionStorage.setItem('username',log.username);
       }
       this.setState({ access: true });
       if (response.status === 400) {

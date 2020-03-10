@@ -6,6 +6,7 @@ import Toggle from '../../components/input/Toggle';
 import Button from '../../components/button/Button';
 import Api from '../../service/Api';
 import './resource-registration.css';
+import Swal from 'sweetalert2';
 
 export default class ResourceForm extends Component {
     constructor(props) {
@@ -16,14 +17,14 @@ export default class ResourceForm extends Component {
             numberOfSeats: 0,
             hasTelevision: false,
             activeRoom: false,
-            erro:""
+            erro: ""
         }
     }
     changeHandler = e => {
         this.setState({
             [e.target.name]: e.target.value
         })
-        
+
     }
     optionHandler = e => {
         let aux = this.state[e.target.name];
@@ -32,41 +33,44 @@ export default class ResourceForm extends Component {
         })
     }
     submitHandler = e => {
-        const { name , numberOfSeats, hasTelevision, activeRoom} = this.state
+        const { name, numberOfSeats, hasTelevision, activeRoom } = this.state
         try {
             e.preventDefault();
             return this.api.postResources(name, numberOfSeats, hasTelevision, activeRoom)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
-        } catch (error) {
-            this.setState({
-                erro:"erro"
-            })
-        }
-        
+                .then(() => {
+                    Swal.fire(
+                        'Sucesso!',
+                        'Recurso criado com sucesso!',
+                        'success'
+                    )
+                }).catch(() => {
+                    Swal.fire(
+                        'Oh, não!',
+                        'Verifique os dados informados',
+                        'error'
+                    )
+                })
+        } catch (err){}
     }
 
-   
 
-    render() {
-        return (
-            <React.Fragment>
-                <Header user="Rafael Scotti" />
-                <Sidebar />
-                <div className="main-content">
+render() {
+    return (
+        <React.Fragment>
+            <Header user="Rafael Scotti" />
+            <Sidebar />
+            <div className="main-content">
                 <h1 className="content-title">Novo Recurso</h1>
-                    <div className="form">
+                    <div className="form-resource">
                         <form onSubmit={this.submitHandler}>
                             <div>
                                 <div className="justify">
                                     <label>Recurso:</label>
-                                    <Input className="input-form" type="text" name="name" onBlur={this.changeHandler} />
+                                    <Input className="input-form" type="text" placeholder="Nome do Recurso" name="name" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="justify">
                                     <label> Número de lugares: </label>
-                                    <Input className="input-form" type="number" name="numberOfSeats" onBlur={this.changeHandler} />
+                                    <Input className="input-form" type="number" placeholder="Número de lugares" name="numberOfSeats" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="justify">
                                     <label>Possui TV</label>
@@ -78,14 +82,14 @@ export default class ResourceForm extends Component {
                                     <label>Sala ativa</label>
                                     <Toggle type="checkbox" name="activeRoom" onChange={this.optionHandler} />
                                 </div>
-                                <div>
-                                    <Button type="submit" className="button button-blue button-large" tittle="Cadastrar" />
-                                </div>
+                            <div>
+                                <Button type="submit" className="button button-blue button-large" tittle="Cadastrar" />
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-            </React.Fragment>
-        )
-    }
+            </div>
+        </React.Fragment>
+    )
+}
 }

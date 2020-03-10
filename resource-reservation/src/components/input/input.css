@@ -25,8 +25,19 @@ input[type=number]::-webkit-inner-spin-button {
 .input-form{
     border-radius: 5px;
     border: 1px solid transparent;
-    background-color: #ccc;
+    background-color: #E3E9F3;
+    outline-color: rgba(41, 91, 167, 0.35);
     margin: 10px;
     height: 40px;
     width: 300px;
+}
+
+.input-button{
+    text-align: center;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-clear-button {
+    display: none;
+    -webkit-appearance: none;
 }
