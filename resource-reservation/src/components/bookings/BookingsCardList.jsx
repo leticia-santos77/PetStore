@@ -46,7 +46,7 @@ export default class BookingsCardList extends Component {
     }).catch(() => {
       Swal.fire(
         'Oh, não!',
-        'Não foi possivel editar reserva :(',
+        'Informe todos os dados corretamente',
         'error'
       )
     })
