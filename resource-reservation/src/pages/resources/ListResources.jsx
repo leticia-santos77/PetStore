@@ -23,7 +23,7 @@ export default class ListResources extends Component {
     this.api = new Api();
     this.state = {
       resources: [],
-      resourcesFilter:[],
+      resourcesFilter: [],
       id: '',
     };
   }
@@ -51,43 +51,29 @@ export default class ListResources extends Component {
   }
   requestResources = () => {
     return this.api
-      .getResources()
-      .then(value =>
+      .getResources().then(value =>
         this.setState({
           resources: value.data.map(
-            r =>
-              (r = new Resource(
-                r.id,
-                r.name,
-                r.numberOfSeats,
-                r.hasTelevision,
-                r.activeRoom,
-                r.creationDate
-              ))
-          ),
-          resourcesFilter: value.data.map(
-            r =>
-              (r = new Resource(
-                r.id,
-                r.name,
-                r.numberOfSeats,
-                r.hasTelevision,
-                r.activeRoom,
-                r.creationDate
-              ))
+            r => r = new Resource(
+              r.id,
+              r.name,
+              r.numberOfSeats,
+              r.hasTelevision,
+              r.activeRoom,
+              r.creationDate
+            )
           )
         })
-      )
-      .catch("Fail!!");
+      ).catch("Fail!!");
   };
 
-  filterResources(name) {
-    const { resources } = this.state
-    const resource = resources.filter(resource => resource.name.includes(name.target.value))
-    this.setState({
-        resourcesFilter: resource
-    });
-}
+  // filterResources(name) {
+  //   const { resources } = this.state
+  //   const resource = resources.filter(resource => resource.name.includes(name.target.value))
+  //   this.setState({
+  //     resourcesFilter: resource
+  //   });
+  // }
 
   resourceEdit = e => {
 
@@ -107,9 +93,9 @@ export default class ListResources extends Component {
       })
     }
   }
+
   componentDidMount() {
     this._asyncRequest = this.requestResources();
-
     this._asyncRequest = null;
   }
   componentWillUnmount() {
@@ -120,16 +106,19 @@ export default class ListResources extends Component {
 
   render() {
 
-    const { resourcesFilter } = this.state;
+    const { resources } = this.state;
 
     return (
       <React.Fragment>
-        <Header user="Gabriel Eugênio" ><input placeholder="Informe o nome " onChange={this.filterResources.bind(this)} /></Header>        
+        <Header user="Gabriel Eugênio" >
+          {/* <input placeholder="Informe o nome " onChange={this.filterResources.bind(this)} /> */}
+        </Header>
+
         <Sidebar />
         <div className="main-content">
-          <h1 className="content-title">Recursos</h1>          
+          <h1 className="content-title">Recursos</h1>
           <div className="container-card">
-            {resourcesFilter.map(resource => {
+            {resources.map(resource => {
               return (
                 <Card id="id" className="styleCard" key={resource.id}>
                   <ul>

@@ -48,41 +48,24 @@ export default class ListBookings extends Component {
       canceled: null,
     })
   }
-  requestBookings = async () => {
+  requestBookings = () => {
     return this.api
-      .getBookings()
-      .then(await (value =>
+      .getBookings().then(value =>
         this.setState({
           bookings: value.data.map(
-            b =>
-              (b = new Booking(
-                b.id,
-                b.resourceId,
-                b.resourceName,
-                b.useTv,
-                b.quantityOfPeople,
-                b.creationDate,
-                b.date,
-                b.canceled
-              ))              
-          ),
-          bookingsFilter: value.data.map(
-            b =>
-              (b = new Booking(
-                b.id,
-                b.resourceId,
-                b.resourceName,
-                b.useTv,
-                b.quantityOfPeople,
-                b.creationDate,
-                b.date,
-                b.canceled
-              ))
+            b => b = new Booking(
+              b.id,
+              b.resourceId,
+              b.resourceName,
+              b.useTv,
+              b.quantityOfPeople,
+              b.creationDate,
+              b.date,
+              b.canceled
+            )
           )
-          
         })
-      ))
-      .catch("Fail!!");
+      ).catch("Fail!!");
   };
 
   filterBooking(name) {
