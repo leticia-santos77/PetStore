@@ -5,6 +5,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import ptBrLocale from '@fullcalendar/core/locales/pt-br';
+import Popup from 'reactjs-popup';
 
 import './calendar.css';
 import '@fullcalendar/core/main.css';
@@ -58,34 +59,35 @@ export default class Calendar extends Component {
 
     return (
       <React.Fragment>       
-        <section className="main-calendar">
+       <Popup trigger={ <section className="main-calendar">
           <FullCalendar 
             defaultView="dayGridMonth" 
             plugins={[dayGridPlugin, interactionPlugin]}
             locale={ptBrLocale}
             timeZone = "America/Sao_Paulo"
             events={this.state.calendarEvents}
-            dateClick={this.handleDateClick}
             eventClick={this.eventClick}
             eventLimit={true}
-          />
-        </section>
+          /></section>} modal>
+        <h2>Recuso: {this.state.resource}</h2>
+        <h2>Data: {this.state.date}</h2>
+        <h2>Hota: {this.state.time}</h2>
+        <h2>pessoas: {this.state.people}</h2>
+        <h2>tv: {this.state.tv}</h2>
 
+        </Popup>
+          
       </React.Fragment>
     );
   }
 
-  eventClick = ( evt ) => {
-    let resource = evt.event.title;
-    let date = evt.event.start.getUTCDate() + "/" + evt.event.start.getUTCMonth() + "/" + evt.event.start.getUTCFullYear();
-    let time = evt.event.start.getUTCHours() + ":" + evt.event.start.getUTCMinutes();
-    let people = evt.event.extendedProps.qtdOfPeople;
-    let tv = evt.event.extendedProps.useTv ? "Sim" : "Não";
-    
-    alert("Recurso: " + resource + 
-        "\nData: " + date +
-        "\nHora: " + time +
-        "\nHaverá um total de " + people + " pessoa(s)" +
-        "\nUtilização da tv: " + tv );
+  eventClick  = async ( evt ) => {
+     this.setState({
+      resource: evt.event.title,
+      date: evt.event.start.getUTCDate() + "/" + evt.event.start.getUTCMonth() + "/" + evt.event.start.getUTCFullYear(),
+      time: evt.event.start.getUTCHours() + ":" + evt.event.start.getUTCMinutes(),
+      people: evt.event.extendedProps.qtdOfPeople,
+      tv: evt.event.extendedProps.useTv ? "Sim" : "Não"
+    })
   }
 }
