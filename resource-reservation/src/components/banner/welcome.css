@@ -9,19 +9,19 @@
     align-items: center;
     font-size: 24px;
     font-weight: lighter;
-    color: #212121;
+    color: #012840;
     /* border-bottom: 60px solid #f1f1f1; */
-    background: rgba(255, 255, 255, 0);
-    background: radial-gradient(circle, #038C8C 0%, #026873 100%);
+    background: white;
+
     text-align: center;
 }
 
 .main-welcome .welcome-title {
-    font-weight: lighter;
+    font-weight: normal;
 }
 
 .main-welcome .subtile-welcome {
-   color: #212121;
-    font-size: 16px;
+   color: #012840;
+    font-size: 20px;
 }
 
