@@ -1,6 +1,5 @@
 package br.com.dbccompany.resourcereservation.service;
 
-import br.com.dbccompany.resourcereservation.dto.BookingDTO;
 import br.com.dbccompany.resourcereservation.dto.ResourceDTO;
 import br.com.dbccompany.resourcereservation.model.Booking;
 import br.com.dbccompany.resourcereservation.model.Resource;

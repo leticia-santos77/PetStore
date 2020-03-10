@@ -28,10 +28,12 @@ export default class Sidebar extends Component {
             <nav className="vertical-nav">
                 <header><p>ECOS</p></header>
                 <ul>
-                    <li><Link to="#"><p><i className="fas fa-home"></i>Dashboard</p></Link></li>
-                    <li><Link to="#"><p><i className="fas fa-plus"></i>Nova Reserva</p></Link></li>
-                    <li><Link to="#"><p><i className="fas fa-folder-plus"></i>Criar Recurso</p></Link></li>
-                    <li><Link to={{pathname:`/recursos`}}><p><i className="fas fa-stream"></i>Lista de Recursos</p></Link></li>
+                    <li><Link to={{ pathname: `/home` }}><p><i className="fas fa-home"></i>Dashboard</p></Link></li>
+                    <li><Link to={{ pathname: `/cadastroreserva` }}><p><i className="fas fa-plus"></i>Nova Reserva</p></Link></li>
+                    <li><Link to={{ pathname: `/cadastrorecurso` }}><p><i className="fas fa-folder-plus"></i>Criar Recurso</p></Link></li>
+                    <li><Link to={{ pathname:`/recursos` }}><p><i className="fas fa-stream"></i>Lista de Recursos</p></Link></li>
+                    <li><Link to={{ pathname: `/reservas` }}><p><i className="fas fa-stream"></i>Lista de Reservas</p></Link></li>
+                    
                 </ul>
             </nav>
 

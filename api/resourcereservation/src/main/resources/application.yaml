@@ -1,9 +1,24 @@
 server:
   port: 8081
 spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
   data:
     mongodb:
       uri: mongodb://localhost:27017
-      database: test
+      database: bookings
+      hibernate:
+        ddl-auto: create-drop
+
+---
+spring:
+  profiles: deploy
+  data:
+    mongodb:
+      uri: 'mongodb+srv://Rafael:Rafael@cluster0-ozded.mongodb.net/test?retryWrites=true&w=majority'
+      database: bookings
       hibernate:
         ddl-auto: create-drop

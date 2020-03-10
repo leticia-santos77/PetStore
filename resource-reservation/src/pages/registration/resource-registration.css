@@ -1,0 +1,22 @@
+.form {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.justify {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.justify label{
+    margin-top: 15px;
+}
+
+/* @media (min-width: 800px) {
+    .form {
+        padding: 200px;
+    }
+} */

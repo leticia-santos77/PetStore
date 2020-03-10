@@ -8,11 +8,9 @@ import br.com.dbccompany.resourcereservation.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -31,16 +29,11 @@ public class BookingService {
     public Booking save( BookingDTO dto ){
 
         Resource resource = resourceService.findById( dto.getResourceId() );
-
         Booking booking = new Booking();
-
         Date today = new Date();
-
         Date eventDate = dto.getDate();
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dateFormat.format(today);
-
         dateFormat.format(eventDate);
 
         if(resource == null){
@@ -74,9 +67,7 @@ public class BookingService {
     public Booking edit( String id, BookingDTO dto ){
 
         Booking booking = repository.findById(id).get();
-
         Resource resource = resourceRepository.findById(booking.getResourceId()).get();
-
         booking.setId( id );
         booking.setResourceId( booking.getResourceId() );
         booking.setCreationDate( booking.getCreationDate() );

@@ -20,25 +20,24 @@ import './popup.css';
 export default class ListResources extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.api = new Api();
-
     this.state = {
       resources: [],
-      resourcesFilter:[],
+      resourcesFilter: [],
       id: '',
     };
   }
 
   submit = e => {
     e.preventDefault();
-    this.api.puttResource(
+    this.api.putResource(
       this.state.id,
       this.state.name,
       this.state.numberOfSeats,
       this.state.hasTelevision,
       this.state.activeRoom
-    )
-      .then(this.requestResources);
+    ).then(this.requestResources);
   }
 
   updateProps = e => {
@@ -50,45 +49,6 @@ export default class ListResources extends Component {
       activeRoom: null,
     })
   }
-  requestResources = () => {
-    return this.api
-      .getResources()
-      .then(value =>
-        this.setState({
-          resources: value.data.map(
-            r =>
-              (r = new Resource(
-                r.id,
-                r.name,
-                r.numberOfSeats,
-                r.hasTelevision,
-                r.activeRoom,
-                r.creationDate
-              ))
-          ),
-          resourcesFilter: value.data.map(
-            r =>
-              (r = new Resource(
-                r.id,
-                r.name,
-                r.numberOfSeats,
-                r.hasTelevision,
-                r.activeRoom,
-                r.creationDate
-              ))
-          )
-        })
-      )
-      .catch("Fail!!");
-  };
-
-  filterResources(name) {
-    const { resources } = this.state
-    const resource = resources.filter(resource => resource.name.toUpperCase().includes(name.target.value.toUpperCase()))
-    this.setState({
-        resourcesFilter: resource
-    });
-}
 
   resourceEdit = e => {
 
@@ -108,107 +68,132 @@ export default class ListResources extends Component {
       })
     }
   }
+  requestResources = async () => {
+    return await this.api
+      .getResources()
+      .then(result => {
+        if (this._isMounted) {
+          this.setState({
+            resources: result.data.map(
+              r =>
+                (r = new Resource(
+                  r.id,
+                  r.name,
+                  r.numberOfSeats,
+                  r.hasTelevision,
+                  r.activeRoom,
+                  r.creationDate
+                ))
+            )
+          });
+        }
+      });
+  };
+
   componentDidMount() {
-    this._asyncRequest = this.requestResources();
-    this.state.resources.reverse();
-    this._asyncRequest = null;
+    this._isMounted = true;
+    this.requestResources().catch(
+      (<h1>Não foi possivel carregar o conteudo!</h1>)
+    )
   }
+
   componentWillUnmount() {
-    if (this._asyncReques) {
-      this._asyncRequest.cancel();
-    }
+    this._isMounted = false;
   }
 
   render() {
 
-    const { resourcesFilter } = this.state;
+    const { resources } = this.state;
 
     return (
       <React.Fragment>
-        <Header user="Gabriel Eugênio" ><input placeholder="Informe o nome " onChange={this.filterResources.bind(this)} /></Header>        
+
+        <Header user="Gabriel Eugênio" >
+        </Header>
+
         <Sidebar />
         <div className="main-content">
-          <h1 className="content-title">Recursos</h1>          
+          <h1 className="content-title">Recursos</h1>
           <div className="container-card">
-            {resourcesFilter.map(resource => {
+            {resources.map(resource => {
               return (
                 <Card id="id" className="styleCard" key={resource.id}>
                   <ul>
                     <li onClick={this.updateProps}>
-                      <div className="pen-edit">
-                        <Popup trigger={<img id={resource.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
-                          {close => (
-                            <div className="modal">
-                              <button className="button-clese-popup close-popup" onClick={close}>
-                                &times;        </button>
-                              <div className="modal-title">
-                                <div className=" popup-title ">
-                                  <h2 className="popup-title"> {resource.name} </h2>
-                                </div>
-                                <form onSubmit={this.submitHandler}>
-                                  <div className="container-form">
-                                    <div className="item">
-                                      <input className=" input-popup input-login input-modal"
-                                        type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}
-                                        placeholder="Nome do recurso"
-                                      ></input>
-                                    </div>
-                                    <div className="item">
-                                      <input className="input-popup input-login input-modal"
-                                        onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats"
-                                        placeholder="Número de lugares" defaultValue={resource.numberOfSeats}
-                                      ></input>
-                                    </div>
-                                    <div className="item active-room" >
-                                      <label>Possui TV</label>
-                                      <div className="toggle-right" name="hasTelevision" onBlur={this.resourceEdit}
-                                        value={`${resource.hasTelevision ? true : false}`}
-                                      >
-                                        <label className="switch">
-                                          <input type="checkbox" name="hasTelevision"
-                                            defaultChecked={resource.hasTelevision ? true : false}
-                                            defaultValue={`${!(resource.hasTelevision)}`}
-                                          />
-                                          <span className="slider round" />
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="item active-room">
-                                      <label>Sala ativa</label>
-                                      <div className="toggle-right" name="activeRoom" onBlur={this.resourceEdit}
-                                        value={`${!(resource.activeRoom)}`}
-                                      >
-                                        <label className="switch">
-                                          <input type="checkbox" name="activeRoom"
-                                            defaultChecked={resource.activeRoom ? true : false}
-                                            defaultValue={`${!(resource.activeRoom)}`}
-                                          />
-                                          <span className="slider round" />
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div className="item button-center">
-                                      <button onClick={this.submit} type="submit"
-                                        className="button-popup button button-blue button-large"
-                                        title="Atualizar"
-                                      >Atualizar</button>
+                      {/* <div className="pen-edit"> */}
+                      <Popup trigger={<img id={resource.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
+                        {close => (
+                          <div className="modal">
+                            <button className="button-clese-popup close-popup" onClick={close}>
+                              &times;        </button>
+                            <div className="modal-title">
+                              <div className=" popup-title ">
+                                <h2 className="popup-title"> {resource.name} </h2>
+                              </div>
+                              <form onSubmit={this.submitHandler}>
+                                <div className="container-form">
+                                  <div className="item">
+                                    <input className=" input-popup input-login input-modal"
+                                      type="text" name="name" onBlur={this.resourceEdit} defaultValue={resource.name}
+                                      placeholder="Nome do recurso"
+                                    ></input>
+                                  </div>
+                                  <div className="item">
+                                    <input className="input-popup input-login input-modal"
+                                      onBlur={this.resourceEdit} type="number" min={1} name="numberOfSeats"
+                                      placeholder="Número de lugares" defaultValue={resource.numberOfSeats}
+                                    ></input>
+                                  </div>
+                                  <div className="item active-room" >
+                                    <label>Possui TV</label>
+                                    <div className="toggle-right" name="hasTelevision" onBlur={this.resourceEdit}
+                                      value={`${resource.hasTelevision ? true : false}`}
+                                    >
+                                      <label className="switch">
+                                        <input type="checkbox" name="hasTelevision"
+                                          defaultChecked={resource.hasTelevision ? true : false}
+                                          defaultValue={`${!(resource.hasTelevision)}`}
+                                        />
+                                        <span className="slider round" />
+                                      </label>
                                     </div>
                                   </div>
-                                </form>
-                              </div>
+                                  <div className="item active-room">
+                                    <label>Sala ativa</label>
+                                    <div className="toggle-right" name="activeRoom" onBlur={this.resourceEdit}
+                                      value={`${!(resource.activeRoom)}`}
+                                    >
+                                      <label className="switch">
+                                        <input type="checkbox" name="activeRoom"
+                                          defaultChecked={resource.activeRoom ? true : false}
+                                          defaultValue={`${!(resource.activeRoom)}`}
+                                        />
+                                        <span className="slider round" />
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div className="item button-center">
+                                    <button onClick={this.submit} type="submit"
+                                      className="button-popup button button-blue button-large"
+                                      title="Atualizar"
+                                    >Atualizar</button>
+                                  </div>
+                                </div>
+                              </form>
                             </div>
-                          )}
-                        </Popup>
-                      </div>
+                          </div>
+                        )}
+                      </Popup>
+                      {/* </div> */}
                       <h1>{resource.name}</h1>
                     </li>
-                    <li><p><i className="fas fa-users blue"></i>
+                    <li className="li-icon-title"><p><i className="fas fa-users blue"></i>
                       {resource.numberOfSeats} Vagas</p>
                     </li>
-                    <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
+                    <li className="li-icon-title"><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                     </li>
-                    <li><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i className="far fa-window-close red"></i>}
+                    <li className="li-icon-title"><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i className="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>
