@@ -112,77 +112,68 @@ export default class BookingsCardList extends Component {
               <Card className="styleCard" key={booking.id}>
                 <ul>
                   <li onClick={this.updateProps} >
-                    <div className="pen-edit">
-                      <Popup trigger={<img id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
+                    <h1>{booking.resourceName}</h1>
+                    <Popup trigger={<img id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
+                      {close => (
 
-                        {close => (
-
-                          <div className="modal">
-                            <button className="button-clese-popup close-popup" onClick={close}>
-                              &times;        </button>
-                            <div className="modal-title">
-                              <div className=" popup-title ">
-                                <h2 className="popup-title">{booking.resourceName}</h2>
-                              </div>
-                              <form onSubmit={this.submitHandler}>
-                                <div className="container-form">
-                                  <div className="item">
-                                    <input name="quantityOfPeople" className="input-popup input-login input-modal"
-                                      onBlur={this.bookingEdit} type="number" min={1} placeholder="Quantidade de pessoas"
-                                      defaultValue={booking.quantityOfPeople}
-                                    ></input>
-                                  </div>
-                                  <div className="item">
-                                    <input name="date" className="input-popup input-login input-modal"
-                                      onBlur={this.bookingEdit} type="date-time" placeholder="Data da Reserva" defaultValue={booking.date}
-                                    ></input>
-                                  </div>
-                                  <div className="item active-room" >
-                                    <label>Uso da TV</label>
-                                    <div className="toggle-right" name="useTv" onBlur={this.bookingEdit} value={`${booking.useTv ? true : false}`}>
-                                      <label className="switch">
-                                        <input type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
-                                          defaultValue={`${!(booking.useTv)}`}
-                                        />
-                                        <span className="slider round" />
-                                      </label>
-                                    </div>
-                                  </div>
-
-
-
-                                  <div className="item active-room">
-                                    <label>Reserva ativa</label>
-
-                                    <div className="toggle-right" name="canceled" onClick={this.bookingEdit} value={`${!(booking.canceled)}`}>
-                                      <label className="switch">
-                                        <input type="checkbox" name="canceled" defaultChecked={!(booking.canceled)}
-                                          defaultValue={`${!(booking.canceled)}`}
-                                        />
-                                        <span className="slider round" />
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="item button-center" >
-
-                                    <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large"
-                                      title="Atualizar"
-                                    >Atualizar</button>
+                        <div className="modal">
+                          <button className="button-clese-popup close-popup" onClick={close}>
+                            &times;
+                            </button>
+                          <div className="modal-title">
+                            <div className=" popup-title ">
+                              <h2 className="popup-title">{booking.resourceName}</h2>
+                            </div>
+                            <form onSubmit={this.submitHandler}>
+                              <div className="container-form">
+                                <div className="item">
+                                  <input name="quantityOfPeople" className="input-popup input-login input-modal"
+                                    onBlur={this.bookingEdit} type="number" min={1} placeholder="Quantidade de pessoas"
+                                    defaultValue={booking.quantityOfPeople}>
+                                  </input>
+                                </div>
+                                <div className="item">
+                                  <input name="date" className="input-popup input-login input-modal"
+                                    onBlur={this.bookingEdit} type="date-time" placeholder="Data da Reserva" defaultValue={booking.date}
+                                  ></input>
+                                </div>
+                                <div className="item active-room" >
+                                  <label>Uso da TV</label>
+                                  <div className="toggle-right" name="useTv" onBlur={this.bookingEdit} value={`${booking.useTv ? true : false}`}>
+                                    <label className="switch">
+                                      <input type="checkbox" name="useTv" defaultChecked={booking.useTv ? true : false}
+                                        defaultValue={`${!(booking.useTv)}`} />
+                                      <span className="slider round" />
+                                    </label>
                                   </div>
                                 </div>
-                              </form>
-                            </div>
+                                <div className="item active-room">
+                                  <label>Reserva ativa</label>
+                                  <div className="toggle-right" name="canceled" onClick={this.bookingEdit} value={`${!(booking.canceled)}`}>
+                                    <label className="switch">
+                                      <input type="checkbox" name="canceled" defaultChecked={!(booking.canceled)}
+                                        defaultValue={`${!(booking.canceled)}`} />
+                                      <span className="slider round" />
+                                    </label>
+                                  </div>
+                                </div>
+                                <div className="item button-center" >
+                                  <button onClick={this.submit} type="submit" className="button-popup button button-blue button-large"
+                                    title="Atualizar">Atualizar</button>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                        )}
-                      </Popup>
-                    </div>
-                    <h1>{booking.resourceName}</h1>
+                        </div>
+                      )}
+                    </Popup>
+
                   </li>
-                  <li>
-                    <p><i className="fas fa-users blue"></i>
+                  <li className="li-icon-title">
+                    <p><i className="fas fa-users blue "></i>
                       {booking.quantityOfPeople} Pessoas</p>
                   </li>
-                  <li>
+                  <li className="li-icon-title">
                     <p>{booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                   </li>

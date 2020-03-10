@@ -9,7 +9,7 @@
 }
 .styleCard ul li h1 {
   font-size: 24px;
-
+  position: absolute;
 }
 
 .styleCard ul li:nth-child(1) {
@@ -23,11 +23,9 @@
   margin-bottom: 20px;
 }
 
-
 .styleCard ul li p{
   text-align: left;
 }
-
 
 .styleCard ul li.li-icon-title {
   padding-left: 60px;
@@ -56,3 +54,11 @@
 .blue{
   color: cornflowerblue;
 }
+
+.styleCard ul li .pen{
+    height: 20px;
+    width: 23px;
+    cursor: pointer;
+    z-index: 5;
+
+  }
