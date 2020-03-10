@@ -60,5 +60,7 @@
     width: 23px;
     cursor: pointer;
     z-index: 5;
-
+    position: absolute;
+    
+    margin-left: 110px;
   }

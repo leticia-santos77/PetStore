@@ -123,7 +123,7 @@ export default class ListResources extends Component {
                 <Card id="id" className="styleCard" key={resource.id}>
                   <ul>
                     <li onClick={this.updateProps}>
-                      <div className="pen-edit">
+                      {/* <div className="pen-edit"> */}
                         <Popup trigger={<img id={resource.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
                           {close => (
                             <div className="modal">
@@ -187,7 +187,7 @@ export default class ListResources extends Component {
                             </div>
                           )}
                         </Popup>
-                      </div>
+                      {/* </div> */}
                       <h1>{resource.name}</h1>
                     </li>
                     <li className="li-icon-title"><p><i className="fas fa-users blue"></i>
