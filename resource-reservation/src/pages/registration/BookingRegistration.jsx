@@ -73,7 +73,7 @@ export default class ResourceForm extends Component {
             }).catch(() => {
                 Swal.fire(
                     'Oh, não!',
-                    'Não foi possivel fazer essa reserva :(',
+                    'Verifique as informações do recurso.',
                     'error'
                 )
             })
