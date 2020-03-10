@@ -25,6 +25,11 @@
     margin-right: 50px;
     font-size: 22px;
     cursor: pointer;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .main-header .profile-menu i {
@@ -78,4 +83,9 @@
         border-radius: 8px;
         box-sizing: border-box;       
     }
+}
+
+.main-header .profile-menu img {
+    width: 24px;
+    margin-left: 15px;
 }
