@@ -1,0 +1,26 @@
+/* Calendar */
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+.main-calendar {
+    padding: 0 50px;
+}
+
+.fc-toolbar h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: lighter;
+}
+
+.fc-content {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .main-calendar {
+        padding: 0 1px;
+    }
+
+}

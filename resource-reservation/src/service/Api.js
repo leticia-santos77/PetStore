@@ -6,7 +6,7 @@ export default class Api {
 
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:8081"
+      baseURL: "https://heroku-booking-resources.herokuapp.com"
     })
     this.api.interceptors.request.use(async config => {
       const token = getToken();

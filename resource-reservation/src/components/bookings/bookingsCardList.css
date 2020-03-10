@@ -1,0 +1,33 @@
+.section-header {
+
+  
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+
+}
+
+.container-card {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section-header .icon-calendar {
+    font-size: 50px;
+    color: #5E4242;
+}
+
+
+@media screen and (max-width: 650px) {
+    .main-content .section-header .content-title {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .main-content .section-header .content-title {
+        font-size: 14px;
+    }
+}
