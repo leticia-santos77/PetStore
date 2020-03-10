@@ -17,3 +17,28 @@
  .button-clese-popup{
       padding-top: 0px;
   }
+  @media screen and (max-width:600px){
+    .popup-content {
+      border-radius: 8px !important;
+      margin-left: 20px !important;
+      margin-right: 20px !important;
+      width: 100% !important;
+    }
+    .popup-title{
+      text-align: center;
+    color: darkslategray;
+    font-size: 17px;
+    }
+  }
+  @media screen and (min-width:1080px){
+    .popup-content {
+      width: 670px;
+      height: 420px;
+    }
+  }
+  @media screen and (min-width:1280px){
+    .popup-content {
+      width: 640px !important;
+    }
+  }
+  

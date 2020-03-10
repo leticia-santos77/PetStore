@@ -15,7 +15,7 @@ import '../../components/modal/modal-form.css';
 import '../../app.css'
 import '../../components/input/toggle.css'
 import '../../pages/resources/popup.css';
-
+import Swal from 'sweetalert2';
 
 export default class BookingsCardList extends Component {
   constructor(props) {
@@ -36,7 +36,22 @@ export default class BookingsCardList extends Component {
       this.state.quantityOfPeople,
       this.state.date,
       this.state.canceled
-    ).then(this.requestBookings)
+    )
+    .then(() => {
+      Swal.fire(
+        'Sucesso!',
+        'Reserva alterada com sucesso!',
+        'success'
+      )
+    }).catch(() => {
+      Swal.fire(
+        'Oh, não!',
+        'Informe todos os dados corretamente',
+        'error'
+      )
+    })
+    .then(this.requestBookings)
+    .catch("Nao foi possivel carregar o conteudo")
   }
 
   requestBookings = () => {
@@ -118,7 +133,7 @@ export default class BookingsCardList extends Component {
               <Card className="styleCard" key={booking.id}>
                 <ul>
                   <li onClick={this.updateProps} >
-                    <h1>{booking.resourceName}</h1>
+                    <h1 title={booking.resourceName}>{booking.resourceName}</h1>
                     <Popup trigger={<img id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
                       {close => (
 
