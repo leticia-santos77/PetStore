@@ -5,7 +5,7 @@ import Input from '../../components/input/Input';
 import Toggle from '../../components/input/Toggle';
 import './booking-registration.css';
 import Api from '../../service/Api';
-
+import Swal from 'sweetalert2';
 
 export default class ResourceForm extends Component {
     constructor(props) {
@@ -43,7 +43,6 @@ export default class ResourceForm extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         })
-        console.log(e.target.value)
     }
 
     formatDate = (date) => { // format from 'yyyy-mm-ddThh:mm' to 'dd/mm/yyyy hh:mm'
@@ -60,13 +59,24 @@ export default class ResourceForm extends Component {
 
     submitHandler = async e => {
         const { quantityOfPeople, useTv, date } = this.state;
-
         let data = this.formatDate(date);
-        console.log(data)
         let name = this.getSelectorOption();
         let id = await this.getResourceId(name);
 
-        await this.api.postBookings(id, quantityOfPeople, data, useTv);
+        await this.api.postBookings(id, quantityOfPeople, data, useTv)
+            .then(() => {
+                Swal.fire(
+                    'Sucesso!',
+                    'Reserva realizada com sucesso!',
+                    'success'
+                )
+            }).catch(() => {
+                Swal.fire(
+                    'Oh, não!',
+                    'Não foi possivel fazer essa reserva :(',
+                    'error'
+                )
+            })
         return true;
     }
 
