@@ -109,8 +109,7 @@ export default class ResourceForm extends Component {
                                 <div className="justify">
                                     <label>Nome do recurso:</label>
                                     <select className="input-form" id="resourceName">
-                                        {/* <option value="option">Selecione uma opção</option> */}
-                                        {
+                                    {/* <option selected={true} disabled value="option">Selecione uma opção</option> */}                                        {
                                             resources.map((resource, i) => {
                                                 return <option key={i} value="option"> {resource} </option>
                                             })
@@ -132,7 +131,7 @@ export default class ResourceForm extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" disabled onClick={this.submitHandler} className="button button-blue button-large input-button" defaultValue="Cadastrar"></input>
+                                    <span type="text" onClick={this.submitHandler} className="button button-blue button-large input-button">Cadastrar</span>
                                 </div>
                             </div>
                         </form>
