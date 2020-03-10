@@ -26,38 +26,7 @@ export default class BookingsCardList extends Component {
       bookingsElements: []
     };
   }
-  requestBookings = () => {
-    return this.api
-      .getBookings()
-  };
 
-  componentDidMount() {
-    this._isMounted = true;
-    this._asyncRequest = this.requestBookings().then(value => {
-      if (this._isMounted) {
-        this.setState({
-          bookingsElements: value.data.map(
-            b =>
-              (b = new Booking(
-                b.id,
-                b.resourceId,
-                b.resourceName,
-                b.useTv,
-                b.quantityOfPeople,
-                b.creationDate,
-                b.date,
-                b.canceled
-              ))
-          )
-        });
-      }
-    });
-    this.state.bookingsElements.reverse();
-    this._asyncRequest = null;
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
 
   submit = e => {
     e.preventDefault();
@@ -67,10 +36,42 @@ export default class BookingsCardList extends Component {
       this.state.quantityOfPeople,
       this.state.date,
       this.state.canceled
-    )
-      .then(this.requestBookings)
+    ).then(this.requestBookings)
   }
 
+  requestBookings = () => {
+    return this.api
+      .getBookings().then(value => {
+        if (this._isMounted) {
+          this.setState({
+            bookingsElements: value.data.map(
+              b =>
+                (b = new Booking(
+                  b.id,
+                  b.resourceId,
+                  b.resourceName,
+                  b.useTv,
+                  b.quantityOfPeople,
+                  b.creationDate,
+                  b.date,
+                  b.canceled
+                ))
+            )
+          });
+        }
+      });
+  };
+
+  componentDidMount() {
+    this._isMounted = true;
+    this.requestBookings();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  
   updateProps = e => {
     this.setState({
       id: e.target.id,
@@ -99,6 +100,7 @@ export default class BookingsCardList extends Component {
       })
     }
   }
+
   render() {
     const { bookingsElements } = this.state;
     return (
