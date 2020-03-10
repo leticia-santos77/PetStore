@@ -67,6 +67,7 @@ export default class Calendar extends Component {
             events={this.state.calendarEvents}
             dateClick={this.handleDateClick}
             eventClick={this.eventClick}
+            eventLimit={true}
           />
         </section>
 
