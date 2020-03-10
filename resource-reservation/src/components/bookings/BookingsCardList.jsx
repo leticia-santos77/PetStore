@@ -103,6 +103,7 @@ export default class BookingsCardList extends Component {
 
   render() {
     const { bookingsElements } = this.state;
+
     return (
       <React.Fragment>
         <section className="section-header">
@@ -110,6 +111,9 @@ export default class BookingsCardList extends Component {
         </section>
         <div className="container-card">
           {bookingsElements.map(booking => {
+            let fullData = booking.date.split(" ");
+            let data = fullData[0];
+            let hour = fullData[1];
             return (
               <Card className="styleCard" key={booking.id}>
                 <ul>
@@ -179,7 +183,10 @@ export default class BookingsCardList extends Component {
                     <p>{booking.useTv ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                   </li>
-                  <li><p>{booking.date}</p></li>
+                  <li>
+                    <p>{data}</p>
+                    <p>{hour}h</p>
+                    </li>
                 </ul>
               </Card>
             );
