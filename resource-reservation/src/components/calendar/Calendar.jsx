@@ -58,7 +58,7 @@ export default class Calendar extends Component {
   render() {
 
     return (
-      <React.Fragment>       
+      <div className="popup-alert">       
        <Popup trigger={ <section className="main-calendar">
           <FullCalendar 
             defaultView="dayGridMonth" 
@@ -69,15 +69,15 @@ export default class Calendar extends Component {
             eventClick={this.eventClick}
             eventLimit={true}
           /></section>} modal>
-        <h2>Recuso: {this.state.resource}</h2>
-        <h2>Data: {this.state.date}</h2>
-        <h2>Hota: {this.state.time}</h2>
-        <h2>pessoas: {this.state.people}</h2>
-        <h2>tv: {this.state.tv}</h2>
+        <h2>Recurso:{`  ${this.state.resource}`}</h2>
+        <h2>{`Data: ${this.state.date}`}</h2>
+        <h2>{`Hora: ${this.state.time}`}</h2>
+        <h2>{`Pessoas: ${this.state.people}`}</h2>
+        <h2>{`Tv:  ${this.state.tv}`}</h2>
 
         </Popup>
           
-      </React.Fragment>
+      </div>
     );
   }
 
