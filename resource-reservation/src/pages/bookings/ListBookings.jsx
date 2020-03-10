@@ -68,13 +68,13 @@ export default class ListBookings extends Component {
       ).catch("Fail!!");
   };
 
-  filterBooking(name) {
-    const { bookings } = this.state
-    const booking = bookings.filter(booking => booking.resourceName.includes(name.target.value))
-    this.setState({
-      bookingsFilter: booking
-    });
-  }
+  // filterBooking(name) {
+  //   const { bookings } = this.state
+  //   const booking = bookings.filter(booking => booking.resourceName.includes(name.target.value))
+  //   this.setState({
+  //     bookingsFilter: booking
+  //   });
+  // }
 
   bookingEdit = e => {
 
@@ -107,15 +107,20 @@ export default class ListBookings extends Component {
 
 
   render() {
-    const { bookingsFilter } = this.state;
+    const { bookings } = this.state;
     return (
       <React.Fragment>
-        <Header user="Gabriel Eugênio"><input placeholder="Informe o nome " onChange={this.filterBooking.bind(this)} /></Header>
+
+        <Header user="Gabriel Eugênio">
+          {/* <input placeholder="Informe o nome " onChange={this.filterBooking.bind(this)} /> */}
+        </Header>
+
         <Sidebar />
+
         <div className="main-content">
           <h1 className="content-title">Reservas</h1>
           <div className="container-card">
-            {bookingsFilter.map(booking => {
+            {bookings.map(booking => {
               return (
                 <Card className="styleCard" key={booking.id}>
                   <ul>
