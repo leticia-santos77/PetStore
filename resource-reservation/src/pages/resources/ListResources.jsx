@@ -20,6 +20,7 @@ import './popup.css';
 export default class ListResources extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.api = new Api();
     this.state = {
       resources: [],
@@ -49,31 +50,6 @@ export default class ListResources extends Component {
       activeRoom: null,
     })
   }
-  requestResources = () => {
-    return this.api
-      .getResources().then(value =>
-        this.setState({
-          resources: value.data.map(
-            r => r = new Resource(
-              r.id,
-              r.name,
-              r.numberOfSeats,
-              r.hasTelevision,
-              r.activeRoom,
-              r.creationDate
-            )
-          )
-        })
-      ).catch("Fail!!");
-  };
-
-  // filterResources(name) {
-  //   const { resources } = this.state
-  //   const resource = resources.filter(resource => resource.name.includes(name.target.value))
-  //   this.setState({
-  //     resourcesFilter: resource
-  //   });
-  // }
 
   resourceEdit = e => {
 
@@ -93,15 +69,39 @@ export default class ListResources extends Component {
       })
     }
   }
+  requestResources = async () => {
+    return await this.api
+      .getResources()
+  };
 
   componentDidMount() {
-    this._asyncRequest = this.requestResources();
+    this._isMounted = true;
+
+    this._asyncRequest = this.requestResources().then(result => {
+      if (this._isMounted) {
+        this.setState({
+          resources: result.data.map(
+            r =>
+              (r = new Resource(
+                r.id,
+                r.name,
+                r.numberOfSeats,
+                r.hasTelevision,
+                r.activeRoom,
+                r.creationDate
+              ))
+          )
+        });
+
+        this.state.resources.reverse();
+      }
+    });
+    
     this._asyncRequest = null;
   }
+
   componentWillUnmount() {
-    if (this._asyncReques) {
-      this._asyncRequest.cancel();
-    }
+    this._isMounted = false;
   }
 
   render() {
@@ -110,8 +110,8 @@ export default class ListResources extends Component {
 
     return (
       <React.Fragment>
+
         <Header user="Gabriel Eugênio" >
-          {/* <input placeholder="Informe o nome " onChange={this.filterResources.bind(this)} /> */}
         </Header>
 
         <Sidebar />
@@ -190,13 +190,13 @@ export default class ListResources extends Component {
                       </div>
                       <h1>{resource.name}</h1>
                     </li>
-                    <li><p><i className="fas fa-users blue"></i>
+                    <li className="li-icon-title"><p><i className="fas fa-users blue"></i>
                       {resource.numberOfSeats} Vagas</p>
                     </li>
-                    <li><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
+                    <li className="li-icon-title"><p>{resource.hasTelevision ? <i className="far fa-check-circle green"></i> : <i className="far fa-times-circle red"></i>}
                       Televisão</p>
                     </li>
-                    <li><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i className="far fa-window-close red"></i>}
+                    <li className="li-icon-title"><p>{resource.activeRoom ? <i className="far fa-check-square green"></i> : <i className="far fa-window-close red"></i>}
                       Sala</p>
                     </li>
                     <li><p>{resource.creationDate}</p></li>
