@@ -29,6 +29,8 @@
 }
 .content-title{
     font-weight: lighter;
+    padding-left: 20px;
+    font-size: 32px;
 }
 .title-bar a{
     width: 32px;
