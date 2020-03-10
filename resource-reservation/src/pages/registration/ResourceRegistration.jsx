@@ -37,10 +37,7 @@ export default class ResourceForm extends Component {
         try {
             e.preventDefault();
             return this.api.postResources(name, numberOfSeats, hasTelevision, activeRoom)
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                }).then(() => {
+                .then(() => {
                     Swal.fire(
                         'Sucesso!',
                         'Recurso criado com sucesso!',

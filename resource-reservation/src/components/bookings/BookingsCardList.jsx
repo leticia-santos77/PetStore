@@ -12,9 +12,8 @@ import '../../components/modal/modal.css';
 import '../../grid.css';
 import '../../components/button/button.css';
 import '../../components/modal/modal-form.css';
-import '../../app.css'
-import '../../components/input/toggle.css'
-import '../../pages/resources/popup.css';
+import '../../app.css';
+import '../../components/input/toggle.css';
 import Swal from 'sweetalert2';
 
 export default class BookingsCardList extends Component {
