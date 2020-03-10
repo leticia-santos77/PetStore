@@ -130,7 +130,7 @@ export default class ResourceForm extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" onClick={this.submitHandler} className="button button-blue button-large input-button" defaultValue="Cadastrar"></input>
+                                    <input type="text" disabled onClick={this.submitHandler} className="button button-blue button-large input-button" defaultValue="Cadastrar"></input>
                                 </div>
                             </div>
                         </form>
