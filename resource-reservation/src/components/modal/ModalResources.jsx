@@ -30,8 +30,7 @@ export default class ResourceForm extends Component {
 
         axios.post('http://localhost:8082/api/resources/add', { name: this.state.name, numberOfSeats: this.state.numberOfSeats, hasTelevision: this.state.hasTelevision, activeRoom: this.state.activeRoom })
             .then(res => {
-                console.log(res);
-                console.log(res.data);
+    
             })
     }
 
