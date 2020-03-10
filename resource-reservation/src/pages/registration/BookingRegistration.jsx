@@ -5,7 +5,7 @@ import Input from '../../components/input/Input';
 import Toggle from '../../components/input/Toggle';
 import './resource-registration.css';
 import Api from '../../service/Api';
-
+import Swal from 'sweetalert2';
 
 export default class ResourceForm extends Component {
     constructor(props) {
@@ -66,7 +66,20 @@ export default class ResourceForm extends Component {
         let name = this.getSelectorOption();
         let id = await this.getResourceId(name);
 
-        await this.api.postBookings(id, quantityOfPeople, data, useTv);
+        await this.api.postBookings(id, quantityOfPeople, data, useTv)
+            .then(() => {
+                Swal.fire(
+                    'Sucesso!',
+                    'Reserva realizada com sucesso!',
+                    'success'
+                )
+            }).catch(() => {
+                Swal.fire(
+                    'Oh, não!',
+                    'Não foi possivel fazer essa reserva :(',
+                    'error'
+                )
+            })
         return true;
     }
 
@@ -90,7 +103,7 @@ export default class ResourceForm extends Component {
                 <Header user="Rafael Scotti" />
                 <Sidebar />
                 <div className="main-content">
-                <h1 className="content-title">Nova Reserva</h1>
+                    <h1 className="content-title">Nova Reserva</h1>
                     <div className="form">
                         <form>
                             <div>
