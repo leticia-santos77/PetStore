@@ -71,7 +71,7 @@ export default class BookingsCardList extends Component {
                   b.date,
                   b.canceled
                 ))
-            )
+            ).reverse()
           });
         }
       });
