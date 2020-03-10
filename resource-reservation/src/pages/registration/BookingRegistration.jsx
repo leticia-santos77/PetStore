@@ -107,7 +107,7 @@ export default class ResourceForm extends Component {
                                 <div className="justify">
                                     <label>Nome do recurso:</label>
                                     <select className="input-form" id="resourceName">
-                                    <option selected={true} disabled value="option">Selecione uma opção</option>                                        {
+                                    {/* <option selected={true} disabled value="option">Selecione uma opção</option> */}                                        {
                                             resources.map((resource, i) => {
                                                 return <option key={i} value="option"> {resource} </option>
                                             })
