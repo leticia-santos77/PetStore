@@ -133,7 +133,7 @@ export default class BookingsCardList extends Component {
               <Card className="styleCard" key={booking.id}>
                 <ul>
                   <li onClick={this.updateProps} >
-                    <h1>{booking.resourceName}</h1>
+                    <h1 title={booking.resourceName}>{booking.resourceName}</h1>
                     <Popup trigger={<img id={booking.id} className="pen" alt="Imagem de editar" name="id" src={ImgEdit} />} modal>
                       {close => (
 

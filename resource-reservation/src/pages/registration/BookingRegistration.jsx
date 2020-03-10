@@ -43,7 +43,6 @@ export default class ResourceForm extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         })
-        console.log(e.target.value)
     }
 
     formatDate = (date) => { // format from 'yyyy-mm-ddThh:mm' to 'dd/mm/yyyy hh:mm'
@@ -60,9 +59,7 @@ export default class ResourceForm extends Component {
 
     submitHandler = async e => {
         const { quantityOfPeople, useTv, date } = this.state;
-
         let data = this.formatDate(date);
-        console.log(data)
         let name = this.getSelectorOption();
         let id = await this.getResourceId(name);
 
@@ -133,7 +130,7 @@ export default class ResourceForm extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" onClick={this.submitHandler} className="button button-blue button-large" tittle="Cadastrar" defaultValue="Botao"></input>
+                                    <input type="text" onClick={this.submitHandler} className="button button-blue button-large" tittle="Cadastrar" defaultValue="Botao" required></input>
                                 </div>
                             </div>
                         </form>
