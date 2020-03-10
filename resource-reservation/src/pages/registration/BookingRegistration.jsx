@@ -40,12 +40,14 @@ export default class ResourceForm extends Component {
     }
 
     changeHandler = e => {
+        console.log(e.target.value)
         this.setState({
             [e.target.name]: e.target.value,
         })
     }
 
     formatDate = (date) => { // format from 'yyyy-mm-ddThh:mm' to 'dd/mm/yyyy hh:mm'
+
         let newDate = date.split('T');
         let day = newDate[0].split('-').reverse().join('/');
         let hour = newDate[1];
@@ -120,7 +122,7 @@ export default class ResourceForm extends Component {
                                 </div>
                                 <div className="justify">
                                     <label> Data: </label>
-                                    <Input className="input-form" type="datetime-local" min={"2020-03-10T12:00"} name="date" onBlur={this.changeHandler} />
+                                    <Input className="input-form" type="datetime-local" min={"2020-03-10T12:00"}  name="date" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="justify">
                                     <label>Usará televisão?</label>

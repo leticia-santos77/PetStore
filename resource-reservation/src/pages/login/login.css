@@ -61,3 +61,24 @@
 .button-login:hover{
     opacity: 1;
 }
+@media screen and (max-width:460px){
+    .box {
+      width: 270px;
+    }
+    .div-logo{
+        margin:0 auto;
+        margin-top: 20px;
+    }
+    .logo{
+        height: 100%;;
+    }
+    .div-login-text {
+        font-size: 8px;
+    }
+    .input-login {
+        margin-left: 0px !important;
+    }    
+    .button-login{
+        width: 100%;
+    }    
+  }
