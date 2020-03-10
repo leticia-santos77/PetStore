@@ -17,8 +17,19 @@
 .main-content .content-title {
 
     margin-top: 15px;
-    margin-left: 20px;
+    padding-left: 20px;
     font-weight: lighter;
+    font-size: 30px;
+    border-bottom: 1px solid rgba(48, 48, 48) ;
+    border-radius: 0px;
+    border-bottom-left-radius: 0;
+}
+
+.main-content .icon:nth-child(1) {
+    font-size: 30px;
+    margin-left: 80%;
+    color: #026974;
+    
 }
 
 .vertical-nav header {

@@ -21,3 +21,12 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0px;
     margin-bottom: 0px ;
 }
+
+.input-form{
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #ccc;
+    margin: 10px;
+    height: 40px;
+    width: 300px;
+}

@@ -1,0 +1,22 @@
+/* NotFound*/
+
+.not-found {
+    background: rgba(255, 255, 255, 0);
+    background: radial-gradient(circle, #038C8C 0%, #026873 100%);
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.not-found h1 {
+    font-size: 124px;
+    font-weight: lighter;
+}
+
+.not-found h2 {
+    font-size: 36px;
+    font-weight: lighter;
+}
