@@ -45,7 +45,7 @@ export default class BookingsCardList extends Component {
     }).catch(() => {
       Swal.fire(
         'Oh, não!',
-        'Não foi possivel editar reserva :(',
+        'Informe todos os dados corretamente',
         'error'
       )
     })
@@ -70,7 +70,7 @@ export default class BookingsCardList extends Component {
                   b.date,
                   b.canceled
                 ))
-            )
+            ).reverse()
           });
         }
       });

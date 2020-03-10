@@ -50,8 +50,8 @@ export default class ListResources extends Component {
         'error'
       )
     })
-    .then(this.requestResources)
-    .catch("Nao foi possivel carregar os recursos!");
+      .then(this.requestResources)
+      .catch("Nao foi possivel carregar os recursos!");
   }
 
   updateProps = e => {
@@ -98,7 +98,7 @@ export default class ListResources extends Component {
                   r.activeRoom,
                   r.creationDate
                 ))
-            )
+            ).reverse()
           });
         }
       });
@@ -118,7 +118,7 @@ export default class ListResources extends Component {
   render() {
 
     const { resources } = this.state;
-
+    
     return (
       <React.Fragment>
 

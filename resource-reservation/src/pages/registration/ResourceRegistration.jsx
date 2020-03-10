@@ -49,7 +49,7 @@ export default class ResourceForm extends Component {
                 }).catch(() => {
                     Swal.fire(
                         'Oh, não!',
-                        'Não foi criar esse recurso :(',
+                        'Verifique os dados informados',
                         'error'
                     )
                 })
