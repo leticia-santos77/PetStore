@@ -67,7 +67,7 @@ export default class Calendar extends Component {
             timeZone = "America/Sao_Paulo"
             events={this.state.calendarEvents}
             eventClick={this.eventClick}
-            eventLimit={true}
+            // eventLimit={true}
           /></section>} modal>
         <h2>Recurso:{`  ${this.state.resource}`}</h2>
         <h2>{`Data: ${this.state.date}`}</h2>
