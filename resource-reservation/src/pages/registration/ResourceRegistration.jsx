@@ -64,27 +64,27 @@ render() {
             <Sidebar />
             <div className="main-content">
                 <h1 className="content-title">Novo Recurso</h1>
-                <div className="form">
-                    <form onSubmit={this.submitHandler}>
-                        <div>
-                            <div className="justify">
-                                <label>Recurso:</label>
-                                <Input className="input-form" type="text" name="name" onBlur={this.changeHandler} />
-                            </div>
-                            <div className="justify">
-                                <label> Número de lugares: </label>
-                                <Input className="input-form" type="number" name="numberOfSeats" onBlur={this.changeHandler} />
-                            </div>
-                            <div className="justify">
-                                <label>Possui TV</label>
-                                <div>
-                                    <Toggle name="hasTelevision" onChange={this.optionHandler} />
+                    <div className="form-resource">
+                        <form onSubmit={this.submitHandler}>
+                            <div>
+                                <div className="justify">
+                                    <label>Recurso:</label>
+                                    <Input className="input-form" type="text" placeholder="Nome do Recurso" name="name" onBlur={this.changeHandler} />
                                 </div>
-                            </div>
-                            <div className="justify">
-                                <label>Sala ativa</label>
-                                <Toggle type="checkbox" name="activeRoom" onChange={this.optionHandler} />
-                            </div>
+                                <div className="justify">
+                                    <label> Número de lugares: </label>
+                                    <Input className="input-form" type="number" placeholder="Número de lugares" name="numberOfSeats" onBlur={this.changeHandler} />
+                                </div>
+                                <div className="justify">
+                                    <label>Possui TV</label>
+                                    <div>
+                                        <Toggle name="hasTelevision" onChange={this.optionHandler} />
+                                    </div>
+                                </div>
+                                <div className="justify">
+                                    <label>Sala ativa</label>
+                                    <Toggle type="checkbox" name="activeRoom" onChange={this.optionHandler} />
+                                </div>
                             <div>
                                 <Button type="submit" className="button button-blue button-large" tittle="Cadastrar" />
                             </div>

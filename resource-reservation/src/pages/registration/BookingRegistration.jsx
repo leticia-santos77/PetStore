@@ -3,7 +3,7 @@ import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Input from '../../components/input/Input';
 import Toggle from '../../components/input/Toggle';
-import './resource-registration.css';
+import './booking-registration.css';
 import Api from '../../service/Api';
 import Swal from 'sweetalert2';
 
@@ -100,8 +100,8 @@ export default class ResourceForm extends Component {
                 <Header user="Rafael Scotti" />
                 <Sidebar />
                 <div className="main-content">
-                    <h1 className="content-title">Nova Reserva</h1>
-                    <div className="form">
+                <h1 className="content-title">Nova Reserva</h1>
+                    <div className="form-booking">
                         <form>
                             <div>
                                 <div className="justify">
@@ -117,7 +117,7 @@ export default class ResourceForm extends Component {
                                 </div>
                                 <div className="justify">
                                     <label> Quantidade de lugares: </label>
-                                    <Input className="input-form" type="number" name="quantityOfPeople" onBlur={this.changeHandler} />
+                                    <Input className="input-form" placeholder="Quantidade de lugares" type="number" name="quantityOfPeople" onBlur={this.changeHandler} />
                                 </div>
                                 <div className="justify">
                                     <label> Data: </label>
@@ -130,7 +130,7 @@ export default class ResourceForm extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" onClick={this.submitHandler} className="button button-blue button-large" tittle="Cadastrar" defaultValue="Botao" required></input>
+                                    <input type="text" onClick={this.submitHandler} className="button button-blue button-large input-button" defaultValue="Cadastrar"></input>
                                 </div>
                             </div>
                         </form>
