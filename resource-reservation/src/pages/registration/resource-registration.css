@@ -17,12 +17,21 @@
 
 @media (min-width: 1500px) {
     .form-resource {
-        padding-top: 250px;
+        padding-top: 100px;
         justify-content: center;
     }
     .justify{
         height: 80px;
         width: 600px;
         font-size: 23px;
+    }
+}
+
+@media (max-width: 650px) {
+    .justify:not(.select) label{
+        display: none;
+    }
+    .justify .input-form::placeholder {
+        opacity: 1;
     }
 }

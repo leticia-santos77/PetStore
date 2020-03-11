@@ -123,7 +123,7 @@ export default class ResourceForm extends Component {
                                     <label> Data: </label>
                                     <Input className="input-form" type="datetime-local" min={"2020-03-10T12:00"}  name="date" onBlur={this.changeHandler} />
                                 </div>
-                                <div className="justify">
+                                <div className="justify select">
                                     <label>Usará televisão?</label>
                                     <div>
                                         <Toggle name="useTv" onChange={this.optionHandler} />

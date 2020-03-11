@@ -9,7 +9,7 @@
 
 @media (min-width: 1500px) {
     .form-booking {
-        padding-top: 250px;
+        padding-top: 100px;
         justify-content: center;
     }
     .justify{
@@ -20,7 +20,7 @@
 }
 
 @media (max-width: 650px) {
-    .justify label{
+    .justify:not(.select) label{
         display: none;
     }
     .justify .input-form::placeholder {

@@ -72,13 +72,13 @@ render() {
                                     <label> Número de lugares: </label>
                                     <Input className="input-form" type="number" placeholder="Número de lugares" name="numberOfSeats" onBlur={this.changeHandler} />
                                 </div>
-                                <div className="justify">
+                                <div className="justify select">
                                     <label>Possui TV</label>
                                     <div>
                                         <Toggle name="hasTelevision" onChange={this.optionHandler} />
                                     </div>
                                 </div>
-                                <div className="justify">
+                                <div className="justify select">
                                     <label>Sala ativa</label>
                                     <Toggle type="checkbox" name="activeRoom" onChange={this.optionHandler} />
                                 </div>
